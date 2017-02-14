@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      A Weather App
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div id="weather-report" *ngIf="weather">
+    <p>Temperature: {{weather.main.temp}} </p>
+    <p>Weather: {{weather.weather[0].description}}</p>
+    <p>Wind: {{weather.wind.speed}}</p>
+  </div>
+</ion-content>
