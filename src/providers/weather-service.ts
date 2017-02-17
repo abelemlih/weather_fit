@@ -33,7 +33,5 @@ export class WeatherService {
           resolve(this.data);
         })
     })
-
   }
-
 }
