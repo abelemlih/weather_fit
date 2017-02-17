@@ -11,7 +11,7 @@
   <div id="weather-report" *ngIf="weather">
     <div class="stat">
       <div class="label">Temperature:</div>
-      <div class="value">{{weather.main.temp}}</div>
+      <div class="value">{{temp_str}}</div>
     </div>
 
     <div class="stat">
@@ -30,12 +30,12 @@
 
 
 
-  <button ion-button outline item-right= icon-left>
+  <button ion-button outline item-right= icon-left (click)="toCel()">
     <ion-icon name="sunny"></ion-icon>
     celsius
   </button>
 
-  <button ion-button outline item-right= icon-left>
+  <button ion-button outline item-right= icon-left (click)="toFah()">
     <ion-icon name="sunny"></ion-icon>
     Fahrenheit
   </button>
