@@ -29,11 +29,8 @@ export class WeatherService {
         .map(res => res.json())
         .subscribe(data => {
           this.data = data;
-          console.log(this.data);
           resolve(this.data);
         })
     })
-
   }
-
 }

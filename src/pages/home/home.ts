@@ -2,20 +2,22 @@ import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 
-import { WeatherService } from '../../providers/weather-service';
+import { WeatherService } from '../../providers/weather-service'
 
-import { ActionSheetController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers:[WeatherService]
+  providers: [WeatherService]
 })
 export class HomePage {
 
-  public weather: any;
+  weather: any;
+  temp_num: number;
+  temp_str: string;
 
-  constructor(public navCtrl: NavController, public weatherService: WeatherService, public actionSheetCtrl: ActionSheetController) {
+  constructor(public navCtrl: NavController,
+              public weatherService: WeatherService) {
     this.loadWeather();
   }
 
@@ -23,35 +25,22 @@ export class HomePage {
     this.weatherService.load()
       .then(data => {
         this.weather = data;
+        this.init();
       })
   }
 
-
-  presentActionSheet() {
-    let actionSheet = this.actionSheetCtrl.create({
-      title: 'Modify your album',
-      buttons: [
-        {
-          text: 'Destructive',
-          role: 'destructive',
-          handler: () => {
-            console.log('Destructive clicked');
-          }
-        }, {
-          text: 'Archive',
-          handler: () => {
-            console.log('Archive clicked');
-          }
-        }, {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        }
-      ]
-    });
-    actionSheet.present();
-
+  init() {
+    this.temp_num = this.weather.main.temp - 273.15;
+    this.temp_str = this.temp_num.toFixed(2);
   }
+
+  toCel() {
+    this.temp_str = this.temp_num.toFixed(2);
+  }
+
+  toFah(){
+    let fah_temp = (this.temp_num * 1.8) + 32;
+    this.temp_str = fah_temp.toFixed(2);
+  }
+
 }
