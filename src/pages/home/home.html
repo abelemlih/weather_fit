@@ -9,6 +9,13 @@
 <ion-content padding>
 
   <div id="weather-report" *ngIf="weather">
+
+    <div class="stat">
+      <div class="label">Location:</div>
+      <div class="value">{{weather.name}}</div>
+    </div>
+
+
     <div class="stat">
       <div class="label">Temperature:</div>
       <div class="value">{{temp_str}}</div>
@@ -41,21 +48,21 @@
   </button>
 
 
-  <ion-slides pager>
+  <!--<ion-slides pager>-->
 
-    <ion-slide style="background-color: lightgrey">
-      <h2>Top</h2>
-    </ion-slide>
+    <!--<ion-slide style="background-color: lightgrey">-->
+      <!--<h2>Top</h2>-->
+    <!--</ion-slide>-->
 
-    <ion-slide style="background-color: lightgrey">
-      <h2>Bottom</h2>
-    </ion-slide>
+    <!--<ion-slide style="background-color: lightgrey">-->
+      <!--<h2>Bottom</h2>-->
+    <!--</ion-slide>-->
 
-    <ion-slide style="background-color: lightgrey">
-      <h2>Hats and Shoes</h2>
-    </ion-slide>
+    <!--<ion-slide style="background-color: lightgrey">-->
+      <!--<h2>Hats and Shoes</h2>-->
+    <!--</ion-slide>-->
 
-  </ion-slides>
+  <!--</ion-slides>-->
 
 
 
