@@ -25,6 +25,7 @@ export class HomePage {
     this.weatherService.load()
       .then(data => {
         this.weather = data;
+        // console.log(this.weather);
         this.init();
       })
   }
