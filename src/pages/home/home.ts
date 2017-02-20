@@ -4,6 +4,7 @@ import { NavController } from 'ionic-angular';
 
 import { WeatherService } from '../../providers/weather-service'
 
+import {SettingsPage} from '../settings/settings';
 
 @Component({
   selector: 'page-home',
@@ -16,8 +17,7 @@ export class HomePage {
   temp_num: number;
   temp_str: string;
 
-  constructor(public navCtrl: NavController,
-              public weatherService: WeatherService) {
+  constructor(public navCtrl: NavController, public weatherService: WeatherService) {
     this.loadWeather();
   }
 
@@ -29,6 +29,10 @@ export class HomePage {
         this.init();
       })
   }
+
+  showSettingsPage() {
+    this.navCtrl.push(SettingsPage);
+}
 
   init() {
     this.temp_num = this.weather.main.temp - 273.15;
