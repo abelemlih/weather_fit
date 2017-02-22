@@ -14,5 +14,65 @@
 
 
 <ion-content padding>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Q3EpvVHz9Z4" frameborder="0" allowfullscreen></iframe>
+
+  <!-- Temperature buttons -->
+  <ion-row>
+    <ion-col>
+      <button ion-button clear>℃ </button>
+    </ion-col>
+    <ion-col>
+      <button ion-button clear>℉ </button>
+    </ion-col>
+  </ion-row>
+
+  <!-- Unit/location toggles -->
+  <ion-item>
+    <ion-label> Units?</ion-label>
+    <ion-toggle checked="false"></ion-toggle>
+  </ion-item>
+
+  <ion-item>
+    <ion-label> Location?</ion-label>
+    <ion-toggle checked="false"></ion-toggle>
+  </ion-item>
+
+  <!-- Gender options -->
+  <!--<ion-row>-->
+    <!--<ion-col>-->
+      <!--<button ion-button clear> <ion-icon name="woman"></ion-icon> </button>-->
+    <!--</ion-col>-->
+    <!--<ion-col>-->
+      <!--<button ion-button clear> <ion-icon name="man"></ion-icon> </button>-->
+    <!--</ion-col>-->
+    <!--<ion-col>-->
+      <!--<button ion-button clear> <ion-icon name="star"></ion-icon> </button>-->
+    <!--</ion-col>-->
+  <!--</ion-row>-->
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Gender</ion-label>
+      <ion-select [(ngModel)]="gender">
+        <ion-option value="female">Female</ion-option>
+        <ion-option value="male">Male</ion-option>
+        <ion-option value="other">Neutral</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <!-- Message toggle -->
+  <ion-item>
+    <ion-label> Message?</ion-label>
+    <ion-toggle checked="false"></ion-toggle>
+  </ion-item>
+
+  &nbsp;
+
+  <!-- Location searchbar -->
+  <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+
+  &nbsp;
+
+  <ion-label>About </ion-label>
+
 </ion-content>

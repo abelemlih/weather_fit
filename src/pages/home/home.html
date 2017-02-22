@@ -8,22 +8,22 @@
 
 <ion-content padding>
 
-  <div id="weather-report" *ngIf="weather">
+  <div id="weather-report">
 
     <div class="stat">
       <div class="label">Location:</div>
-      <div class="value">{{weather.name}}</div>
+      <div class="value" *ngIf="weather"> {{weather.name}}</div>
     </div>
 
 
     <div class="stat">
       <div class="label">Temperature:</div>
-      <div class="value">{{temp_str}}</div>
+      <div class="value" *ngIf="weather">{{temp_str}}</div>
     </div>
 
     <div class="stat">
       <div class="label">Weather:</div>
-      <div class="value">{{weather.weather[0].description}}</div>
+      <div class="value" *ngIf="weather">{{weather.weather[0].description}}</div>
     </div>
 
 
@@ -31,22 +31,26 @@
 
     <div class="stat">
       <div class="label">Wind:</div>
-      <div class="value">{{weather.wind.speed}}</div>
+      <div class="value" *ngIf="weather">{{weather.wind.speed}}</div>
     </div>
   </div>
 
-   <button ion-button outline item-right= icon-left (click)="showSettingsPage()"><ion-icon name="settings"></ion-icon>Settings</button>
+   <button ion-button outline item-right= icon-left (click)="showSettingsPage()"><ion-icon name="settings"></ion-icon>&nbsp; Settings</button>
 
   <button ion-button outline item-right= icon-left (click)="toCel()">
     <ion-icon name="sunny"></ion-icon>
-    celsius
+    &nbsp; Celsius
   </button>
 
   <button ion-button outline item-right= icon-left (click)="toFah()">
     <ion-icon name="sunny"></ion-icon>
-    Fahrenheit
+    &nbsp; Fahrenheit
   </button>
 
+
+
+  <img src="../../assets/clothing/dungarees-outline.png">
+  <img src="../../assets/weather/cloud-fog-moon.svg">
 
   <!--<ion-slides pager>-->
 
