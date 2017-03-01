@@ -4,12 +4,14 @@ import { NavController } from 'ionic-angular';
 
 import { WeatherService } from '../../providers/weather-service'
 
+import { GeolocationService } from '../../providers/geolocation-service'
+
 import {SettingsPage} from '../settings/settings';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [WeatherService]
+  providers: [WeatherService, GeolocationService]
 })
 export class HomePage {
 
@@ -17,35 +19,45 @@ export class HomePage {
   temp_num: number;
   temp_str: string;
 
-  constructor(public navCtrl: NavController, public weatherService: WeatherService) {
+  constructor(public navCtrl: NavController,
+              public weatherService: WeatherService,
+              public geolocationService: GeolocationService) {
     this.loadWeather();
   }
 
   loadWeather() {
-    this.weatherService.load()
+    this.geolocationService.load()
+      .catch( (error) => console.log("Failed to get Geolocation\n" + error.toString()))
+      .then((pos: Position) => {
+        this.weatherService.pos = pos;
+        return this.weatherService.load();
+      })
       .then(data => {
         this.weather = data;
         // console.log(this.weather);
         this.init();
       })
+      .catch( (error) => console.log("Failed to load weather data to HomePage\n" + error.toString())
+      )
   }
 
   showSettingsPage() {
-    this.navCtrl.push(SettingsPage);
+    this.navCtrl.push(SettingsPage)
+      .catch( (error) => console.log("Failed to push to SettingsPage"));
 }
 
   init() {
     this.temp_num = this.weather.main.temp - 273.15;
-    this.temp_str = this.temp_num.toFixed(2);
+    this.toCel();
   }
 
   toCel() {
-    this.temp_str = this.temp_num.toFixed(2);
+    this.temp_str = this.temp_num.toFixed().toString() + "°C";
   }
 
   toFah(){
     let fah_temp = (this.temp_num * 1.8) + 32;
-    this.temp_str = fah_temp.toFixed(2);
+    this.temp_str = fah_temp.toFixed().toString() + "°F";
   }
 
 }
