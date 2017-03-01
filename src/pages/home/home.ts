@@ -9,8 +9,6 @@ import { GeolocationService } from '../../providers/geolocation-service'
 
 import {SettingsPage} from '../settings/settings';
 
-import { MenuController } from 'ionic-angular';
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
