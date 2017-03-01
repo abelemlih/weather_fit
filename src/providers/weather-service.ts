@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
-import { Geolocation } from 'ionic-native';
 
 /*
   Generated class for the WeatherService provider.
@@ -15,6 +14,7 @@ import { Geolocation } from 'ionic-native';
 export class WeatherService {
 
   data: any;
+  private _pos: Position;
 
   constructor(public http: Http) {}
 
@@ -24,22 +24,27 @@ export class WeatherService {
     }
 
     return new Promise( (resolve) => {
-      Geolocation.getCurrentPosition()
-        .then((pos: Position) => {
-          let url = "http://api.openweathermap.org/data/2.5/weather?";
-          let coords = "lat=" + Math.round(pos.coords.latitude) + "&lon=" + Math.round(pos.coords.longitude);
-          const key = "6a24316a673761513e82c0ee0315bdea";
-          let appID = "&APPID=" + key;
-          return url + coords + appID;
+      let url = "http://api.openweathermap.org/data/2.5/weather?";
+      let coords = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
+      const key = "6a24316a673761513e82c0ee0315bdea";
+      let appID = "&APPID=" + key;
+
+      this.http
+        .get(url + coords + appID)
+        .map(response => response.json())
+        .subscribe(data => {
+          this.data = data;
+          resolve(data);
         })
-        .then((url: string) => this.http
-            .get(url)
-            .map(response => response.json())
-            .subscribe(data => {
-              this.data = data;
-              resolve(data);
-            })
-        )
     })
+  }
+
+
+  get pos(): Position {
+    return this._pos;
+  }
+
+  set pos(value: Position) {
+    this._pos = value;
   }
 }

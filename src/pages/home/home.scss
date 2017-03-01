@@ -1,32 +1,37 @@
-
 page-home {
 
+  .weather {
 
-
-  .stat {
-    margin: 16px;
-    font-size: 23px;
-
-    .label {
-      font-weight: bold;
-      float: left;
-      width: 160px;
-
+    .icon {
+      margin: auto;
     }
 
-    .value {
-      font-size: 30px;
-      color: black;
+    .temperature {
+      font-size: 2em;
+      font-weight: 800;
+      margin: auto;
+    }
 
+    .location {
+      font-size: 2em;
+      font-weight: 800;
+      margin: auto;
     }
   }
-  .getstart {
+
+  .clothing {
+    width: 105px;
+    height: 105px;
+  }
+
+  .main-display {
+
     //The one with the clouds
     background-image: url(http://media3.giphy.com/media/jtavDv8iqstY4/giphy.gif);
+
     //The one with the snowflakes
-    /*
-    background-image: url(https://68.media.tumblr.com/ae343894fa97678e054a7216ad9756ba/tumblr_ohrxh8Gfju1u7gnm9o1_500.gif);
-    */
+    //background-image: url(https://68.media.tumblr.com/ae343894fa97678e054a7216ad9756ba/tumblr_ohrxh8Gfju1u7gnm9o1_500.gif);
+
     background-repeat: no-repeat;
     background-size:cover;
   }
@@ -35,7 +40,7 @@ page-home {
     height: 200px; /* slider height you want */
   }
   .slider-slide {
-    height: 100%;
+    height: 50%;
   }
 
 
