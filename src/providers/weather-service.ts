@@ -18,41 +18,28 @@ export class WeatherService {
 
   constructor(public http: Http) {}
 
-  getLocation(){
-    return new Promise((resolve, reject) => {
-      Geolocation.getCurrentPosition()
-        .then((resp) => {
-            let url = "http://api.openweathermap.org/data/2.5/weather?";
-            let lat = Math.round(resp.coords.latitude);
-            let long = Math.round(resp.coords.longitude);
-            url += "lat=" + lat + "&lon=" + long;
-            url += "&APPID=6a24316a673761513e82c0ee0315bdea";
-            resolve(url);
-          }
-        )
-        .catch((error) => {
-          console.log("Error getting location.");
-          reject(error);
-        })
-    })
-  }
-
   load() {
     if (this.data) {
-      // already loaded data
       return Promise.resolve(this.data)
     }
 
-    // don't have the data yet
-    return new Promise(resolve => {
-      this.getLocation().then((url: string) => {
-        this.http.get(url)
-          .map(res => res.json())
-          .subscribe(data => {
-            this.data = data;
-            resolve(this.data);
-          })
-      })
+    return new Promise( (resolve) => {
+      Geolocation.getCurrentPosition()
+        .then((pos: Position) => {
+          let url = "http://api.openweathermap.org/data/2.5/weather?";
+          let coords = "lat=" + Math.round(pos.coords.latitude) + "&lon=" + Math.round(pos.coords.longitude);
+          const key = "6a24316a673761513e82c0ee0315bdea";
+          let appID = "&APPID=" + key;
+          return url + coords + appID;
+        })
+        .then((url: string) => this.http
+            .get(url)
+            .map(response => response.json())
+            .subscribe(data => {
+              this.data = data;
+              resolve(data);
+            })
+        )
     })
   }
 }
