@@ -1,42 +1,281 @@
+
 <ion-header>
   <ion-navbar>
     <ion-title>
-      A Weather App
+      Weather Fit
     </ion-title>
+    <button class="button button-icon icon ion-navicon" menuToggle>
+    </button>
   </ion-navbar>
 </ion-header>
 
-°<ion-content padding>
+<ion-menu [content]="mycontent" side="left">
+  <ion-content>
+    <ion-list>
+      <button ion-button icon-only ion-button large item-right= icon-center color="light" (click)="showSettingsPage()">
+        <ion-icon name="build">
+        </ion-icon>
+      </button>
 
-  <div id="weather-report" *ngIf="weather">
+      <br>
+      <br>
+      <br>
 
-    <div class="stat">
+      <button ion-button icon-only ion-button large item-right= icon-center color="light">
+        <ion-icon name="download">
+        </ion-icon>
+      </button>
+
+
+
+     <!-- <ion-fab>
+        <button ion-fab color="primary"><ion-icon name="build" (click)="showSettingsPage()"></ion-icon></button>
+        <br>
+        <button ion-fab color="primary"><ion-icon name="cloud-download"></ion-icon></button>
+        <br>
+        <button ion-fab color="primary"><ion-icon name="cog"></ion-icon></button>
+-->
+        <!-- <ion-fab-list>
+           <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+           <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+           <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
+           <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+         </ion-fab-list>-->
+<!--
+      </ion-fab>
+-->
+      <!--<br>
+      <button ion-button icon-only ion-button large>
+        <ion-icon name="star"></ion-icon>
+      </button>-->
+
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #mycontent [root]="rootPage"></ion-nav>
+
+<!--<ion-row>
+  <ion-col>
+
+  </ion-col>
+
+  <ion-col>
+    <ion-row>
+      <ion-col><button ion-fab color="primary"><ion-icon name="build"></ion-icon></button></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-col>
+
+  <ion-col>
+
+  </ion-col>
+</ion-row>-->
+<!--<ion-header>
+  <ion-side-menus>
+    <ion-side-menu side="left">
+      <button ion-button menuToggle>Toggle Menu</button>
+    </ion-side-menu>
+  </ion-side-menus>
+</ion-header>
+
+
+<ion-menu [content]="mycontent">
+  <ion-content>
+    <ion-list>
+      <p>some menu content, could be list items</p>
+    </ion-list>
+  </ion-content>
+</ion-menu>-->
+
+<!--
+<ion-nav #mycontent [root]="rootPage"></ion-nav>
+-->
+
+
+<ion-content padding class="getstart">
+
+  <ion-grid>
+
+    <ion-row>
+      <ion-row w>
+        <ion-col width-28>
+         <!-- num 1-->
+        </ion-col>
+
+        <ion-col width-71>
+          <img src="../../assets/weather icons/cloud-sun.svg">
+        </ion-col>
+
+        <ion-col width-30>
+<!--
+          num 3
+-->
+        </ion-col>
+      </ion-row>
+    </ion-row>
+
+    <ion-row>
+      <ion-row>
+        <ion-col width-28>
+         <!-- num 4-->
+        </ion-col>
+
+        <ion-col width-68>
+          <div class="stat">
+<!--
+            <div class="label">Temperature:</div>
+-->
+            <div class="value">{{temp_str}}</div>
+          </div>
+        </ion-col>
+
+        <ion-col>
+          <!--num 6-->
+        </ion-col>
+      </ion-row>
+    </ion-row>
+
+    &nbsp;
+
+    <ion-row>
+      <ion-row>
+        <ion-col>
+         <!-- num 7-->
+        </ion-col>
+
+        <ion-col width-80>
+          <div id="weather-report" *ngIf="weather">
+
+             <div class="stat">
+               <!--<div class="label">Location:</div>-->
+               <div class="value">{{weather.name}}</div>
+             </div>
+
+            <!-- <div class="stat">
+               <div class="label">Temperature:</div>
+               <div class="value">{{temp_str}}</div>
+             </div>-->
+
+            <!--<div class="stat">
+              <div class="label">Weather:</div>
+              <div class="value">{{weather.weather[0].description}}</div>
+            </div>
+-->
+
+            <!--<div class="stat">Weather: {{weather.weather[0].description}}</div>-->
+
+           <!-- <div class="stat">
+              <div class="label">Wind:</div>
+              <div class="value">{{weather.wind.speed}}</div>
+            </div>-->
+          </div>
+
+        </ion-col>
+
+        <ion-col>
+        </ion-col>
+      </ion-row>
+    </ion-row>
+
+    <ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides pager>
+
+            <ion-slide ion-slide>
+              <img src="../../assets/clothing/tank-top-3.png">
+            </ion-slide>
+
+            <ion-slide ion-slide>
+              <img src="../../assets/clothing/sportive-t-shirt.png">
+            </ion-slide>
+
+            <ion-slide ion-slide>
+              <img src="../../assets/clothing/striped-t-shirt.png">
+            </ion-slide>
+
+          </ion-slides>
+        </ion-col>
+      </ion-row>
+    </ion-row>
+
+    <ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides pager>
+            <ion-slide ion-slide>
+              <img src="../../assets/clothing/masculine-trouser-outline.png">
+            </ion-slide>
+            <ion-slide ion-slide>
+              <img src="../../assets/clothing/short-stroked-clothes.png">
+            </ion-slide>
+            <ion-slide ion-slide>
+              <img src="../../assets/clothing/trouser-outline.png">
+            </ion-slide>
+          </ion-slides>
+        </ion-col>
+      </ion-row>
+    </ion-row>
+
+    <!--//This is for the bottoms.-->
+    <ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-slides pager>
+            <ion-slide ion-slide>
+              <img src="../../assets/clothing/shoe-2.png">
+            </ion-slide>
+
+            <ion-slide ion-slide style="background-color:white">
+              <img src="../../assets/clothing/shoes-pair.png">
+            </ion-slide>
+
+            <ion-slide ion-slide style="background-color:white">
+              <img src="../../assets/clothing/sandals-pair-top-view-outline.png">
+            </ion-slide>
+          </ion-slides>
+        </ion-col>
+      </ion-row>
+    </ion-row>
+  </ion-grid>
+
+<!--//This is all the information about the weather stat.-->
+<!--  <div id="weather-report" *ngIf="weather">
+
+   &lt;!&ndash; <div class="stat">
       <div class="label">Location:</div>
       <div class="value">{{weather.name}}</div>
-    </div>
+    </div>&ndash;&gt;
 
-
-    <div class="stat">
+   &lt;!&ndash; <div class="stat">
       <div class="label">Temperature:</div>
       <div class="value">{{temp_str}}</div>
-    </div>
+    </div>&ndash;&gt;
 
     <div class="stat">
       <div class="label">Weather:</div>
       <div class="value">{{weather.weather[0].description}}</div>
     </div>
 
-
-    <!--<div class="stat">Weather: {{weather.weather[0].description}}</div>-->
+    &lt;!&ndash;<div class="stat">Weather: {{weather.weather[0].description}}</div>&ndash;&gt;
 
     <div class="stat">
       <div class="label">Wind:</div>
       <div class="value">{{weather.wind.speed}}</div>
     </div>
-  </div>
+  </div>-->
 
-   <button ion-button outline item-right= icon-left (click)="showSettingsPage()"><ion-icon name="settings"></ion-icon>Settings</button>
-
+<!--//This is the button for changing Celsius and Fahrenheit-->
+<!--
   <button ion-button outline item-right= icon-left (click)="toCel()">
     <ion-icon name="sunny"></ion-icon>
     celsius
@@ -45,26 +284,11 @@
   <button ion-button outline item-right= icon-left (click)="toFah()">
     <ion-icon name="sunny"></ion-icon>
     Fahrenheit
-  </button>
-
-
-  <!--<ion-slides pager>-->
-
-    <!--<ion-slide style="background-color: lightgrey">-->
-      <!--<h2>Top</h2>-->
-    <!--</ion-slide>-->
-
-    <!--<ion-slide style="background-color: lightgrey">-->
-      <!--<h2>Bottom</h2>-->
-    <!--</ion-slide>-->
-
-    <!--<ion-slide style="background-color: lightgrey">-->
-      <!--<h2>Hats and Shoes</h2>-->
-    <!--</ion-slide>-->
-
-  <!--</ion-slides>-->
-
-
-
+  </button>-->
 
 </ion-content>
+
+
+
+
+

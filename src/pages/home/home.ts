@@ -1,3 +1,4 @@
+
 import { Component } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
@@ -7,6 +8,8 @@ import { WeatherService } from '../../providers/weather-service'
 import { GeolocationService } from '../../providers/geolocation-service'
 
 import {SettingsPage} from '../settings/settings';
+
+import { MenuController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -34,7 +37,6 @@ export class HomePage {
       })
       .then(data => {
         this.weather = data;
-        // console.log(this.weather);
         this.init();
       })
       .catch( (error) => console.log("Failed to load weather data to HomePage\n" + error.toString())
@@ -44,7 +46,7 @@ export class HomePage {
   showSettingsPage() {
     this.navCtrl.push(SettingsPage)
       .catch( (error) => console.log("Failed to push to SettingsPage"));
-}
+  }
 
   init() {
     this.temp_num = this.weather.main.temp - 273.15;
