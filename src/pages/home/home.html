@@ -1,74 +1,115 @@
+
 <ion-header>
   <ion-navbar>
+
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
     <ion-title>
-      A Weather App
+      Weather Fit
     </ion-title>
+
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-menu [content]="mycontent" side="left">
+  <ion-content>
+    <ion-list>
+      <button ion-button (click)="showSettingsPage()" color="light">
+        <ion-icon name="build"></ion-icon>
+      </button>
 
-  <div id="weather-report">
+      <button icon-only ion-button color="light">
+        <ion-icon name="download"></ion-icon>
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
 
-    <div class="stat">
-      <div class="label">Location:</div>
-      <div class="value" *ngIf="weather"> {{weather.name}}</div>
+<ion-nav #mycontent [root]="rootPage"></ion-nav>
+
+<ion-content padding class="main-display" scroll="false">
+
+  <ion-grid>
+
+    <div class="weather" *ngIf="weather">
+      <ion-row>
+        <ion-col class="icon" width-50 center>
+          <img src="../../assets/weather/cloud-sun.svg">
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <div class="temperature">
+          {{temp_str}}
+        </div>
+      </ion-row>
+
+      <ion-row>
+        <div class="location">
+          {{weather.name}}
+        </div>
+      </ion-row>
     </div>
 
+    <ion-row>
+      <ion-slides>
 
-    <div class="stat">
-      <div class="label">Temperature:</div>
-      <div class="value" *ngIf="weather">{{temp_str}}</div>
-    </div>
+        <ion-slide>
+          <img class="clothing" src="../../assets/clothing/tank-top-3.png">
+        </ion-slide>
 
-    <div class="stat">
-      <div class="label">Weather:</div>
-      <div class="value" *ngIf="weather">{{weather.weather[0].description}}</div>
-    </div>
+        <ion-slide>
+          <img class="clothing" src="../../assets/clothing/sportive-t-shirt.png">
+        </ion-slide>
 
+        <ion-slide>
+          <img class="clothing" src="../../assets/clothing/striped-t-shirt.png">
+        </ion-slide>
 
-    <!--<div class="stat">Weather: {{weather.weather[0].description}}</div>-->
+      </ion-slides>
+    </ion-row>
 
-    <div class="stat">
-      <div class="label">Wind:</div>
-      <div class="value" *ngIf="weather">{{weather.wind.speed}}</div>
-    </div>
-  </div>
+    <ion-row>
+      <ion-slides>
 
-   <button ion-button outline item-right= icon-left (click)="showSettingsPage()"><ion-icon name="settings"></ion-icon>&nbsp; Settings</button>
+        <ion-slide>
+          <img class="clothing" src="../../assets/clothing/masculine-trouser-outline.png">
+        </ion-slide>
 
-  <button ion-button outline item-right= icon-left (click)="toCel()">
-    <ion-icon name="sunny"></ion-icon>
-    &nbsp; Celsius
-  </button>
+        <ion-slide>
+          <img class="clothing" src="../../assets/clothing/short-stroked-clothes.png">
+        </ion-slide>
 
-  <button ion-button outline item-right= icon-left (click)="toFah()">
-    <ion-icon name="sunny"></ion-icon>
-    &nbsp; Fahrenheit
-  </button>
+        <ion-slide>
+          <img class="clothing" src="../../assets/clothing/trouser-outline.png">
+        </ion-slide>
 
+      </ion-slides>
+    </ion-row>
 
+    <ion-row>
+      <ion-slides>
+        <ion-slide>
+          <img class="clothing" src="../../assets/clothing/shoe-2.png">
+        </ion-slide>
 
-  <img src="../../assets/clothing/dungarees-outline.png">
-  <img src="../../assets/weather/cloud-fog-moon.svg">
+        <ion-slide style="background-color:white">
+          <img class="clothing" src="../../assets/clothing/shoes-pair.png">
+        </ion-slide>
 
-  <!--<ion-slides pager>-->
+        <ion-slide style="background-color:white">
+          <img class="clothing" src="../../assets/clothing/sandals-pair-top-view-outline.png">
+        </ion-slide>
+      </ion-slides>
+    </ion-row>
 
-    <!--<ion-slide style="background-color: lightgrey">-->
-      <!--<h2>Top</h2>-->
-    <!--</ion-slide>-->
-
-    <!--<ion-slide style="background-color: lightgrey">-->
-      <!--<h2>Bottom</h2>-->
-    <!--</ion-slide>-->
-
-    <!--<ion-slide style="background-color: lightgrey">-->
-      <!--<h2>Hats and Shoes</h2>-->
-    <!--</ion-slide>-->
-
-  <!--</ion-slides>-->
-
-
-
+  </ion-grid>
 
 </ion-content>
+
+
+
+
+
