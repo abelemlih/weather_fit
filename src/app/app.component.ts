@@ -14,10 +14,11 @@ import { SettingsService } from '../providers/settings-service';
 export class MyApp {
   rootPage = HomePage;
 
-  constructor(platform: Platform, settingsService: SettingsService) {
+  constructor(platform: Platform, private settingsService: SettingsService) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+
       StatusBar.styleDefault();
       Splashscreen.hide();
     });
