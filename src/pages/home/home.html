@@ -1,41 +1,42 @@
 <ion-header>
   <ion-navbar>
-
     <button ion-button icon-only menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-
     <ion-title>Weather Fit</ion-title>
-
     <ion-buttons end>
       <button ion-button icon-only (click)="pushSettingsPage()">
         <ion-icon name="build"></ion-icon>
       </button>
     </ion-buttons>
-
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="main-display no-scroll">
 
+<ion-content padding class="main-display no-scroll">
   <ion-grid>
+
     <div class="weather" *ngIf="weather">
       <ion-row center>
         <img class="icon" src="../../assets/weather%20animated/{{weather.weather[0].icon}}.svg">
-          <!--//This takes in the icon code from the weather API, and matches the images.
-          <!--<p>Icon is {{weather.weather[0].icon}}</p>
-          <p>Description is {{weather.weather[0].description}}</p>-->
       </ion-row>
 
-      <ion-row>
-        <div class="temperature">{{temp_str}}</div>
-      </ion-row>
+      <div class="temperature">
+        <ion-row center>
+          <div class="temperature_animation-container">
+            <div class="temperature_animation">
+              <div class="celsius">{{temp_str}}</div>
+              <div class="celsius fahrenheit">30F</div>
+            </div>
+          </div>
+        </ion-row>
+      </div>
 
-      <ion-row>
+      <ion-row center>
         <div class="location">{{weather.name}}</div>
       </ion-row>
     </div>
-    
+
     <ion-row>
       <ion-slides>
 
@@ -89,5 +90,5 @@
     </ion-row>
 
   </ion-grid>
-
 </ion-content>
+
