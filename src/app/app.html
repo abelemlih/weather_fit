@@ -1,1 +1,17 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-menu [content]="content" side="left">
+
+  <ion-content>
+    <ion-list>
+      <button ion-button menuClose (click)="openPage(pages.Home)" color="light">
+        <ion-icon icon-left name="home">Home</ion-icon>
+      </button>
+
+      <button ion-button menuClose (click)="openPage(pages.Settings)" color="light">
+        <ion-icon icon-left name="settings">Settings</ion-icon>
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content></ion-nav>
