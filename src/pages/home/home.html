@@ -21,8 +21,8 @@
   <ion-grid>
     <div class="weather" *ngIf="weather">
       <ion-row center>
-          <!--//This takes in the icon code from the weather API, and matches the images. -->
-          <img class="icon" src="../../assets/weather/{{weather.weather[0].icon}}.svg">
+        <img class="icon" src="../../assets/weather%20animated/{{weather.weather[0].icon}}.svg">
+          <!--//This takes in the icon code from the weather API, and matches the images.
           <!--<p>Icon is {{weather.weather[0].icon}}</p>
           <p>Description is {{weather.weather[0].description}}</p>-->
       </ion-row>
@@ -35,7 +35,7 @@
         <div class="location">{{weather.name}}</div>
       </ion-row>
     </div>
-
+    
     <ion-row>
       <ion-slides>
 
