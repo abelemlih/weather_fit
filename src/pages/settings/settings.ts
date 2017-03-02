@@ -14,16 +14,18 @@ import { SettingsService } from '../../providers/settings-service';
 })
 export class SettingsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private settingsService: SettingsService) {
+  units;
+  gender;
+  location;
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public settingsService: SettingsService) {
+    this.units = settingsService.units;
+    this.gender = settingsService.gender;
+    this.location = "current-location";
   }
 
-  setFah() {
-    this.settingsService.setFahrenheit();
+  save() {
+    this.settingsService.setUnits(this.units);
+    this.settingsService.setGender(this.gender);
   }
-
-  setCel() {
-    this.settingsService.setCelsius();
-  }
-
 }

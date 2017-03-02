@@ -12,37 +12,44 @@ import {GeolocationService} from "./geolocation-service";
 @Injectable()
 export class SettingsService {
 
-  // Not celsius = fahrenheit
-  celsius: boolean;
-  gender: string;
-  location: Position;
+  // Not units = fahrenheit
+  private _units: string;
+  private _gender: string;
+  private _location: Position;
 
   constructor(public http: Http) {
-    this.celsius = false;
-    this.gender = "female";
-    let geolocation = new GeolocationService();
-    geolocation.load()
-      .then(data => this.location = data)
+    this._units = "celsius";
+    this._gender = "female";
+    this.setCurrentLocation();
   }
 
-  setCelsius() {
-    this.celsius = true;
+  setUnits(units: string) {
+    this._units = units;
   }
 
-  setFahrenheit() {
-    this.celsius = false;
-  }
-
-  setMale() {
-    this.gender = "male";
-  }
-
-  setNeutral() {
-    this.gender = "neutral";
+  setGender(gender: string) {
+    this._gender = gender;
   }
 
   setLocation(pos: Position) {
-    this.location = pos;
+    this._location = pos;
   }
 
+  setCurrentLocation() {
+    let geolocation = new GeolocationService();
+    geolocation.load()
+      .then(data => this._location = data)
+  }
+
+  get units(): string {
+    return this._units;
+  }
+
+  get gender(): string {
+    return this._gender;
+  }
+
+  get location(): Position {
+    return this._location;
+  }
 }
