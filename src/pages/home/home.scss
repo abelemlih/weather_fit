@@ -1,19 +1,27 @@
 page-home {
 
+  .no-scroll .scroll-content{
+    overflow: hidden;
+  }
+
   .weather {
+
+    margin-bottom: 10%;
+
 
     .icon {
       margin: auto;
+      height: 150px;
     }
 
     .temperature {
-      font-size: 2em;
+      font-size: 1.4em;
       font-weight: 800;
       margin: auto;
     }
 
     .location {
-      font-size: 2em;
+      font-size: 1.4em;
       font-weight: 800;
       margin: auto;
     }
@@ -26,7 +34,17 @@ page-home {
   
   .main-display {
 
+<<<<<<< HEAD
     background-color: lavender;
+=======
+    overflow: hidden;
+
+    //The one with the clouds
+    //background-image: url(http://media3.giphy.com/media/jtavDv8iqstY4/giphy.gif);
+
+    //The one with the snowflakes
+    //background-image: url(https://68.media.tumblr.com/ae343894fa97678e054a7216ad9756ba/tumblr_ohrxh8Gfju1u7gnm9o1_500.gif);
+>>>>>>> origin/master
 
   }
 

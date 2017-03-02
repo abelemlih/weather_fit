@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { Geolocation } from 'ionic-native';
@@ -13,7 +12,7 @@ import { Geolocation } from 'ionic-native';
 @Injectable()
 export class GeolocationService {
 
-  constructor(public http: Http) {}
+  constructor() {}
 
   load() {
     return Geolocation.getCurrentPosition();

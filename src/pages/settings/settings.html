@@ -11,32 +11,32 @@
 
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="no-scroll">
 
   <!-- Unit selection -->
-  <ion-list radio-group>
+  <ion-list radio-group [(ngModel)]="units">
     <ion-list-header>
       Units
     </ion-list-header>
     <ion-item>
-      <ion-label>℉</ion-label>
-      <ion-radio checked="true" value="fahrenheit"></ion-radio>
+      <ion-label>°F</ion-label>
+      <ion-radio value="fahrenheit"></ion-radio>
     </ion-item>
 
     <ion-item>
-      <ion-label>℃</ion-label>
+      <ion-label>°C</ion-label>
       <ion-radio value="celsius"></ion-radio>
     </ion-item>
   </ion-list>
 
   <!-- Gender selection-->
-  <ion-list radio-group>
+  <ion-list radio-group [(ngModel)]="gender">
     <ion-list-header>
       Gender
     </ion-list-header>
     <ion-item>
       <ion-label>Female</ion-label>
-      <ion-radio checked="true" value="female"></ion-radio>
+      <ion-radio value="female"></ion-radio>
     </ion-item>
 
     <ion-item>
@@ -46,7 +46,7 @@
 
     <ion-item>
       <ion-label>Neutral</ion-label>
-      <ion-radio value="other"></ion-radio>
+      <ion-radio value="neutral"></ion-radio>
     </ion-item>
 
   </ion-list>
@@ -62,13 +62,15 @@
     <ion-item>
       <ion-label>Location</ion-label>
       <ion-select [(ngModel)]="location">
-        <ion-option value="coldLocation">Saint Paul</ion-option>
-        <ion-option value="warmLocation">Honolulu</ion-option>
+        <ion-option value="current-location">My Location</ion-option>
+        <!--<ion-option value="Honolulu">Honolulu</ion-option>-->
       </ion-select>
     </ion-item>
   </ion-list>
 
+  <button ion-button outline id="save-button" (click)="save()">Save</button>
+
   <!--About Button-->
-  <button ion-button outline>About</button>
+  <!--<button ion-button outline>About</button>-->
 
 </ion-content>
