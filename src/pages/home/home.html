@@ -1,36 +1,20 @@
 <ion-header>
   <ion-navbar>
 
-    <!--<button ion-button icon-only menuToggle>-->
-      <!--<ion-icon name="menu"></ion-icon>-->
-    <!--</button>-->
-
-    <button ion-button (click)="showSettingsPage()" color="light">
-      <ion-icon name="build"></ion-icon>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
     </button>
 
-    <ion-title>
-      Weather Fit
-    </ion-title>
+    <ion-title>Weather Fit</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="pushSettingsPage()">
+        <ion-icon name="build"></ion-icon>
+      </button>
+    </ion-buttons>
 
   </ion-navbar>
 </ion-header>
-
-<ion-menu [content]="mycontent" side="left">
-  <ion-content>
-    <ion-list>
-      <button ion-button (click)="showSettingsPage()" color="light">
-        <ion-icon name="build"></ion-icon>
-      </button>
-
-      <button icon-only ion-button color="light">
-        <ion-icon name="download"></ion-icon>
-      </button>
-    </ion-list>
-  </ion-content>
-</ion-menu>
-
-<ion-nav #mycontent [root]="rootPage"></ion-nav>
 
 <ion-content padding class="main-display no-scroll">
 
@@ -44,15 +28,11 @@
       </ion-row>
 
       <ion-row>
-        <div class="temperature">
-          {{temp_str}}
-        </div>
+        <div class="temperature">{{temp_str}}</div>
       </ion-row>
 
       <ion-row>
-        <div class="location">
-          {{weather.name}}
-        </div>
+        <div class="location">{{weather.name}}</div>
       </ion-row>
     </div>
 
@@ -111,8 +91,3 @@
   </ion-grid>
 
 </ion-content>
-
-
-
-
-

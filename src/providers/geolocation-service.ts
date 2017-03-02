@@ -12,10 +12,13 @@ import { Geolocation } from 'ionic-native';
 @Injectable()
 export class GeolocationService {
 
+  data: any;
+
   constructor() {}
 
   load() {
+    if (this.data != undefined) return this.data;
+
     return Geolocation.getCurrentPosition();
   }
-
 }
