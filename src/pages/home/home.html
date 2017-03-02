@@ -2,13 +2,17 @@
 <ion-header>
   <ion-navbar>
 
-    <button ion-button icon-only menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
+    <!--<button ion-button icon-only menuToggle>-->
+      <!--<ion-icon name="menu"></ion-icon>-->
+    <!--</button>-->
 
     <ion-title>
       Weather Fit
     </ion-title>
+
+    <button ion-button (click)="showSettingsPage()" color="light">
+      <ion-icon name="build"></ion-icon>
+    </button>
 
   </ion-navbar>
 </ion-header>
@@ -29,22 +33,16 @@
 
 <ion-nav #mycontent [root]="rootPage"></ion-nav>
 
-<ion-content padding class="main-display" scroll="false">
-
-  <button ion-button (click)="showSettingsPage()" color="light">
-    <ion-icon name="build"></ion-icon>
-  </button>
+<ion-content padding class="main-display no-scroll">
 
   <ion-grid>
 
     <div class="weather" *ngIf="weather">
-      <ion-row>
-        <ion-col class="icon" width-50 center>
+      <ion-row center>
           <!--//This takes in the icon code from the weather API, and matches the images. -->
-          <img src="../../assets/weather/{{weather.weather[0].icon}}.svg">
+          <img class="icon" src="../../assets/weather/{{weather.weather[0].icon}}.svg">
           <!--<p>Icon is {{weather.weather[0].icon}}</p>
           <p>Description is {{weather.weather[0].description}}</p>-->
-        </ion-col>
       </ion-row>
 
       <ion-row>

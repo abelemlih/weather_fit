@@ -1,19 +1,27 @@
 page-home {
 
+  .no-scroll .scroll-content{
+    overflow: hidden;
+  }
+
   .weather {
+
+    margin-bottom: 10%;
+
 
     .icon {
       margin: auto;
+      height: 150px;
     }
 
     .temperature {
-      font-size: 2em;
+      font-size: 1.4em;
       font-weight: 800;
       margin: auto;
     }
 
     .location {
-      font-size: 2em;
+      font-size: 1.4em;
       font-weight: 800;
       margin: auto;
     }
@@ -25,7 +33,9 @@ page-home {
   }
 
   .main-display {
-    
+
+    overflow: hidden;
+
     //The one with the clouds
     //background-image: url(http://media3.giphy.com/media/jtavDv8iqstY4/giphy.gif);
 

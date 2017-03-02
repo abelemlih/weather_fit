@@ -5,18 +5,13 @@ import { NavController } from 'ionic-angular';
 
 import { WeatherService } from '../../providers/weather-service'
 
-import { ClothingItem } from '../../providers/clothing-service'
-
-import { ClothingCombination } from '../../providers/clothing-service'
-
 import { Tools } from '../../providers/clothing-service'
 
 import { GeolocationService } from '../../providers/geolocation-service'
 
 import {SettingsPage} from '../settings/settings';
 
-import { Storage } from '@ionic/storage';
-
+import {SettingsService} from "../../providers/settings-service";
 
 @Component({
   selector: 'page-home',
@@ -33,7 +28,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
               public weatherService: WeatherService,
-              public geolocationService: GeolocationService) {
+              public geolocationService: GeolocationService,
+              public settingsService: SettingsService) {
 
     this.loadWeather();
     // this.printIem();
@@ -55,9 +51,19 @@ export class HomePage {
       )
   }
 
+  ionViewWillEnter() {
+    if (this.weather != undefined) {
+      if (this.settingsService.units == "celsius") this.toCel();
+      else this.toFah();
+    }
+
+  }
+
   showSettingsPage() {
     this.navCtrl.push(SettingsPage)
       .catch( (error) => console.log("Failed to push to SettingsPage"));
+    // this.navCtrl.setRoot(SettingsPage)
+    //   .catch( (error) => console.log("Failed to go to settings"));
   }
 
   init() {
