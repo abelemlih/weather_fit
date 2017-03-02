@@ -5,16 +5,16 @@
       <ion-icon name="menu"></ion-icon>
     </button>
 
-    <button ion-button (click)="pushSettingsPage()" color="light">
-      <ion-icon name="build"></ion-icon>
-    </button>
-
     <ion-title>Weather Fit</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="pushSettingsPage()">
+        <ion-icon name="build"></ion-icon>
+      </button>
+    </ion-buttons>
 
   </ion-navbar>
 </ion-header>
-
-<ion-nav #content [root]="rootPage"></ion-nav>
 
 <ion-content padding class="main-display no-scroll">
 

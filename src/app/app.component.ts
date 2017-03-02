@@ -3,9 +3,10 @@ import {Platform, Nav} from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { HomePage } from '../pages/home/home';
+import { SettingsPage } from "../pages/settings/settings";
 
 import { SettingsService } from '../providers/settings-service';
-import { SettingsPage } from "../pages/settings/settings";
+
 
 
 @Component({
@@ -17,15 +18,15 @@ export class MyApp {
 
   rootPage = HomePage;
 
-  pages: Object;
+  pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, private settingsService: SettingsService) {
     this.initializeApp();
 
-    this.pages = {
-      "Home": HomePage,
-      "Settings": SettingsPage
-    }
+    this.pages = [
+      { title: 'Home', component: HomePage },
+      { title: 'Settings', component: SettingsPage }
+    ];
   }
 
   initializeApp() {

@@ -1,17 +1,25 @@
 <ion-menu [content]="content" side="left">
 
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
   <ion-content>
     <ion-list>
-      <button ion-button menuClose (click)="openPage(pages.Home)" color="light">
-        <ion-icon icon-left name="home">Home</ion-icon>
+      <button ion-item menuClose (click)="openPage(pages[0])">
+        <ion-icon name="home"></ion-icon>
+        Home
       </button>
 
-      <button ion-button menuClose (click)="openPage(pages.Settings)" color="light">
-        <ion-icon icon-left name="settings">Settings</ion-icon>
+      <button ion-item menuClose (click)="openPage(pages[1])">
+        <ion-icon name="settings"></ion-icon>
+        Settings
       </button>
     </ion-list>
   </ion-content>
 
 </ion-menu>
 
-<ion-nav [root]="rootPage" #content></ion-nav>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
