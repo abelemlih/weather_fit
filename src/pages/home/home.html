@@ -36,7 +36,10 @@
     <div class="weather" *ngIf="weather">
       <ion-row>
         <ion-col class="icon" width-50 center>
-          <img src="../../assets/weather/cloud-sun.svg">
+          <!--//This takes in the icon code from the weather API, and matches the images. -->
+          <img src="../../assets/weather/{{weather.weather[0].icon}}.svg">
+          <!--<p>Icon is {{weather.weather[0].icon}}</p>
+          <p>Description is {{weather.weather[0].description}}</p>-->
         </ion-col>
       </ion-row>
 
