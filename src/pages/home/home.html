@@ -20,16 +20,17 @@
         <img class="icon" src="../../assets/weather%20animated/{{weather.weather[0].icon}}.svg">
       </ion-row>
 
-      <div class="temperature">
-        <ion-row center>
-          <div class="temperature_animation-container">
-            <div class="temperature_animation">
-              <div class="celsius">{{temp_str}}</div>
-              <div class="celsius fahrenheit">30F</div>
-            </div>
-          </div>
-        </ion-row>
-      </div>
+      <ion-row>
+        <div class="temperature">
+            <!--<div class="temperature_animation-container">-->
+              <!--<div class="temperature_animation">-->
+                <!--<div class="celsius">{{temp_str}}</div>-->
+                <!--<div class="celsius fahrenheit">30F</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          {{temp_str}}
+        </div>
+      </ion-row>
 
       <ion-row center>
         <div class="location">{{weather.name}}</div>
