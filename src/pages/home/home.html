@@ -31,6 +31,10 @@
 
 <ion-content padding class="main-display" scroll="false">
 
+  <button ion-button (click)="showSettingsPage()" color="light">
+    <ion-icon name="build"></ion-icon>
+  </button>
+
   <ion-grid>
 
     <div class="weather" *ngIf="weather">

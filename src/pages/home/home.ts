@@ -36,7 +36,7 @@ export class HomePage {
               public geolocationService: GeolocationService) {
 
     this.loadWeather();
-    this.printIem();
+    // this.printIem();
 
   }
 
@@ -74,13 +74,11 @@ export class HomePage {
     this.temp_str = fah_temp.toFixed().toString() + "°F";
   }
 
-  printIem(){
-    let shirt = new ClothingItem("#1","tshirt","top",{"warm":7});
-    console.log("Start of script");
-    console.log(shirt.get_name());
-    console.log("End of script");
-  }
-
-
+  // printIem(){
+  //   let shirt = new ClothingItem("#1","tshirt","top",{"warm":7});
+  //   console.log("Start of script");
+  //   console.log(shirt.get_name());
+  //   console.log("End of script");
+  // }
 
 }

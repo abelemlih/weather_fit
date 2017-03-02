@@ -14,17 +14,17 @@
 <ion-content padding>
 
   <!-- Unit selection -->
-  <ion-list radio-group>
+  <ion-list radio-group [(ngModel)]="units">
     <ion-list-header>
       Units
     </ion-list-header>
     <ion-item>
-      <ion-label>℉</ion-label>
+      <ion-label>°F</ion-label>
       <ion-radio checked="true" value="fahrenheit"></ion-radio>
     </ion-item>
 
     <ion-item>
-      <ion-label>℃</ion-label>
+      <ion-label>°C</ion-label>
       <ion-radio value="celsius"></ion-radio>
     </ion-item>
   </ion-list>
