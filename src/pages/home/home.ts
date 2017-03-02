@@ -38,7 +38,7 @@ export class HomePage {
 
   loadWeather() {
     this.geolocationService.load()
-      .catch( (error) => console.log("Failed to get Geolocation\n" + error.toString()))
+      .catch( (error) => console.log("Failed to get Geolocation\n" + error.toString() + " code " + error.code))
       .then((pos: Position) => {
         this.weatherService.pos = pos;
         return this.weatherService.load();
@@ -56,14 +56,11 @@ export class HomePage {
       if (this.settingsService.units == "celsius") this.toCel();
       else this.toFah();
     }
-
   }
 
-  showSettingsPage() {
+  pushSettingsPage() {
     this.navCtrl.push(SettingsPage)
       .catch( (error) => console.log("Failed to push to SettingsPage"));
-    // this.navCtrl.setRoot(SettingsPage)
-    //   .catch( (error) => console.log("Failed to go to settings"));
   }
 
   init() {
@@ -79,12 +76,5 @@ export class HomePage {
     let fah_temp = (this.temp_num * 1.8) + 32;
     this.temp_str = fah_temp.toFixed().toString() + "°F";
   }
-
-  // printIem(){
-  //   let shirt = new ClothingItem("#1","tshirt","top",{"warm":7});
-  //   console.log("Start of script");
-  //   console.log(shirt.get_name());
-  //   console.log("End of script");
-  // }
 
 }
