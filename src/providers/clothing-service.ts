@@ -48,6 +48,10 @@ export class ClothingService {
     return result;
   }
 
+  initializeDB() {
+    this.clothingData.initialize();
+  }
+
   generate(clothing_dict: {}, attributes: {}) {
     function loop_attributes (item: ClothingItem, attributes: {}) {
       let item_include = true;

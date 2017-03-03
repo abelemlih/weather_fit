@@ -12,6 +12,7 @@ import {SettingsPage} from '../settings/settings';
 import {SettingsService} from "../../providers/settings-service";
 
 import {ClothingService} from "../../providers/clothing-service";
+import {Storage} from "@ionic/storage";
 
 
 @Component({
@@ -31,7 +32,8 @@ export class HomePage {
               public weatherService: WeatherService,
               public geolocationService: GeolocationService,
               public settingsService: SettingsService,
-              public clothingService: ClothingService) {
+              public clothingService: ClothingService,
+              public storage: Storage) {
 
     this.loadWeatherTest();
     this.loadRecommendation();
@@ -41,7 +43,7 @@ export class HomePage {
   }
 
   loadRecommendation() {
-    return this.clothingService.recommend()
+    this.clothingService.recommend()
       .then( (recom) => {
         this.recommendation = recom;
         }
@@ -49,7 +51,7 @@ export class HomePage {
   }
 
   loadWeather() {
-    return this.geolocationService.load()
+    this.geolocationService.load()
       .catch( (error) => console.log("Failed to get Geolocation\n" + error.toString() + " code " + error.code))
       .then((pos: Position) => {
         this.weatherService.pos = pos;
@@ -66,7 +68,7 @@ export class HomePage {
   }
 
   loadWeatherTest() {
-    return this.weatherService.load()
+    this.weatherService.load()
       .catch(error => console.log("weatherService fails"))
       .then(data =>{
         this.weather = data;
@@ -81,6 +83,16 @@ export class HomePage {
       if (this.settingsService.units == "celsius") this.toCel();
       else this.toFah();
     }
+  }
+
+  ionViewDidLoad() {
+    this.storage.get('first-login')
+      .then(done => {
+        if (!done) {
+          this.storage.set('first-login', true);
+          this.clothingService.initializeDB();
+        }
+      })
   }
 
   pushSettingsPage() {
