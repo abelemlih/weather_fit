@@ -12,6 +12,92 @@
   </ion-navbar>
 </ion-header>
 
+
+<ion-content padding id="main-display" class="main-display no-scroll">
+  <ion-grid>
+    <div class="weather" *ngIf="weather">
+      <ion-row center>
+        <img class="icon" src="../../assets/weather%20animated/{{weather.weather[0].icon}}.svg">
+      </ion-row>
+
+
+      <div class="temperature">
+        <ion-row center>
+          <div class="temperature_animation-container">
+            <div class="temperature_animation">
+              <div class="tem-color{{weather.weather[0].icon}}">
+
+                <div class="celsius">{{temp_str}}</div>
+                <div class="celsius fahrenheit">{{weather.name}}</div>
+
+              </div>
+
+          </div>
+          </div>
+        </ion-row>
+      </div>
+      <ion-row center>
+        <div class="location">{{weather.name}}</div>
+        <p>{{weather.weather[0].icon}}</p>
+      </ion-row>
+    </div>
+
+
+
+    <ion-row>
+      <ion-slides>
+        <ion-slide>
+          <img class="top" src="../../assets/clothing/basketball-jersey.png">
+        </ion-slide>
+
+        <ion-slide>
+          <img class="top" src="../../assets/clothing/hoodie.png">
+        </ion-slide>
+
+        <ion-slide>
+          <img class="top" src="../../assets/clothing/puffy%20jacket.png">
+        </ion-slide>
+
+      </ion-slides>
+    </ion-row>
+
+    <ion-row>
+      <ion-slides>
+
+        <ion-slide>
+          <img class="bottom" src="../../assets/clothing/sport%20shorts.png">
+        </ion-slide>
+
+        <ion-slide>
+          <img class="bottom" src="../../assets/clothing/jeans.png">
+        </ion-slide>
+
+        <ion-slide>
+          <img class="bottom" src="../../assets/clothing/jeans.png">
+        </ion-slide>
+
+      </ion-slides>
+    </ion-row>
+
+    <ion-row>
+      <ion-slides>
+        <ion-slide>
+          <img class="accessories" src="../../assets/clothing/sneakers.png">
+        </ion-slide>
+
+        <ion-slide>
+          <img class="accessories" src="../../assets/clothing/uggs.png">
+        </ion-slide>
+
+        <ion-slide>
+          <img class="accessories" src="../../assets/clothing/timberlands.png">
+        </ion-slide>
+      </ion-slides>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<!--
 <ion-content padding class="main-display no-scroll">
   <ion-grid>
 
@@ -25,20 +111,21 @@
           <div class="temperature_animation-container">
             <div class="temperature_animation">
               <div class="celsius">{{temp_str}}</div>
-              <div class="celsius fahrenheit">30F</div>
+              <div class="celsius fahrenheit">{{weather.name}}</div>
             </div>
           </div>
         </ion-row>
       </div>
-
       <ion-row center>
         <div class="location">{{weather.name}}</div>
+        <p>{{weather.weather[0].icon}}</p>
       </ion-row>
     </div>
 
+
+
     <ion-row>
       <ion-slides>
-
         <ion-slide>
           <img class="top" src="../../assets/clothing/basketball-jersey.png">
         </ion-slide>
@@ -90,4 +177,4 @@
 
   </ion-grid>
 </ion-content>
-
+-->

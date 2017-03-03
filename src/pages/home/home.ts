@@ -46,9 +46,11 @@ export class HomePage {
       .then(data => {
         this.weather = data;
         this.init();
+        // console.log(this.weather)
       })
       .catch( (error) => console.log("Failed to load weather data to HomePage\n" + error.toString())
       )
+
   }
 
   ionViewWillEnter() {
