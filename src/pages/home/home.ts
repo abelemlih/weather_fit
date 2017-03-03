@@ -33,7 +33,7 @@ export class HomePage {
               public settingsService: SettingsService,
               public clothingService: ClothingService) {
 
-    this.loadWeather();
+    this.loadWeatherTest();
     this.loadRecommendation();
     // clothingData.getData()
     //   .then((data) => console.log(data));
@@ -42,8 +42,10 @@ export class HomePage {
 
   loadRecommendation() {
     return this.clothingService.recommend()
-      .then( (recom) =>
-          this.recommendation = recom
+      .then( (recom) => {
+        this.recommendation = recom;
+        console.log(recom);
+      }
       )
   }
 
@@ -62,6 +64,17 @@ export class HomePage {
       })
       .catch( (error) => console.log("Failed to load weather data to HomePage\n" + error.toString())
       )
+  }
+
+  loadWeatherTest() {
+    return this.weatherService.load()
+      .catch(error => console.log("weatherService fails"))
+      .then(data =>{
+        this.weather = data;
+        this.temp_num = this.weather.main.temp - 273.15;
+        this.toCel();
+      })
+      .catch(error => console.log("loadWeatherTest fails"))
   }
 
   ionViewWillEnter() {

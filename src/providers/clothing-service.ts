@@ -20,21 +20,25 @@ export class ClothingService {
     return Promise.all([this.clothingData.getData(), this.weatherService.load()])
       .then( (values) => {
         let weather_attr = this.processWeather(values[1]);
-        return this.generate(values[0], weather_attr);
+        console.log(values[0]);
+        console.log(values[1]);
+        console.log(weather_attr);
+        return this.generate_alternate(values[0], weather_attr);
       })
   }
 
   private processWeather(data) {
-    let warm = 5 + (data.main.temp - 273.15 - 20) / 5;
-    let cold = 5 - (data.main.temp - 273.15 - 20) / 5;
-    let rain = 5 ? data.weather.main == "Rain" : 0;
+    let warm = 3 + Math.round((data.main.temp - 273.15 - 20) / 10);
+    let cold = 3 - Math.round((data.main.temp - 273.15 - 20) / 10);
+    let rain = data.weather.main == "Rain" ? 5 : 0;
     return {"warm": warm, "cold": cold, "rain": rain};
   }
 
   private generate_alternate(clothing_dict: Object, weather_attributes: Object ) {
+
     function isSuitable(clothing: ClothingItem) {
       for (let attr in weather_attributes) {
-        if (clothing.attributes[attr] <= weather_attributes[attr]) return false
+        if (clothing._attributes[attr] < weather_attributes[attr]) return false;
       }
       return true
     }
@@ -51,7 +55,7 @@ export class ClothingService {
     function loop_attributes (item: ClothingItem, attributes: {}) {
       let item_include = true;
       for (let a in attributes) {
-        let item_attributes = item.attributes;
+        let item_attributes = item.get_attributes();
         if (attributes[a] <= item_attributes[a]) {
           item_include = item_include && true;
         }
