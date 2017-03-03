@@ -25,7 +25,7 @@ export class SaveItemPage {
               public storage: ClothingDataService) {
 
     this.clothingItemForm = formBuilder.group({
-      URL: [''],
+      file_name: [''],
       piece: [''],
       name: [''],
       warm: [''],
