@@ -1,74 +1,58 @@
-
 <ion-header>
   <ion-navbar>
-
     <button ion-button icon-only menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-
-    <ion-title>
-      Weather Fit
-    </ion-title>
-
+    <ion-title>Weather Fit</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="pushSettingsPage()">
+        <ion-icon name="build"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-menu [content]="mycontent" side="left">
-  <ion-content>
-    <ion-list>
-      <button ion-button (click)="showSettingsPage()" color="light">
-        <ion-icon name="build"></ion-icon>
-      </button>
 
-      <button icon-only ion-button color="light">
-        <ion-icon name="download"></ion-icon>
-      </button>
-    </ion-list>
-  </ion-content>
-</ion-menu>
-
-<ion-nav #mycontent [root]="rootPage"></ion-nav>
-
-<ion-content padding class="main-display" scroll="false">
-
+<ion-content padding id="main-display" class="main-display no-scroll">
   <ion-grid>
-
     <div class="weather" *ngIf="weather">
-      <ion-row>
-        <ion-col class="icon" width-50 center>
-          <!--//This takes in the icon code from the weather API, and matches the images. -->
-          <img src="../../assets/weather/{{weather.weather[0].icon}}.svg">
-          <!--<p>Icon is {{weather.weather[0].icon}}</p>
-          <p>Description is {{weather.weather[0].description}}</p>-->
-        </ion-col>
+      <ion-row center>
+        <img class="icon" src="../../assets/weather%20animated/{{weather.weather[0].icon}}.svg">
       </ion-row>
 
-      <ion-row>
-        <div class="temperature">
-          {{temp_str}}
-        </div>
-      </ion-row>
+      <div class="temperature">
+        <ion-row center>
+          <div class="temperature_animation-container">
+            <div class="temperature_animation">
+              <div class="tem-color{{weather.weather[0].icon}}">
+                <div class="front">{{temp_str}}</div>
+                <div class="front back">{{weather.name}}</div>
+              </div>
+          </div>
+          </div>
+        </ion-row>
+      </div>
 
-      <ion-row>
-        <div class="location">
-          {{weather.name}}
-        </div>
-      </ion-row>
+<!--      <ion-row center>
+        <div class="location">{{weather.name}}</div>
+        <p>{{weather.weather[0].icon}}</p>
+      </ion-row>-->
     </div>
 
+
+
     <ion-row>
       <ion-slides>
-
         <ion-slide>
-          <img class="clothing" src="../../assets/clothing/tank-top-3.png">
+          <img class="top" src="../../assets/clothing/basketball-jersey.png">
         </ion-slide>
 
         <ion-slide>
-          <img class="clothing" src="../../assets/clothing/sportive-t-shirt.png">
+          <img class="top" src="../../assets/clothing/hoodie.png">
         </ion-slide>
 
         <ion-slide>
-          <img class="clothing" src="../../assets/clothing/striped-t-shirt.png">
+          <img class="top" src="../../assets/clothing/puffy%20jacket.png">
         </ion-slide>
 
       </ion-slides>
@@ -78,15 +62,15 @@
       <ion-slides>
 
         <ion-slide>
-          <img class="clothing" src="../../assets/clothing/masculine-trouser-outline.png">
+          <img class="bottom" src="../../assets/clothing/sport%20shorts.png">
         </ion-slide>
 
         <ion-slide>
-          <img class="clothing" src="../../assets/clothing/short-stroked-clothes.png">
+          <img class="bottom" src="../../assets/clothing/purple%20jeans.png">
         </ion-slide>
 
         <ion-slide>
-          <img class="clothing" src="../../assets/clothing/trouser-outline.png">
+          <img class="bottom" src="../../assets/clothing/jeans.png">
         </ion-slide>
 
       </ion-slides>
@@ -95,24 +79,18 @@
     <ion-row>
       <ion-slides>
         <ion-slide>
-          <img class="clothing" src="../../assets/clothing/shoe-2.png">
+          <img class="accessories" src="../../assets/clothing/double%20sneakers.png">
         </ion-slide>
 
-        <ion-slide style="background-color:white">
-          <img class="clothing" src="../../assets/clothing/shoes-pair.png">
+        <ion-slide>
+          <img class="accessories" src="../../assets/clothing/double%20brown%20uggs.png">
         </ion-slide>
 
-        <ion-slide style="background-color:white">
-          <img class="clothing" src="../../assets/clothing/sandals-pair-top-view-outline.png">
+        <ion-slide>
+          <img class="accessories" src="../../assets/clothing/double%20timberlands.png">
         </ion-slide>
       </ion-slides>
     </ion-row>
-
   </ion-grid>
-
 </ion-content>
-
-
-
-
 
