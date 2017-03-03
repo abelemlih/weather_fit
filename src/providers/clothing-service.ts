@@ -81,15 +81,14 @@ export class ClothingItem {
 export class ClothingCombination {
   id: string;
   attributes: {[attribute: string]: number;} = {}; //Key: attribute ; Value: int 0-10 that represents the rate of the attribute within the clothingCombination
-  items: {[item_type: string]: string;} = {}; //Key: item type ; Value: item id
-  algorithm_grade: number;
+  items: {[item_type: string]: ClothingItem;} = {}; //Key: item type ; Value: item object
   user_grade: number; //0 to 5 stars
+  prv_shown: number; //0 for not shown and 1 for already shown
+  algorithm_grade: number;
 
-  constructor(comb_id: string, comb_attributes: {}, comb_items: {}, comb_algorithm_grade: number) {
+  constructor(comb_id: string, comb_items: {}) {
     this.id = comb_id;
-    this.attributes = comb_attributes;
     this.items = comb_items;
-    this.algorithm_grade = comb_algorithm_grade;
   }
 
   get_id() {
@@ -104,13 +103,18 @@ export class ClothingCombination {
     return this.items;
   }
 
-  get_algorithm_grade() {
-    return this.algorithm_grade;
-  }
 
   get_user_grade() {
     return this.user_grade;
   }
+
+  get_prv_shown() {
+    return this.prv_shown;
+  }
+
+  get_algorithm_grade() {
+    return this.algorithm_grade;
+}
 
   edit_attributes(new_attributes: {}) {
     this.attributes = new_attributes;
@@ -119,6 +123,7 @@ export class ClothingCombination {
   edit_items(new_items: {}) {
     this.items = new_items;
   }
+
 
   edit_user_grade(new_user_grade: number) {
     this.user_grade = new_user_grade;
@@ -149,15 +154,45 @@ export class Tools {
       }
       return 0;
     })
-  }
+}
 
   convert_json_to_object(json_string: string) {
     return JSON.parse(json_string);
   }
 
-  generate_combination(weather_attributes_dict: {}) {
 
 
-  }
-
-}
+//   generate(clothing_dict: {}, attributes: {}) {
+//     function loop_attributes (item: ClothingItem, attributes: {}) {
+//       var item_include = true;
+//       for (var a in attributes) {
+//         var item_attributes = item.get_attributes();
+//         if (attributes[a] <= item_attributes[a]) {
+//           item_include = item_include && true;
+//         }
+//         else {
+//           item_include = item_include && false;
+//           break;
+//         }
+//       }
+//       console.log(item_include);
+//       return item_include;
+//     }
+//
+//
+//     let t = new Tools;
+//     let matching_clothing_dict: {};
+//     for (var type in clothing_dict) {
+//       let type_array = [];
+//       for (var item of clothing_dict[type]) {
+//         if (loop_attributes(item,attributes)) {
+//           type_array.push(item);
+//         }
+//         console.log(item);
+//       }
+//       //matching_clothing_dict[type] = type_array;
+//       console.log(type_array);
+//     }
+//     return matching_clothing_dict;
+//   }
+// }
