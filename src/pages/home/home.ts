@@ -10,15 +10,15 @@ import { GeolocationService } from '../../providers/geolocation-service'
 import {SettingsPage} from '../settings/settings';
 
 import {SettingsService} from "../../providers/settings-service";
-import {ClothingDataService} from "../../providers/clothing-data-service";
 
-import { ClothingItem } from "../../providers/clothing-service";
-import { Tools } from "../../providers/clothing-service";
+import {ClothingService} from "../../providers/clothing-service";
+import {Storage} from "@ionic/storage";
+
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [WeatherService, GeolocationService]
+  providers: [WeatherService, GeolocationService, ClothingService]
 })
 export class HomePage {
 
@@ -26,33 +26,61 @@ export class HomePage {
   temp_num: number;
   temp_str: string;
 
+  recommendation: any;
+
   constructor(public navCtrl: NavController,
               public weatherService: WeatherService,
               public geolocationService: GeolocationService,
               public settingsService: SettingsService,
-              public clothingData: ClothingDataService) {
+              public clothingService: ClothingService,
+              public storage: Storage) {
 
-    this.loadWeather();
-    this.printIem();
-    clothingData.getData()
-      .then((data) => console.log(data));
+    this.loadCurrentLocation()
+      .then(() => {
+        this.loadWeather();
+        this.loadRecommendation();
+      });
+    // this.loadRecommendation();
+    // clothingData.getData()
+    //   .then((data) => console.log(data));
+  }
+
+  loadCurrentLocation() {
+    return this.geolocationService.load()
+      .then((pos) => this.weatherService.pos = pos);
+  }
+
+  loadRecommendation() {
+    this.clothingService.weatherService = this.weatherService;
+    return this.clothingService.recommend()
+      .then( (recom) => {
+        this.recommendation = recom;
+        }
+      )
+      .catch((error) => console.log("Failed to load clothingService\n" + error.toString()))
   }
 
   loadWeather() {
-    this.geolocationService.load()
-      .catch( (error) => console.log("Failed to get Geolocation\n" + error.toString() + " code " + error.code))
-      .then((pos: Position) => {
-        this.weatherService.pos = pos;
-        return this.weatherService.load();
-      })
+    return this.weatherService.load()
       .then(data => {
         this.weather = data;
-        this.init();
+        this.temp_num = this.weather.main.temp - 273.15;
+        this.toCel();
         // console.log(this.weather)
       })
-      .catch( (error) => console.log("Failed to load weather data to HomePage\n" + error.toString())
+      .catch( (error) => console.log("Failed to load weather data\n" + error.toString())
       )
+  }
 
+  loadWeatherTest() {
+    this.weatherService.load()
+      .catch(error => console.log("weatherService fails"))
+      .then(data =>{
+        this.weather = data;
+        this.temp_num = this.weather.main.temp - 273.15;
+        this.toCel();
+      })
+      .catch(error => console.log("loadWeatherTest fails"))
   }
 
   ionViewWillEnter() {
@@ -62,14 +90,19 @@ export class HomePage {
     }
   }
 
+  ionViewDidLoad() {
+    this.storage.get('first-login')
+      .then(done => {
+        if (!done) {
+          this.storage.set('first-login', true);
+          this.clothingService.initializeDB();
+        }
+      })
+  }
+
   pushSettingsPage() {
     this.navCtrl.push(SettingsPage)
       .catch( (error) => console.log("Failed to push to SettingsPage"));
-  }
-
-  init() {
-    this.temp_num = this.weather.main.temp - 273.15;
-    this.toCel();
   }
 
   toCel() {
@@ -79,28 +112,6 @@ export class HomePage {
   toFah(){
     let fah_temp = (this.temp_num * 1.8) + 32;
     this.temp_str = fah_temp.toFixed().toString() + "°F";
-  }
-
-  printIem(){
-    let shirt = new ClothingItem("tshirt","/top",{"warm":8,"cold":0,"rain":0});
-    let puffyJacket = new ClothingItem("puffy jacket","/top",{"warm":2,"cold":0,"rain":0});
-    let shorts = new ClothingItem("shorts","/bottom",{"warm":8,"cold":0,"rain":0});
-    let hawaian_shorts = new ClothingItem("hawaian shorts","/bottom",{"warm":8,"cold":0,"rain":0});
-    let flipflops = new ClothingItem("flipflops","/shoe",{"warm":8,"cold":0,"rain":0});
-    let t = new Tools;
-    console.log("Start of script");
-    var type_array: ClothingItem[] = [];
-    //t.loop_attributes(type_array,shirt,{"warm":7,"cold":-1,"rain":-1});
-    var clothing_dict =  {};
-    clothing_dict["top"] = [shirt,puffyJacket];
-    clothing_dict["bottom"] = [shorts,hawaian_shorts];
-    clothing_dict["shoe"] = [flipflops];
-    var weather_dict = {};
-    weather_dict["warm"] = 7;
-    weather_dict["cold"] = -1;
-    weather_dict["rain"] = -1;
-    t.generate(clothing_dict,weather_dict);
-    console.log("End of script");
   }
 
 }

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Storage } from '@ionic/storage';
+
 import 'rxjs/add/operator/map';
+import {ClothingItem} from "./clothing-item";
+import {ClothingDataService} from "./clothing-data-service";
+import {WeatherService} from "./weather-service";
 
 /*
   Generated class for the ClothingService provider.
@@ -12,145 +14,53 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class ClothingService {
 
-  constructor(public http: Http) {
-    console.log('Hello ClothingService Provider');
+  private _weatherService: WeatherService;
+
+  set weatherService(value: WeatherService) {
+    this._weatherService = value;
   }
 
-}
+  constructor(public clothingData: ClothingDataService) {}
 
-export class ClothingItem {
-  private _name: string;
-  private _url: string;
-
-  // Key: "cold", "warm", "rain", "sunny"
-  private _attributes: {} = {};
-
-  user_grade: number; // 0 to 5 stars
-
-  // hex color code
-  // color: string;
-
-  get name(): string {
-    return this._name;
+  recommend() {
+    return Promise.all([this.clothingData.getData(), this._weatherService.load()])
+      .then( (values) => {
+        let weather_attr = this.processWeather(values[1]);
+        return this.generate_alternate(values[0], weather_attr);
+      })
   }
 
-  set name(value: string) {
-    this._name = value;
+  private processWeather(data) {
+    let warm = 3 + Math.round((data.main.temp - 273.15 - 20) / 10);
+    let cold = 3 - Math.round((data.main.temp - 273.15 - 20) / 10);
+    let rain = data.weather.main == "Rain" ? 5 : 0;
+    return {"warm": warm, "cold": cold, "rain": rain};
   }
 
-  get url(): string {
-    return this._url;
-  }
+  private generate_alternate(clothing_dict: Object, weather_attributes: Object ) {
 
-  set url(value: string) {
-    this._url = value;
-  }
-
-  get attributes(): {} {
-    return this._attributes;
-  }
-
-  set attributes(value: {}) {
-    this._attributes = value;
-  }
-
-  constructor(item_name: string, url: string, item_attributes: Object) {
-    this._name = item_name;
-    this._url = url;
-    this._attributes = item_attributes;
-  }
-}
-
-export class ClothingCombination {
-  id: string;
-  attributes: {[attribute: string]: number;} = {}; //Key: attribute ; Value: int 0-10 that represents the rate of the attribute within the clothingCombination
-  items: {[item_type: string]: ClothingItem;} = {}; //Key: item type ; Value: item object
-  user_grade: number; //0 to 5 stars
-  prv_shown: number; //0 for not shown and 1 for already shown
-  algorithm_grade: number;
-
-  constructor(comb_id: string, comb_items: {}) {
-    this.id = comb_id;
-    this.items = comb_items;
-  }
-
-  get_id() {
-    return this.id;
-  }
-
-  get_attributes() {
-    return this.attributes;
-  }
-
-  get_items() {
-    return this.items;
-  }
-
-
-  get_user_grade() {
-    return this.user_grade;
-  }
-
-  get_prv_shown() {
-    return this.prv_shown;
-  }
-
-  get_algorithm_grade() {
-    return this.algorithm_grade;
-}
-
-  edit_attributes(new_attributes: {}) {
-    this.attributes = new_attributes;
-  }
-
-  edit_items(new_items: {}) {
-    this.items = new_items;
-  }
-
-
-  edit_user_grade(new_user_grade: number) {
-    this.user_grade = new_user_grade;
-  }
-
-  to_json() {
-    return JSON.stringify(this);
-  }
-
-  store(storage: Storage) {
-    storage.set(this.get_id(),this.to_json());
-  }
-
-
-
-}
-
-export class Tools {
-
-  order_clothing_combinations(combinations: Array<ClothingCombination>) {
-    return combinations.sort(function(comb_a,comb_b) {
-      if (comb_a.get_algorithm_grade() < comb_b.get_algorithm_grade()) {
-        return -1;
+    function isSuitable(clothing: ClothingItem) {
+      for (let attr in weather_attributes) {
+        if (clothing._attributes[attr] < weather_attributes[attr]) return false;
       }
-      if (comb_a.get_algorithm_grade() > comb_b.get_algorithm_grade()) {
-        return 1;
-      }
-      return 0;
-    })
-}
+      return true
+    }
 
-  convert_json_to_object(json_string: string) {
-    return JSON.parse(json_string);
+    let result = {};
+    for (let attr in clothing_dict) result[attr] = clothing_dict[attr].filter(isSuitable);
+
+    return result;
   }
 
-
+  initializeDB() {
+    this.clothingData.initialize();
+  }
 
   generate(clothing_dict: {}, attributes: {}) {
-    let shirt = new ClothingItem("tshirt","/top",{"warm":6,"cold":0,"rain":0});
-    let w_at = {"warm":7,"cold":-1,"rain":-1};
     function loop_attributes (item: ClothingItem, attributes: {}) {
-      var item_include = true;
-      for (var a in attributes) {
-        var item_attributes = item.attributes
+      let item_include = true;
+      for (let a in attributes) {
+        let item_attributes = item._attributes;
         if (attributes[a] <= item_attributes[a]) {
           item_include = item_include && true;
         }
@@ -162,11 +72,11 @@ export class Tools {
       return item_include;
     }
 
-    var matching_weather_dict = {};
-    for (var type in clothing_dict) {
-      var matching_type_array: ClothingItem[] = [];
-      var type_items = clothing_dict[type];
-      for (var item of type_items) {
+    let matching_weather_dict = {};
+    for (let type in clothing_dict) {
+      let matching_type_array: ClothingItem[] = [];
+      let type_items = clothing_dict[type];
+      for (let item of type_items) {
         if (loop_attributes(item,attributes)) {
           matching_type_array.push(item);
         }
@@ -174,7 +84,25 @@ export class Tools {
       matching_weather_dict[type] = matching_type_array;
 
     }
-    console.log(matching_weather_dict);
+
     return matching_weather_dict;
+  }
+
+  testClothingService(){
+    let shirt = new ClothingItem("tshirt","/top",{"warm":8,"cold":0,"rain":0});
+    let puffyJacket = new ClothingItem("puffy jacket","/top",{"warm":2,"cold":0,"rain":0});
+    let shorts = new ClothingItem("shorts","/bottom",{"warm":8,"cold":0,"rain":0});
+    let hawaian_shorts = new ClothingItem("hawaian shorts","/bottom",{"warm":8,"cold":0,"rain":0});
+    let flipflops = new ClothingItem("flipflops","/shoe",{"warm":8,"cold":0,"rain":0});
+    console.log("Start of script");
+    let clothing_dict =  {};
+    clothing_dict["top"] = [shirt,puffyJacket];
+    clothing_dict["bottom"] = [shorts,hawaian_shorts];
+    clothing_dict["shoe"] = [flipflops];
+    let weather_dict = {};
+    weather_dict["warm"] = 7;
+    weather_dict["cold"] = -1;
+    weather_dict["rain"] = -1;
+    console.log("End of script");
   }
 }

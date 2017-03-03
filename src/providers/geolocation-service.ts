@@ -19,6 +19,7 @@ export class GeolocationService {
   load() {
     if (this.data != undefined) return this.data;
 
-    return Geolocation.getCurrentPosition();
+    return Geolocation.getCurrentPosition()
+      .catch(error => console.log("Failed to get current position"));
   }
 }
