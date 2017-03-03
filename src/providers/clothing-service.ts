@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 
 import 'rxjs/add/operator/map';
 import {ClothingItem} from "./clothing-item";
+import {ClothingDataService} from "./clothing-data-service";
+import {WeatherService} from "./weather-service";
 
 /*
   Generated class for the ClothingService provider.
@@ -12,9 +14,24 @@ import {ClothingItem} from "./clothing-item";
 @Injectable()
 export class ClothingService {
 
-  constructor() {}
+  constructor(public clothingData: ClothingDataService, public weatherService: WeatherService) {}
 
-  generate_alternate(clothing_dict: Object, weather_attributes: Object ) {
+  recommend() {
+    return Promise.all([this.clothingData.getData(), this.weatherService.load()])
+      .then( (values) => {
+        let weather_attr = this.processWeather(values[1]);
+        return this.generate(values[0], weather_attr);
+      })
+  }
+
+  private processWeather(data) {
+    let warm = 5 + (data.main.temp - 273.15 - 20) / 5;
+    let cold = 5 - (data.main.temp - 273.15 - 20) / 5;
+    let rain = 5 ? data.weather.main == "Rain" : 0;
+    return {"warm": warm, "cold": cold, "rain": rain};
+  }
+
+  private generate_alternate(clothing_dict: Object, weather_attributes: Object ) {
     function isSuitable(clothing: ClothingItem) {
       for (let attr in weather_attributes) {
         if (clothing.attributes[attr] <= weather_attributes[attr]) return false
@@ -60,5 +77,23 @@ export class ClothingService {
     }
 
     return matching_weather_dict;
+  }
+
+  testClothingService(){
+    let shirt = new ClothingItem("tshirt","/top",{"warm":8,"cold":0,"rain":0});
+    let puffyJacket = new ClothingItem("puffy jacket","/top",{"warm":2,"cold":0,"rain":0});
+    let shorts = new ClothingItem("shorts","/bottom",{"warm":8,"cold":0,"rain":0});
+    let hawaian_shorts = new ClothingItem("hawaian shorts","/bottom",{"warm":8,"cold":0,"rain":0});
+    let flipflops = new ClothingItem("flipflops","/shoe",{"warm":8,"cold":0,"rain":0});
+    console.log("Start of script");
+    let clothing_dict =  {};
+    clothing_dict["top"] = [shirt,puffyJacket];
+    clothing_dict["bottom"] = [shorts,hawaian_shorts];
+    clothing_dict["shoe"] = [flipflops];
+    let weather_dict = {};
+    weather_dict["warm"] = 7;
+    weather_dict["cold"] = -1;
+    weather_dict["rain"] = -1;
+    console.log("End of script");
   }
 }

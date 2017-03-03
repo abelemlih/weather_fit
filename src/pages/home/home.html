@@ -38,13 +38,14 @@
       </div>
     </div>
 
-    <ion-row>
-      <ion-slides>
-        <ion-slide *ngFor="let slide of top">
-
-        </ion-slide>
-      </ion-slides>
-    </ion-row>
+    <div class="clothing" *ngIf="recommendation">
+      <ion-row>
+        <ion-slides>
+          <ion-slide *ngFor="let slide of recommendation.top">
+            <img class="top" [src]="slide.url">
+          </ion-slide>
+        </ion-slides>
+      </ion-row>
 
     <!--<ion-row>-->
       <!--<ion-slides>-->
@@ -96,6 +97,7 @@
         <!--</ion-slide>-->
       <!--</ion-slides>-->
     <!--</ion-row>-->
+    </div>
   </ion-grid>
 </ion-content>
 

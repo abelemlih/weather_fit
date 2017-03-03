@@ -10,32 +10,41 @@ import { GeolocationService } from '../../providers/geolocation-service'
 import {SettingsPage} from '../settings/settings';
 
 import {SettingsService} from "../../providers/settings-service";
-import {ClothingDataService} from "../../providers/clothing-data-service";
-import {ClothingItem, Tools} from "../../providers/clothing-service";
+
+import {ClothingService} from "../../providers/clothing-service";
+
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [WeatherService, GeolocationService]
+  providers: [WeatherService, GeolocationService, ClothingService]
 })
 export class HomePage {
 
   weather: any;
   temp_num: number;
   temp_str: string;
-  top: Array<any>;
+
+  recommendation: any;
 
   constructor(public navCtrl: NavController,
               public weatherService: WeatherService,
               public geolocationService: GeolocationService,
               public settingsService: SettingsService,
-              public clothingData: ClothingDataService) {
+              public clothingService: ClothingService) {
 
     this.loadWeather();
-
+    this.loadRecommendation();
     // clothingData.getData()
     //   .then((data) => console.log(data));
     // this.printItem2();
+  }
+
+  loadRecommendation() {
+    return this.clothingService.recommend()
+      .then( (recom) =>
+          this.recommendation = recom
+      )
   }
 
   loadWeather() {
@@ -74,28 +83,6 @@ export class HomePage {
   toFah(){
     let fah_temp = (this.temp_num * 1.8) + 32;
     this.temp_str = fah_temp.toFixed().toString() + "°F";
-  }
-
-
-  printItem2(){
-    let shirt = new ClothingItem("tshirt","/top",{"warm":8,"cold":0,"rain":0});
-    let puffyJacket = new ClothingItem("puffy jacket","/top",{"warm":2,"cold":0,"rain":0});
-    let shorts = new ClothingItem("shorts","/bottom",{"warm":8,"cold":0,"rain":0});
-    let hawaian_shorts = new ClothingItem("hawaian shorts","/bottom",{"warm":8,"cold":0,"rain":0});
-    let flipflops = new ClothingItem("flipflops","/shoe",{"warm":8,"cold":0,"rain":0});
-    let t = new Tools;
-    console.log("Start of script");
-    //t.loop_attributes(type_array,shirt,{"warm":7,"cold":-1,"rain":-1});
-    let clothing_dict =  {};
-    clothing_dict["top"] = [shirt,puffyJacket];
-    clothing_dict["bottom"] = [shorts,hawaian_shorts];
-    clothing_dict["shoe"] = [flipflops];
-    let weather_dict = {};
-    weather_dict["warm"] = 7;
-    weather_dict["cold"] = -1;
-    weather_dict["rain"] = -1;
-    t.generate(clothing_dict,weather_dict);
-    console.log("End of script");
   }
 
 }

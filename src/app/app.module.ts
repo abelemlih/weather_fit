@@ -7,6 +7,7 @@ import { SettingsPage } from '../pages/settings/settings';
 import { Storage } from '@ionic/storage';
 import {ClothingDataService} from "../providers/clothing-data-service";
 import {SaveItemPage} from "../pages/save-item/save-item";
+import {ClothingService} from "../providers/clothing-service";
 
 @NgModule({
   declarations: [

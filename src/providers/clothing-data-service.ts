@@ -19,6 +19,9 @@ export class ClothingDataService {
   }
 
   getData() {
+    // return new Promise( (resolve) =>
+    //   this.storage.get("ClothingData")
+    //     .then((data) = > resolve(data))) ;
     return this.storage.get("ClothingData");
   }
 
