@@ -5,6 +5,7 @@ import { HomePage } from '../pages/home/home';
 
 import { SettingsPage } from '../pages/settings/settings';
 import { Storage } from '@ionic/storage';
+import {ClothingDataService} from "../providers/clothing-data-service";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { Storage } from '@ionic/storage';
     SettingsPage
   ],
 
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, Storage, ClothingDataService]
 
 })
 export class AppModule {}

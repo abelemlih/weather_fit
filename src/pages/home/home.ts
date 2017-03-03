@@ -12,6 +12,7 @@ import { GeolocationService } from '../../providers/geolocation-service'
 import {SettingsPage} from '../settings/settings';
 
 import {SettingsService} from "../../providers/settings-service";
+import {ClothingDataService} from "../../providers/clothing-data-service";
 
 @Component({
   selector: 'page-home',
@@ -23,17 +24,16 @@ export class HomePage {
   weather: any;
   temp_num: number;
   temp_str: string;
-  tools: Tools;
-
 
   constructor(public navCtrl: NavController,
               public weatherService: WeatherService,
               public geolocationService: GeolocationService,
-              public settingsService: SettingsService) {
+              public settingsService: SettingsService,
+              public clothingData: ClothingDataService) {
 
     this.loadWeather();
-    // this.printIem();
-
+    clothingData.getData()
+      .then((data) => console.log(data));
   }
 
   loadWeather() {
