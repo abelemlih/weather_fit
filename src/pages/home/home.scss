@@ -30,23 +30,35 @@ page-home {
           height: 100%;
           position: absolute;
           width: 100%;
+
+
         }
         .fahrenheit {/*This is the part where it says it shows the tem in F.*/
+          font-size: 0.4em;
+          font-weight: 800;
+          margin: auto;
           background: transparent;
           transform: rotateY(180deg);
         }
+
+
+
       }
       .temperature_animation:hover { /*Hover function on the card is added in order to have it animated when moved over the temperature*/
         max-height: 70px;
         transform: rotateY(180deg);
       }
     }
+
+    .tem-color01n{
+      color: #2ec95c;
+    }
+
     .icon {
       margin: auto;
       height: 150px;
 
     }
-
     .location {
       font-size: 1.4em;
       font-weight: 800;
@@ -74,19 +86,23 @@ page-home {
     min-width: 10%;
 
   }
-
-
-  .main-display {
+  .main-display{
     background-color: lightsteelblue;
+  }
 
+
+
+ /* .main-display{
+
+    background-color: lightsteelblue;
     //The one with the clouds
-    /*
+    !*
     background-image: url(http://media3.giphy.com/media/jtavDv8iqstY4/giphy.gif);
-    */
+    *!
     //The one with the snowflakes
     //background-image: url(https://68.media.tumblr.com/ae343894fa97678e054a7216ad9756ba/tumblr_ohrxh8Gfju1u7gnm9o1_500.gif);
+  }*/
 
-  }
   .slider {
     height: 200px; /* slider height you want */
   }
@@ -96,3 +112,5 @@ page-home {
 
 
 }
+
+
