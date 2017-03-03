@@ -35,35 +35,40 @@ export class HomePage {
               public clothingService: ClothingService,
               public storage: Storage) {
 
-    this.loadWeatherTest();
-    this.loadRecommendation();
+    this.loadCurrentLocation()
+      .then(() => {
+        this.loadWeather();
+        this.loadRecommendation();
+      });
+    // this.loadRecommendation();
     // clothingData.getData()
     //   .then((data) => console.log(data));
-    // this.printItem2();
+  }
+
+  loadCurrentLocation() {
+    return this.geolocationService.load()
+      .then((pos) => this.weatherService.pos = pos);
   }
 
   loadRecommendation() {
-    this.clothingService.recommend()
+    this.clothingService.weatherService = this.weatherService;
+    return this.clothingService.recommend()
       .then( (recom) => {
         this.recommendation = recom;
         }
       )
+      .catch((error) => console.log("Failed to load clothingService\n" + error.toString()))
   }
 
   loadWeather() {
-    this.geolocationService.load()
-      .catch( (error) => console.log("Failed to get Geolocation\n" + error.toString() + " code " + error.code))
-      .then((pos: Position) => {
-        this.weatherService.pos = pos;
-        return this.weatherService.load();
-      })
+    return this.weatherService.load()
       .then(data => {
         this.weather = data;
         this.temp_num = this.weather.main.temp - 273.15;
         this.toCel();
         // console.log(this.weather)
       })
-      .catch( (error) => console.log("Failed to load weather data to HomePage\n" + error.toString())
+      .catch( (error) => console.log("Failed to load weather data\n" + error.toString())
       )
   }
 

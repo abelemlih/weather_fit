@@ -14,10 +14,16 @@ import {WeatherService} from "./weather-service";
 @Injectable()
 export class ClothingService {
 
-  constructor(public clothingData: ClothingDataService, public weatherService: WeatherService) {}
+  private _weatherService: WeatherService;
+
+  set weatherService(value: WeatherService) {
+    this._weatherService = value;
+  }
+
+  constructor(public clothingData: ClothingDataService) {}
 
   recommend() {
-    return Promise.all([this.clothingData.getData(), this.weatherService.load()])
+    return Promise.all([this.clothingData.getData(), this._weatherService.load()])
       .then( (values) => {
         let weather_attr = this.processWeather(values[1]);
         return this.generate_alternate(values[0], weather_attr);
@@ -41,9 +47,7 @@ export class ClothingService {
     }
 
     let result = {};
-    for (let attr in clothing_dict) {
-      result[attr] = clothing_dict[attr].filter(isSuitable);
-    }
+    for (let attr in clothing_dict) result[attr] = clothing_dict[attr].filter(isSuitable);
 
     return result;
   }
