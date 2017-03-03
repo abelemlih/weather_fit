@@ -25,7 +25,7 @@ page-home {
         transform-style: preserve-3d;
         transition: all 2s ease-in-out;
 
-        .celsius {/*This is the part where it says it shows the tem in C.*/
+        .front {/*This is the part where it says it shows the tem in C.*/
           backface-visibility: hidden;
           background: transparent;
           height: 100%;
@@ -34,7 +34,7 @@ page-home {
 
 
         }
-        .fahrenheit {/*This is the part where it says it shows the tem in F.*/
+        .back {/*This is the part where it says it shows the tem in F.*/
           font-size: 0.4em;
           font-weight: 800;
           margin: auto;
@@ -140,23 +140,14 @@ page-home {
   }
 
   .top {
-    // width: 100px;
     height: 100px;
-    // min-width:10%;
-    // max-width: 20%;
   }
 
   .bottom{
-    // width: 100px;
     height: 100px;
-    // min-width:10%;
-    // max-width: 30%;
-
   }
   .accessories{
-    // width: 50px;
     height: 70px;
-    // min-width: 10%;
 
   }
   .main-display{
