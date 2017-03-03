@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
 import { Storage } from '@ionic/storage';
-import {ClothingItem} from "./clothing-service";
+import {ClothingItem} from "./clothing-item";
 
 /*
   Generated class for the ClothingDataService provider.
@@ -19,11 +19,12 @@ export class ClothingDataService {
   }
 
   getData() {
-    return this.storage.get("clothingItem");
+    return this.storage.get("ClothingData");
   }
 
   save(data: Object) {
-    this.storage.set("clothingItem", data);
+    this.storage.set("ClothingData", data)
+      .catch((error) => "Failed to store data");
   }
 
   initialize() {

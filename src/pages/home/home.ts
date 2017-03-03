@@ -23,6 +23,7 @@ export class HomePage {
   weather: any;
   temp_num: number;
   temp_str: string;
+  top: Array<any>;
 
   constructor(public navCtrl: NavController,
               public weatherService: WeatherService,
@@ -31,13 +32,14 @@ export class HomePage {
               public clothingData: ClothingDataService) {
 
     this.loadWeather();
+
     // clothingData.getData()
     //   .then((data) => console.log(data));
-    this.printItem2();
+    // this.printItem2();
   }
 
   loadWeather() {
-    this.geolocationService.load()
+    return this.geolocationService.load()
       .catch( (error) => console.log("Failed to get Geolocation\n" + error.toString() + " code " + error.code))
       .then((pos: Position) => {
         this.weatherService.pos = pos;
@@ -45,12 +47,12 @@ export class HomePage {
       })
       .then(data => {
         this.weather = data;
-        this.init();
+        this.temp_num = this.weather.main.temp - 273.15;
+        this.toCel();
         // console.log(this.weather)
       })
       .catch( (error) => console.log("Failed to load weather data to HomePage\n" + error.toString())
       )
-
   }
 
   ionViewWillEnter() {
@@ -63,11 +65,6 @@ export class HomePage {
   pushSettingsPage() {
     this.navCtrl.push(SettingsPage)
       .catch( (error) => console.log("Failed to push to SettingsPage"));
-  }
-
-  init() {
-    this.temp_num = this.weather.main.temp - 273.15;
-    this.toCel();
   }
 
   toCel() {
