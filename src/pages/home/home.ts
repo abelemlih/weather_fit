@@ -13,9 +13,6 @@ import {SettingsService} from "../../providers/settings-service";
 import {ClothingDataService} from "../../providers/clothing-data-service";
 import {ClothingItem, Tools} from "../../providers/clothing-service";
 
-import { ClothingItem } from "../../providers/clothing-service";
-import { Tools } from "../../providers/clothing-service";
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -36,7 +33,6 @@ export class HomePage {
     this.loadWeather();
     // clothingData.getData()
     //   .then((data) => console.log(data));
-    this.printItem();
     this.printItem2();
   }
 
@@ -83,22 +79,6 @@ export class HomePage {
     this.temp_str = fah_temp.toFixed().toString() + "°F";
   }
 
-  printItem() {
-    let shirt = new ClothingItem("tshirt", "url", {"warm": 8, "cold": 0, "rain": 0});
-    let shorts = new ClothingItem("shorts", "url", {"warm": 8, "cold": 0, "rain": 0});
-    let flipflops = new ClothingItem("flipflops", "shoe", {"warm": 8, "cold": 0, "rain": 0});
-    let t = new Tools;
-    console.log("Start of script");
-    let clothing_dict = {};
-    clothing_dict["top"] = [shirt];
-    clothing_dict["bottom"] = [shorts];
-    clothing_dict["shoe"] = [flipflops];
-    let weather_dict = {};
-    weather_dict["warm"] = 7;
-    weather_dict["cold"] = -1;
-    weather_dict["rain"] = -1;
-    t.generates(clothing_dict, weather_dict);
-  }
 
   printItem2(){
     let shirt = new ClothingItem("tshirt","/top",{"warm":8,"cold":0,"rain":0});
@@ -108,13 +88,12 @@ export class HomePage {
     let flipflops = new ClothingItem("flipflops","/shoe",{"warm":8,"cold":0,"rain":0});
     let t = new Tools;
     console.log("Start of script");
-    var type_array: ClothingItem[] = [];
     //t.loop_attributes(type_array,shirt,{"warm":7,"cold":-1,"rain":-1});
-    var clothing_dict =  {};
+    let clothing_dict =  {};
     clothing_dict["top"] = [shirt,puffyJacket];
     clothing_dict["bottom"] = [shorts,hawaian_shorts];
     clothing_dict["shoe"] = [flipflops];
-    var weather_dict = {};
+    let weather_dict = {};
     weather_dict["warm"] = 7;
     weather_dict["cold"] = -1;
     weather_dict["rain"] = -1;
