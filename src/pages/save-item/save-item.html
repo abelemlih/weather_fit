@@ -15,21 +15,48 @@
 
 <ion-content padding>
 
-<ion-list no-lines>
+  <ion-list no-lines>
 
-  <form [formGroup]="clothingItemForm">
+    <form [formGroup]="clothingItemForm">
 
-    <ion-item>
-      <ion-label floating>URL to the piece</ion-label>
-      <ion-input formControlName="URL" type="text"></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label floating>URL to the piece</ion-label>
+        <ion-input formControlName="URL" type="text"></ion-input>
+      </ion-item>
 
-    <ion-item>
+      <ion-item>
+        <ion-label floating>Piece of clothing</ion-label>
+        <ion-select formControlName="piece">
+          <ion-option value="top">Top</ion-option>
+          <ion-option value="bottom">Bottom</ion-option>
+          <ion-option value="accessories">Accessories</ion-option>
+        </ion-select>
+      </ion-item>
 
-    </ion-item>
+      <ion-item>
+        <ion-label floating>Name (avoid using spaces)</ion-label>
+        <ion-input formControlName="name" type="text"></ion-input>
+      </ion-item>
 
-  </form>
+      <ion-item>
+        <ion-label floating>Warm grade (0-10)</ion-label>
+        <ion-input formControlName="warm" type="number"></ion-input>
+      </ion-item>
 
-</ion-list>
+      <ion-item>
+        <ion-label floating>Cold grade (0-10)</ion-label>
+        <ion-input formControlName="cold" type="number"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Rain grade (0-10)</ion-label>
+        <ion-input formControlName="rain" type="number"></ion-input>
+      </ion-item>
+
+    </form>
+
+  </ion-list>
+
+  <button ion-button full (click)="save()">Save Item</button>
 
 </ion-content>

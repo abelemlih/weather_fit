@@ -17,13 +17,25 @@ export class SaveItemPage {
 
   clothingItemForm: FormGroup;
 
-  submitAttempt: boolean = false;
-
   public items = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public formBuilder: FormBuilder,
-              public storage: ClothingDataService) {}
+              public storage: ClothingDataService) {
+
+    this.clothingItemForm = formBuilder.group({
+      URL: [''],
+      piece: [''],
+      name: [''],
+      warm: [''],
+      cold: [''],
+      rain: [''],
+    })
+  }
+
+  save() {
+    console.log(this.clothingItemForm.value);
+  }
 
 }
