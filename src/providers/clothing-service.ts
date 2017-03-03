@@ -126,56 +126,69 @@ export class ClothingCombination {
 
 export class Tools {
 
-  order_clothing_combinations(combinations: Array<ClothingCombination>) {
-    return combinations.sort(function(comb_a,comb_b) {
-      if (comb_a.get_algorithm_grade() < comb_b.get_algorithm_grade()) {
-        return -1;
-      }
-      if (comb_a.get_algorithm_grade() > comb_b.get_algorithm_grade()) {
-        return 1;
-      }
-      return 0;
-    })
-}
+  // order_clothing_combinations(combinations: Array<ClothingCombination>) {
+  //   return combinations.sort(function(comb_a,comb_b) {
+  //     if (comb_a.get_algorithm_grade() < comb_b.get_algorithm_grade()) {
+  //       return -1;
+  //     }
+  //     if (comb_a.get_algorithm_grade() > comb_b.get_algorithm_grade()) {
+  //       return 1;
+  //     }
+  //     return 0;
+  //   })
+  // }
 
-  convert_json_to_object(json_string: string) {
-    return JSON.parse(json_string);
+  constructor() {};
+
+  generate(clothing_dict: {}, attributes: {}) {
+    function loop_attributes (item: ClothingItem, attributes: {}) {
+      let item_include = true;
+      for (let a in attributes) {
+        let item_attributes = item.attributes;
+        if (attributes[a] <= item_attributes[a]) {
+          item_include = item_include && true;
+        }
+        else {
+          item_include = item_include && false;
+          break;
+        }
+      }
+      console.log(item_include);
+      return item_include;
+    }
+
+
+    let t = new Tools;
+    let matching_clothing_dict: {};
+    for (let type in clothing_dict) {
+      let type_array = [];
+      for (let item of clothing_dict[type]) {
+        if (loop_attributes(item,attributes)) {
+          type_array.push(item);
+        }
+        console.log(item);
+      }
+      //matching_clothing_dict[type] = type_array;
+      console.log(type_array);
+    }
+    return matching_clothing_dict;
   }
 
+  generates(clothing_dict: Object, weather_attributes: Object ) {
+    function isSuitable(clothing: ClothingItem) {
+      for (let attr in weather_attributes) {
+        if (clothing.attributes[attr] <= weather_attributes[attr]) return false
+      }
+      return true
+    }
 
+    let result = {};
+    for (let attr in weather_attributes) {
+      console.log(attr);
+      console.log(clothing_dict[attr])
+      // result[attr] = clothing_dict[attr].filter(isSuitable)
+    }
+    return result;
+  }
 
-//   generate(clothing_dict: {}, attributes: {}) {
-//     function loop_attributes (item: ClothingItem, attributes: {}) {
-//       var item_include = true;
-//       for (var a in attributes) {
-//         var item_attributes = item.get_attributes();
-//         if (attributes[a] <= item_attributes[a]) {
-//           item_include = item_include && true;
-//         }
-//         else {
-//           item_include = item_include && false;
-//           break;
-//         }
-//       }
-//       console.log(item_include);
-//       return item_include;
-//     }
-//
-//
-//     let t = new Tools;
-//     let matching_clothing_dict: {};
-//     for (var type in clothing_dict) {
-//       let type_array = [];
-//       for (var item of clothing_dict[type]) {
-//         if (loop_attributes(item,attributes)) {
-//           type_array.push(item);
-//         }
-//         console.log(item);
-//       }
-//       //matching_clothing_dict[type] = type_array;
-//       console.log(type_array);
-//     }
-//     return matching_clothing_dict;
-//   }
-// }
 }
