@@ -42,7 +42,23 @@
       <ion-row>
         <ion-slides>
           <ion-slide *ngFor="let slide of recommendation.top">
-            <img class="top" [src]="slide.url">
+            <img class="top" [src]="slide._url">
+          </ion-slide>
+        </ion-slides>
+      </ion-row>
+
+      <ion-row>
+        <ion-slides>
+          <ion-slide *ngFor="let slide of recommendation.bottom">
+            <img class="bottom" [src]="slide._url">
+          </ion-slide>
+        </ion-slides>
+      </ion-row>
+
+      <ion-row>
+        <ion-slides>
+          <ion-slide *ngFor="let slide of recommendation.accessories">
+            <img class="accessories" [src]="slide._url">
           </ion-slide>
         </ion-slides>
       </ion-row>

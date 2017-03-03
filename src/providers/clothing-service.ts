@@ -20,9 +20,6 @@ export class ClothingService {
     return Promise.all([this.clothingData.getData(), this.weatherService.load()])
       .then( (values) => {
         let weather_attr = this.processWeather(values[1]);
-        console.log(values[0]);
-        console.log(values[1]);
-        console.log(weather_attr);
         return this.generate_alternate(values[0], weather_attr);
       })
   }
@@ -55,7 +52,7 @@ export class ClothingService {
     function loop_attributes (item: ClothingItem, attributes: {}) {
       let item_include = true;
       for (let a in attributes) {
-        let item_attributes = item.get_attributes();
+        let item_attributes = item._attributes;
         if (attributes[a] <= item_attributes[a]) {
           item_include = item_include && true;
         }

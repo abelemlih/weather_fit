@@ -44,8 +44,7 @@ export class HomePage {
     return this.clothingService.recommend()
       .then( (recom) => {
         this.recommendation = recom;
-        console.log(recom);
-      }
+        }
       )
   }
 

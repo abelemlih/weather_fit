@@ -1,6 +1,6 @@
 export class ClothingItem {
   private _name: string;
-  private _url: string;
+  public _url: string;
 
   // Key: "cold", "warm", "rain"
   public _attributes: {};
@@ -16,13 +16,4 @@ export class ClothingItem {
     this._url = url;
     this._attributes = item_attributes;
   }
-
-  get_url(): string {
-    return this._url;
-  }
-
-  get_attributes() {
-    return this._attributes;
-  }
-
 }
