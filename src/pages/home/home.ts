@@ -5,8 +5,6 @@ import { NavController } from 'ionic-angular';
 
 import { WeatherService } from '../../providers/weather-service'
 
-import { Tools } from '../../providers/clothing-service'
-
 import { GeolocationService } from '../../providers/geolocation-service'
 
 import {SettingsPage} from '../settings/settings';
