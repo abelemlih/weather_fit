@@ -83,6 +83,7 @@ export class HomePage {
 
   printIem(){
     let shirt = new ClothingItem("tshirt","/top",{"warm":8,"cold":0,"rain":0});
+    let puffyJacket = new ClothingItem("puffy jacket","/top",{"warm":2,"cold":0,"rain":0});
     let shorts = new ClothingItem("shorts","/bottom",{"warm":8,"cold":0,"rain":0});
     let hawaian_shorts = new ClothingItem("hawaian shorts","/bottom",{"warm":8,"cold":0,"rain":0});
     let flipflops = new ClothingItem("flipflops","/shoe",{"warm":8,"cold":0,"rain":0});
@@ -91,7 +92,7 @@ export class HomePage {
     var type_array: ClothingItem[] = [];
     //t.loop_attributes(type_array,shirt,{"warm":7,"cold":-1,"rain":-1});
     var clothing_dict =  {};
-    clothing_dict["top"] = [shirt];
+    clothing_dict["top"] = [shirt,puffyJacket];
     clothing_dict["bottom"] = [shorts,hawaian_shorts];
     clothing_dict["shoe"] = [flipflops];
     var weather_dict = {};
