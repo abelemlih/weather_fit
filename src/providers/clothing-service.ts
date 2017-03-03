@@ -145,6 +145,8 @@ export class Tools {
 
 
   generate(clothing_dict: {}, attributes: {}) {
+    let shirt = new ClothingItem("tshirt","/top",{"warm":6,"cold":0,"rain":0});
+    let w_at = {"warm":7,"cold":-1,"rain":-1};
     function loop_attributes (item: ClothingItem, attributes: {}) {
       var item_include = true;
       for (var a in attributes) {
@@ -157,23 +159,22 @@ export class Tools {
           break;
         }
       }
-      console.log(item_include);
       return item_include;
     }
-    
 
-    let matching_clothing_dict: {};
+    var matching_weather_dict = {};
     for (var type in clothing_dict) {
-      let type_array = [];
-      for (var item of clothing_dict[type]) {
+      var matching_type_array: ClothingItem[] = [];
+      var type_items = clothing_dict[type];
+      for (var item of type_items) {
         if (loop_attributes(item,attributes)) {
-          type_array.push(item);
+          matching_type_array.push(item);
         }
-        console.log(item);
       }
-      //matching_clothing_dict[type] = type_array;
-      console.log(type_array);
+      matching_weather_dict[type] = matching_type_array;
+
     }
-    return matching_clothing_dict;
+    console.log(matching_weather_dict);
+    return matching_weather_dict;
   }
 }
