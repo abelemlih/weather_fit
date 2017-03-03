@@ -13,10 +13,11 @@ page-home {
       color: white;
       font-size: 2.5em;
       font-weight: 800;
+      margin: auto;
 
       .temperature_animation-container {/*this is the boundaries of the card*/
         height: 50px;
-        perspective:100;
+        perspective: 100px;
         width: 100px;
         margin: auto;
       }
@@ -125,7 +126,7 @@ page-home {
     .tem-color50n{
       color: blanchedalmond;
     }
-    
+
     .icon {
       margin: auto;
       height: 150px;
@@ -139,23 +140,23 @@ page-home {
   }
 
   .top {
-    width: 100px;
+    // width: 100px;
     height: 100px;
-    min-width:10%;
-    max-width: 20%;
+    // min-width:10%;
+    // max-width: 20%;
   }
 
   .bottom{
-    width: 100px;
+    // width: 100px;
     height: 100px;
-    min-width:10%;
-    max-width: 30%;
+    // min-width:10%;
+    // max-width: 30%;
 
   }
   .accessories{
-    width: 50px;
-    height: 50px;
-    min-width: 10%;
+    // width: 50px;
+    height: 70px;
+    // min-width: 10%;
 
   }
   .main-display{

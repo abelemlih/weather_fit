@@ -18,66 +18,49 @@ export class ClothingService {
 
 }
 
-@Injectable()
 export class ClothingItem {
-  id: string;
-  name: string;
-  type: string;
-  color: string; //hex color code
-  attributes: {[attribute: string]: number;} = {}; //Key: attribute ; Value: int 0-10 that represents the contribution of the item towards the attribute
-  matching_grade: {[id: string]: number;} = {}; //Key: id of item to compare ; Value: int 0-10 that represents how well the two items match
-  user_grade: number; //0 to 5 stars
+  private _name: string;
+  private _url: string;
 
-  constructor(item_id: string, item_name: string, item_type: string, item_attributes: {}) {
-    this.id = item_id;
-    this.name = item_name;
-    this.type = item_type;
-    this.attributes = item_attributes;
-  }
+  // Key: "cold", "warm", "rain", "sunny"
+  private _attributes: {} = {};
 
+  user_grade: number; // 0 to 5 stars
 
-  get_id() {
-    return this.id;
-  }
-  get_name() {
-    return this.name;
-  }
-  get_type() {
-    return this.type;
-  }
-  get_color() {
-    return this.color;
-  }
-  get_attributes() {
-    return this.attributes;
-  }
-  get_matching_grade() {
-    return this.matching_grade;
-  }
-  get_user_grade() {
-    return this.user_grade;
-  }
-  edit_attributes(new_attributes: {}) {
-    this.attributes = new_attributes;
-  }
-  edit_matching_grade(new_matching_grade: {}) {
-    this.matching_grade = new_matching_grade;
-  }
-  edit_user_grade(new_user_grade: number) {
-    this.user_grade = new_user_grade;
-  }
-  to_json() {
-    return JSON.stringify(this);
+  // hex color code
+  // color: string;
+
+  get name(): string {
+    return this._name;
   }
 
-  store(storage: Storage) {
-    storage.set(this.get_id(),this.to_json());
+  set name(value: string) {
+    this._name = value;
   }
 
+  get url(): string {
+    return this._url;
+  }
 
+  set url(value: string) {
+    this._url = value;
+  }
+
+  get attributes(): {} {
+    return this._attributes;
+  }
+
+  set attributes(value: {}) {
+    this._attributes = value;
+  }
+
+  constructor(item_name: string, url: string, item_attributes: Object) {
+    this._name = item_name;
+    this._url = url;
+    this._attributes = item_attributes;
+  }
 }
 
-@Injectable()
 export class ClothingCombination {
   id: string;
   attributes: {[attribute: string]: number;} = {}; //Key: attribute ; Value: int 0-10 that represents the rate of the attribute within the clothingCombination
@@ -136,7 +119,6 @@ export class ClothingCombination {
 
 }
 
-@Injectable()
 export class Tools {
 
   order_clothing_combinations(combinations: Array<ClothingCombination>) {

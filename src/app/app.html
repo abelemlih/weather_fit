@@ -8,15 +8,12 @@
 
   <ion-content>
     <ion-list>
-      <button ion-item menuClose (click)="openPage(pages[0])">
-        <ion-icon name="home"></ion-icon>
-        Home
+
+      <button ion-item menuClose *ngFor="let page of pages" (click)="openPage(page)">
+        <ion-icon name="{{page.icon}}"></ion-icon>
+        {{page.title}}
       </button>
 
-      <button ion-item menuClose (click)="openPage(pages[1])">
-        <ion-icon name="settings"></ion-icon>
-        Settings
-      </button>
     </ion-list>
   </ion-content>
 
