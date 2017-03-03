@@ -26,7 +26,7 @@ export class ClothingService {
     return Promise.all([this.clothingData.getData(), this._weatherService.load()])
       .then( (values) => {
         let weather_attr = this.processWeather(values[1]);
-        return this.generate_alternate(values[0], weather_attr);
+        return this.generate(values[0], weather_attr);
       })
   }
 
