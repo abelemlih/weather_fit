@@ -65,7 +65,7 @@ export class HomePage {
       .then(data => {
         this.weather = data;
         this.temp_num = this.weather.main.temp - 273.15;
-        this.toCel();
+        this.updateUnits();
         // console.log(this.weather)
       })
       .catch( (error) => console.log("Failed to load weather data\n" + error.toString())
@@ -78,16 +78,22 @@ export class HomePage {
       .then(data =>{
         this.weather = data;
         this.temp_num = this.weather.main.temp - 273.15;
-        this.toCel();
+        this.updateUnits();
       })
       .catch(error => console.log("loadWeatherTest fails"))
   }
 
-  ionViewWillEnter() {
-    if (this.weather != undefined) {
-      if (this.settingsService.units == "celsius") this.toCel();
-      else this.toFah();
+  updateUnits() {
+    if (this.settingsService.units == "celsius")
+      this.temp_str = this.temp_num.toFixed().toString() + "°C";
+    else {
+        let fah_temp = (this.temp_num * 1.8) + 32;
+        this.temp_str = fah_temp.toFixed().toString() + "°F";
     }
+  }
+
+  ionViewWillEnter() {
+    if (this.temp_num != undefined) this.updateUnits();
   }
 
   ionViewDidLoad() {
@@ -108,14 +114,4 @@ export class HomePage {
     this.navCtrl.push(SettingsPage)
       .catch( (error) => console.log("Failed to push to SettingsPage"));
   }
-
-  toCel() {
-    this.temp_str = this.temp_num.toFixed().toString() + "°C";
-  }
-
-  toFah(){
-    let fah_temp = (this.temp_num * 1.8) + 32;
-    this.temp_str = fah_temp.toFixed().toString() + "°F";
-  }
-
 }
