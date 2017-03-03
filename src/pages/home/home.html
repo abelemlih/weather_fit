@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding id="main-display" class="main-display no-scroll">
+<ion-content padding id="main-display" class="main-display">
   <ion-grid>
     <div class="weather" *ngIf="weather">
       <ion-row center>
@@ -24,17 +24,19 @@
         <ion-row center>
           <div class="temperature_animation-container">
             <div class="temperature_animation">
+<!--
               <div class="tem-color{{weather.weather[0].icon}}">
+-->
                 <div class="front">{{temp_str}}</div>
                 <div class="front back">{{weather.name}}</div>
+<!--
               </div>
+-->
           </div>
           </div>
         </ion-row>
       </div>
     </div>
-
-
 
     <ion-row>
       <ion-slides>
@@ -61,7 +63,7 @@
         </ion-slide>
 
         <ion-slide>
-          <img class="bottom" src="../../assets/clothing/purple%20jeans.png">
+          <img class="bottom" src="../../assets/clothing/jeans.png">
         </ion-slide>
 
         <ion-slide>
