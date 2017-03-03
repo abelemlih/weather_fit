@@ -48,13 +48,13 @@ export class ClothingDataService {
       ]
       ,
       "accessories": [
-        new ClothingItem("sneakers", "../../assets/clothing/sneakers.png",
+        new ClothingItem("sneakers", "../../assets/clothing/double%20sneakers.png",
           {"warm" : 7, "cold" : 7, "rain" : 5})
         ,
-        new ClothingItem("uggs", "../../assets/clothing/uggs.png",
+        new ClothingItem("uggs", "../../assets/clothing/double%20brown%20uggs.png",
           {"warm" : 4, "cold" : 8, "rain" : 3})
         ,
-        new ClothingItem("timberlands", "../../assets/clothing/timberlands.png",
+        new ClothingItem("timberlands", "../../assets/clothing/double%20timberlands.png",
           {"warm" : 1, "cold" : 10, "rain" : 7})
       ]
     };
