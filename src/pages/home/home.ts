@@ -12,6 +12,9 @@ import {SettingsPage} from '../settings/settings';
 import {SettingsService} from "../../providers/settings-service";
 import {ClothingDataService} from "../../providers/clothing-data-service";
 
+import { ClothingItem } from "../../providers/clothing-service";
+import { Tools } from "../../providers/clothing-service";
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -78,23 +81,23 @@ export class HomePage {
   }
 
   printIem(){
-    // let shirt = new ClothingItem("#1","tshirt","top",{"warm":8,"cold":0,"rain":0});
-    // let shorts = new ClothingItem("#2","shorts","bottom",{"warm":8,"cold":0,"rain":0});
-    // let flipflops = new ClothingItem("#3","flipflops","shoe",{"warm":8,"cold":0,"rain":0});
-    // let t = new Tools;
-    // console.log("Start of script");
-    // var type_array: ClothingItem[] = [];
-    // //t.loop_attributes(type_array,shirt,{"warm":7,"cold":-1,"rain":-1});
-    // var clothing_dict =  {};
-    // clothing_dict["top"] = shirt;
-    // clothing_dict["bottom"] = shorts;
-    // clothing_dict["shoe"] = flipflops;
-    // var weather_dict = {};
-    // weather_dict["warm"] = 7;
-    // weather_dict["cold"] = -1;
-    // weather_dict["rain"] = -1;
-    // t.generate(clothing_dict,weather_dict);
-    // console.log("End of script");
+    let shirt = new ClothingItem("tshirt","/top",{"warm":8,"cold":0,"rain":0});
+    let shorts = new ClothingItem("shorts","/bottom",{"warm":8,"cold":0,"rain":0});
+    let flipflops = new ClothingItem("flipflops","/shoe",{"warm":8,"cold":0,"rain":0});
+    let t = new Tools;
+    console.log("Start of script");
+    var type_array: ClothingItem[] = [];
+    //t.loop_attributes(type_array,shirt,{"warm":7,"cold":-1,"rain":-1});
+    var clothing_dict =  {};
+    clothing_dict["top"] = shirt;
+    clothing_dict["bottom"] = shorts;
+    clothing_dict["shoe"] = flipflops;
+    var weather_dict = {};
+    weather_dict["warm"] = 7;
+    weather_dict["cold"] = -1;
+    weather_dict["rain"] = -1;
+    t.generate(clothing_dict,weather_dict);
+    console.log("End of script");
   }
 
 }
