@@ -25,21 +25,18 @@
           <div class="temperature_animation-container">
             <div class="temperature_animation">
               <div class="tem-color{{weather.weather[0].icon}}">
-
-                <div class="celsius">{{temp_str}}</div>
-                <div class="celsius fahrenheit">{{weather.name}}</div>
-
+                <div class="front">{{temp_str}}</div>
+                <div class="front back">{{weather.name}}</div>
               </div>
-
           </div>
           </div>
         </ion-row>
       </div>
 
-      <ion-row center>
+<!--      <ion-row center>
         <div class="location">{{weather.name}}</div>
         <p>{{weather.weather[0].icon}}</p>
-      </ion-row>
+      </ion-row>-->
     </div>
 
 
