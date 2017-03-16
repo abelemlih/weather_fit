@@ -7,12 +7,12 @@ import { SettingsPage } from "../pages/settings/settings";
 
 import { SettingsService } from '../providers/settings-service';
 import {SaveItemPage} from "../pages/save-item/save-item";
-
+import {WeatherService} from "../providers/weather-service";
 
 
 @Component({
   templateUrl: 'app.html',
-  providers: [SettingsService]
+  providers: [SettingsService, WeatherService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -21,7 +21,9 @@ export class MyApp {
 
   pages: Array<{title: string, component: any, icon : string}>;
 
-  constructor(public platform: Platform, private settingsService: SettingsService) {
+  constructor(public platform: Platform,
+              private settingsService: SettingsService,
+              private weatherService: WeatherService) {
     this.initializeApp();
 
     this.pages = [
