@@ -1,5 +1,4 @@
 ## Deadlines
----------------------------------------------------------------
 __Final Demos: Sat May 6, 1:30 PM–3:30 PM (sec 3)__
 
 __Source Code: Sunday April 30 (self-assigned)__
