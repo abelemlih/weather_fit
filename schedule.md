@@ -13,16 +13,16 @@ __Final Demo group presentation practice: Friday May 5__
 
 ### Features/Tasks:
 __Must:__
-* [ ] Mannequin and/or proportional sizes for clothing __Done by: April 16, 2017__
-* [ ] Algorithm takes into consideration user feedback to suggest clothing combinations __Done by: April 9, 2017__
-* [ ] Slider feature to select some items and change others __Done by: April 9, 2017__
-* [ ] System to seed the database __Done by: April 9, 2017__
-* [ ] Data entry of clothing items and weather/user feedback conditions filter __Done by: April 16, 2017__
+* [ ] Mannequin and/or proportional sizes for clothing ; __Done by: April 16, 2017__
+* [ ] Algorithm takes into consideration user feedback to suggest clothing combinations ; __Done by: April 9, 2017__
+* [ ] Slider feature to select some items and change others ; __Done by: April 9, 2017__
+* [ ] System to seed the database ; __Done by: April 9, 2017__
+* [ ] Data entry of clothing items and weather/user feedback conditions filter ; __Done by: April 16, 2017__
 * [ ] Test the app on a phone 
-* [ ] User test with 8 people at least (2 each) (submit written feedback) __Done by: April 23, 2017__
-* [ ] Code testing and documentation __Done: April 30, 2017__
-* [ ] Presentation slides __Done by: May 4, 2017__
-* [ ] Presentation group practice __Done by: May 5, 2017__
+* [ ] User test with 8 people at least (2 each) (submit written feedback) ; __Done by: April 23, 2017__
+* [ ] Code testing and documentation ; __Done: April 30, 2017__
+* [ ] Presentation slides ; __Done by: May 4, 2017__
+* [ ] Presentation group practice ; __Done by: May 5, 2017__
 
 __Can/Might:__
 * [ ] Locations database and locations settings
@@ -60,6 +60,8 @@ __Can/Might:__
 * [ ] Mannequin and/or proportional sizes for clothing 4/4
 * [ ] Data entry of clothing items and weather/user feedback conditions filter 3/3
 * [ ] User test with 8 people at least (2 each) (submit written feedback) 2/3
+---------------------------------------------------------------
+
 
 ### Week 16	April 17, 2017	April 23, 2017
 * [ ] User test with 8 people at least (2 each) (submit written feedback) 3/3
