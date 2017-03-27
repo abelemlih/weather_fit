@@ -9,6 +9,8 @@ import { SettingsService } from '../providers/settings-service';
 import {SaveItemPage} from "../pages/save-item/save-item";
 import {WeatherService} from "../providers/weather-service";
 
+import {Storage} from '@ionic/storage';
+
 
 @Component({
   templateUrl: 'app.html',
@@ -21,9 +23,7 @@ export class MyApp {
 
   pages: Array<{title: string, component: any, icon : string}>;
 
-  constructor(public platform: Platform,
-              private settingsService: SettingsService,
-              private weatherService: WeatherService) {
+  constructor(public platform: Platform, public storage: Storage) {
     this.initializeApp();
 
     this.pages = [
@@ -39,6 +39,14 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
+      this.storage.get('first-login')
+        .then(done => {
+          if (!done) {
+            console.log("First login");
+            this.storage.set('first-login', true);
+            // this.clothingService.initializeDB();
+          }
+        })
     });
   }
 

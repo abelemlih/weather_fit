@@ -13,10 +13,12 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class WeatherService {
 
-  data: any;
+  private data: any;
   private _pos: Position;
 
-  constructor(public http: Http) {}
+  constructor(public http: Http) {
+    console.log("initialize weather service")
+  }
 
   load() {
     if (this.data) {
