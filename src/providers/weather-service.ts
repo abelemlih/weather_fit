@@ -17,7 +17,7 @@ export class WeatherService {
   private _pos: Position;
 
   constructor(public http: Http) {
-    console.log("initialize weather service")
+    console.log("Initializing weather service")
   }
 
   load() {

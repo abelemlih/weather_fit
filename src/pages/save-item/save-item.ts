@@ -28,9 +28,9 @@ export class SaveItemPage {
       file_name: [''],
       piece: [''],
       name: [''],
-      warm: [''],
-      cold: [''],
-      rain: [''],
+      max_temp: [''],
+      min_temp: [''],
+      rain: ['']
     })
   }
 

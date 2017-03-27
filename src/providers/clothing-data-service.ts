@@ -14,10 +14,7 @@ import { Http } from '@angular/http';
 @Injectable()
 export class ClothingDataService {
 
-  constructor(public storage: Storage, public http: Http) {
-    // this.initialize();
-    // console.log("Initialized db");
-  }
+  constructor(public storage: Storage, public http: Http) {}
 
   getData() {
     return this.storage.get("ClothingData");

@@ -46,7 +46,17 @@
 
       <ion-item>
         <ion-label floating>Maximum Temperature in Celsius</ion-label>
-        <ion-input formControlName="max_temp" type="text"></ion-input>
+        <ion-input formControlName="max_temp" type="number"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Minimum Temperature in Celsius</ion-label>
+        <ion-input formControlName="min_temp" type="number"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Suitable for rain</ion-label>
+        <ion-toggle formControlName="rain"></ion-toggle>
       </ion-item>
 
     </form>
