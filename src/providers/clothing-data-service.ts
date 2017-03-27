@@ -29,7 +29,6 @@ export class ClothingDataService {
     this.http.get("../../assets/clothing/seed.json")
       .map(res => res.json())
       .subscribe(data => {
-        console.log(data);
         this.save(data);
       });
   }

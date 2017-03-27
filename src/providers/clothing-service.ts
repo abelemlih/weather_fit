@@ -44,6 +44,7 @@ export class ClothingService {
     }
 
     let result = {};
+    console.log(clothing_dict);
     for (let attr in clothing_dict) result[attr] = clothing_dict[attr].filter(isSuitable);
 
     return result;
