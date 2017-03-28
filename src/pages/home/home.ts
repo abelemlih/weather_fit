@@ -20,18 +20,21 @@ import {Slides} from 'ionic-angular';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
-  providers: [WeatherService, GeolocationService, ClothingService]
+  providers: [WeatherService, GeolocationService, ClothingService],
+  queries: {
+    slideOne: new ViewChild('slideOne')
+  }
 })
 export class HomePage {
 
-  @ViewChild('slideOne') slideOne: Slides;
-  @ViewChild('slideTwo') slideTwo: Slides;
-  @ViewChild('slideThree') slideThree: Slides;
+  // @ViewChild('slideOne') slideOne: Slides;
+  // @ViewChild('slideTwo') slideTwo: Slides;
+  // @ViewChild('slideThree') slideThree: Slides;
 
   weather: any;
   temp_num: number;
   temp_str: string;
-  slide_list: Array<Slides> = [this.slideOne, this.slideTwo, this.slideThree];
+  // slide_list: Array<Slides> = [this.slideOne, this.slideTwo, this.slideThree];
   color: Array<string> = ["transparent", "transparent", "transparent"];
   picked: Array<boolean> = [false, false, false];
 
@@ -43,7 +46,6 @@ export class HomePage {
               public settingsService: SettingsService,
               public clothingService: ClothingService,
               public storage: Storage) {
-
     this.loadCurrentLocation()
       .then(() => {
         this.loadWeather();
@@ -119,6 +121,10 @@ export class HomePage {
       })
   }
 
+  ionViewDidEnter() {
+    console.log(this.slide);
+  }
+
   pushSettingsPage() {
     this.navCtrl.push(SettingsPage)
       .catch( (error) => console.log("Failed to push to SettingsPage"));
@@ -134,16 +140,17 @@ export class HomePage {
   {
     console.log("Slide tapped");
     this.picked[index] = !this.picked[index];
-    console.log(this.slide_list);
+    // console.log(this.slide_list);
     if (this.picked[index])
     {
       this.color[index] = "#B1FEB1";
-      // s.lockSwipes(true);
+      // this.slide_list[index].lockSwipes(true);
     }
     else
     {
       this.color[index] = "transparent";
-      // s.lockSwipes(false);
+      this.slides.lockSwipes(false);
+      // this.slide_list[index].lockSwipes(false);
     }
   }
 
