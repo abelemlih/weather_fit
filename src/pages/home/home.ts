@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 import { NavController } from 'ionic-angular';
 
@@ -25,8 +25,11 @@ export class HomePage {
   weather: any;
   temp_num: number;
   temp_str: string;
+  avatar_url: string;
 
   recommendation: any;
+
+  @ViewChild('clothing') clothingDiv : ElementRef;
 
   constructor(public navCtrl: NavController,
               public weatherService: WeatherService,
@@ -43,6 +46,16 @@ export class HomePage {
     // this.loadRecommendation();
     // clothingData.getData()
     //   .then((data) => console.log(data));
+    this.loadAvatarUrl();
+  }
+
+  loadAvatarUrl(){
+    this.avatar_url = "../../assets/avatar/" + this.settingsService.gender + ".png";
+  }
+
+
+  ngAfterViewInit() {
+    this.clothingDiv.nativeElement.style.background = "url("+this.avatar_url+") no-repeat center";
   }
 
   loadCurrentLocation() {
