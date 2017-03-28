@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import { Storage } from '@ionic/storage';
 
 import { Http } from '@angular/http';
+import {ClothingItem} from "./clothing-item";
 
 /*
   Generated class for the ClothingDataService provider.
@@ -17,7 +18,16 @@ export class ClothingDataService {
   constructor(public storage: Storage, public http: Http) {}
 
   getData() {
-    return this.storage.get("ClothingData");
+    return this.storage.get("ClothingData")
+      .then(data => {
+        let res = {};
+        for (let attr of ["top", "bottom", "accessories"]) {
+          res[attr] = data[attr].map(item => {
+            return new ClothingItem(item.name, item.url, item.max_temp, item.min_temp, item.rain, item.grade);
+          })
+        }
+        return res;
+      });
   }
 
   save(data: Object) {

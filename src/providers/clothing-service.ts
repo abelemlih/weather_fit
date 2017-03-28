@@ -33,9 +33,9 @@ export class ClothingService {
 
   private generate(clothing_dict: Object, weather_data: Object ) {
 
-    function isSuitable(clothing: ClothingItem) {
+    function isSuitable(clothing) {
       // TODO: rewrite this function to filter clothing items according to weather data
-      // data format can be found at https://openweathermap.org/current#parameter
+      // weather data format can be found at https://openweathermap.org/current#parameter
 
       // for (let attr in weather_data) {
       //   if (clothing._attributes[attr] < weather_data[attr]) return false;
@@ -44,32 +44,14 @@ export class ClothingService {
     }
 
     let result = {};
-    console.log(clothing_dict);
-    for (let attr in clothing_dict) result[attr] = clothing_dict[attr].filter(isSuitable);
+    for (let attr of ["top", "bottom", "accessories"]) {
+      result[attr] = clothing_dict[attr].filter(isSuitable);
+    }
 
     return result;
   }
 
   initializeDB() {
     this.clothingData.initialize();
-  }
-
-
-  testClothingService(){
-    let shirt = new ClothingItem("tshirt","/top",{"warm":8,"cold":0,"rain":0});
-    let puffyJacket = new ClothingItem("puffy jacket","/top",{"warm":2,"cold":0,"rain":0});
-    let shorts = new ClothingItem("shorts","/bottom",{"warm":8,"cold":0,"rain":0});
-    let hawaian_shorts = new ClothingItem("hawaian shorts","/bottom",{"warm":8,"cold":0,"rain":0});
-    let flipflops = new ClothingItem("flipflops","/shoe",{"warm":8,"cold":0,"rain":0});
-    console.log("Start of script");
-    let clothing_dict =  {};
-    clothing_dict["top"] = [shirt,puffyJacket];
-    clothing_dict["bottom"] = [shorts,hawaian_shorts];
-    clothing_dict["shoe"] = [flipflops];
-    let weather_dict = {};
-    weather_dict["warm"] = 7;
-    weather_dict["cold"] = -1;
-    weather_dict["rain"] = -1;
-    console.log("End of script");
   }
 }
