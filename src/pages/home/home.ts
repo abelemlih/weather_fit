@@ -14,6 +14,8 @@ import {SettingsService} from "../../providers/settings-service";
 import {ClothingService} from "../../providers/clothing-service";
 import {Storage} from "@ionic/storage";
 
+import {ViewChild} from '@angular/core';
+import {Slides} from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -22,9 +24,16 @@ import {Storage} from "@ionic/storage";
 })
 export class HomePage {
 
+  @ViewChild('slideOne') slideOne: Slides;
+  @ViewChild('slideTwo') slideTwo: Slides;
+  @ViewChild('slideThree') slideThree: Slides;
+
   weather: any;
   temp_num: number;
   temp_str: string;
+  slide_list: Array<Slides> = [this.slideOne, this.slideTwo, this.slideThree];
+  color: Array<string> = ["transparent", "transparent", "transparent"];
+  picked: Array<boolean> = [false, false, false];
 
   recommendation: any;
 
@@ -66,7 +75,7 @@ export class HomePage {
         this.weather = data;
         this.temp_num = this.weather.main.temp - 273.15;
         this.updateUnits();
-        // console.log(this.weather)
+        console.log(this.weather)
       })
       .catch( (error) => console.log("Failed to load weather data\n" + error.toString())
       )
@@ -114,4 +123,28 @@ export class HomePage {
     this.navCtrl.push(SettingsPage)
       .catch( (error) => console.log("Failed to push to SettingsPage"));
   }
+
+  slideDragged()
+  {
+    console.log("Slides dragged");
+
+  }
+
+  slideTapped(index)
+  {
+    console.log("Slide tapped");
+    this.picked[index] = !this.picked[index];
+    console.log(this.slide_list);
+    if (this.picked[index])
+    {
+      this.color[index] = "#B1FEB1";
+      // s.lockSwipes(true);
+    }
+    else
+    {
+      this.color[index] = "transparent";
+      // s.lockSwipes(false);
+    }
+  }
+
 }
