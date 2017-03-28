@@ -37,11 +37,17 @@ export class ClothingService {
     return {"warm": warm, "cold": cold, "rain": rain};
   }
 
-  private generate_alternate(clothing_dict: Object, weather_attributes: Object ) {
+//   "max_temp": 10,
+// +      "min_temp": -15,
+// +      "rain": true,
+// +      "grade": 0.5
+  private generate(clothing_dict: Object, weather_attributes: Object) {
 
     function isSuitable(clothing: ClothingItem) {
-      for (let attr in weather_attributes) {
-        if (clothing._attributes[attr] < weather_attributes[attr]) return false;
+      if (clothing.min_temp < weather_attributes["min_temp"] 
+      || clothing.max_temp > weather_attributes["max_temp"] 
+      || clothing.rain!=weather_attributes["rain"]) {
+        return false
       }
       return true
     }
@@ -51,58 +57,29 @@ export class ClothingService {
 
     return result;
   }
+  
 
   initializeDB() {
     this.clothingData.initialize();
   }
 
-  generate(clothing_dict: {}, attributes: {}) {
-    function loop_attributes (item: ClothingItem, attributes: {}) {
-      let item_include = true;
-      for (let a in attributes) {
-        let item_attributes = item._attributes;
-        if (attributes[a] <= item_attributes[a]) {
-          item_include = item_include && true;
-        }
-        else {
-          item_include = item_include && false;
-          break;
-        }
-      }
-      return item_include;
-    }
-
-    let matching_weather_dict = {};
-    for (let type in clothing_dict) {
-      let matching_type_array: ClothingItem[] = [];
-      let type_items = clothing_dict[type];
-      for (let item of type_items) {
-        if (loop_attributes(item,attributes)) {
-          matching_type_array.push(item);
-        }
-      }
-      matching_weather_dict[type] = matching_type_array;
-
-    }
-
-    return matching_weather_dict;
-  }
+  
 
   testClothingService(){
-    let shirt = new ClothingItem("tshirt","/top",{"warm":8,"cold":0,"rain":0});
-    let puffyJacket = new ClothingItem("puffy jacket","/top",{"warm":2,"cold":0,"rain":0});
-    let shorts = new ClothingItem("shorts","/bottom",{"warm":8,"cold":0,"rain":0});
-    let hawaian_shorts = new ClothingItem("hawaian shorts","/bottom",{"warm":8,"cold":0,"rain":0});
-    let flipflops = new ClothingItem("flipflops","/shoe",{"warm":8,"cold":0,"rain":0});
+    let shirt = new ClothingItem("tshirt","/top",20,30,false,0.4);
+    let puffyJacket = new ClothingItem("puffy jacket","/top",5,10,true,0.5);
+    let shorts = new ClothingItem("shorts","/bottom",20,40,false,0.5);
+    let hawaian_shorts = new ClothingItem("hawaian shorts","/bottom",20,40,false,0.6);
+    let flipflops = new ClothingItem("flipflops","/shoe",20,40,false,0.5);
     console.log("Start of script");
     let clothing_dict =  {};
     clothing_dict["top"] = [shirt,puffyJacket];
     clothing_dict["bottom"] = [shorts,hawaian_shorts];
     clothing_dict["shoe"] = [flipflops];
     let weather_dict = {};
-    weather_dict["warm"] = 7;
-    weather_dict["cold"] = -1;
-    weather_dict["rain"] = -1;
+    weather_dict["min_temp"] = 3;
+    weather_dict["max_temp"] = 11;
+    weather_dict["rain"] = true;
     console.log("End of script");
   }
 }
