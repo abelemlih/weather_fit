@@ -49,5 +49,9 @@ export class SaveItemPage {
         console.log(items);
       });
   }
+  //
+  // fahtocel(num: Number) {
+  //
+  // }
 
 }

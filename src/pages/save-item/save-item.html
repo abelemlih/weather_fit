@@ -31,7 +31,7 @@
       </ion-item>
 
       <ion-list radio-group formControlName="piece">
-        <ion-item>Piece of clothing: </ion-item>
+        <ion-item>Piece of clothing, pick one: </ion-item>
         <ion-item>
           <ion-label>Top</ion-label>
           <ion-radio value="top"></ion-radio>
@@ -49,23 +49,28 @@
       </ion-list>
 
       <ion-item>
-        <ion-label>Name</ion-label>
-        <ion-input formControlName="name" type="text"></ion-input>
+        <ion-label>Name to refer to:</ion-label>
+        <ion-input formControlName="name" type="text" placeholder="Name"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>Max temperature</ion-label>
-        <ion-input formControlName="max_temp" type="number"></ion-input>
+        <ion-label>Max temperature:</ion-label>
+        <ion-input formControlName="max_temp" type="number" placeholder="50"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>Min temperature</ion-label>
-        <ion-input formControlName="min_temp" type="number"></ion-input>
+        <ion-label>Min temperature:</ion-label>
+        <ion-input formControlName="min_temp" type="number" placeholder="10"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>Rain-suitable</ion-label>
         <ion-toggle formControlName="rain"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Snow-suitable</ion-label>
+        <ion-toggle formControlName="snow"></ion-toggle>
       </ion-item>
 
     </form>

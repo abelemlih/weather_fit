@@ -33,7 +33,7 @@ export class ClothingService {
 
   private generate(clothing_dict: Object, weather_data: Object ) {
 
-    function isSuitable(clothing) {
+    function isSuitable(clothing: ClothingItem) {
       // TODO: rewrite this function to filter clothing items according to weather data
       // weather data format can be found at https://openweathermap.org/current#parameter
 
