@@ -26,43 +26,53 @@
     <form [formGroup]="clothingItemForm">
 
       <ion-item>
-        <ion-label floating>The clothing's file_name</ion-label>
-        <ion-input formControlName="file_name" type="text"></ion-input>
+        <ion-label>The clothing's file name</ion-label>
+        <ion-input formControlName="file_name" type="text" placeholder="Filename.ext"></ion-input>
       </ion-item>
 
-      <ion-item>
-        <ion-label floating>Piece of clothing</ion-label>
-        <ion-select formControlName="piece">
-          <ion-option value="top">Top</ion-option>
-          <ion-option value="bottom">Bottom</ion-option>
-          <ion-option value="accessories">Accessories</ion-option>
-        </ion-select>
-      </ion-item>
+      <ion-list radio-group formControlName="piece">
+        <ion-item>Piece of clothing: </ion-item>
+        <ion-item>
+          <ion-label>Top</ion-label>
+          <ion-radio value="top"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Bottom</ion-label>
+          <ion-radio value="bottom"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Shoes</ion-label>
+          <ion-radio value="accessories"></ion-radio>
+        </ion-item>
+      </ion-list>
 
       <ion-item>
-        <ion-label floating>Name (avoid using spaces)</ion-label>
+        <ion-label>Name</ion-label>
         <ion-input formControlName="name" type="text"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Maximum Temperature in Celsius</ion-label>
+        <ion-label>Max temperature</ion-label>
         <ion-input formControlName="max_temp" type="number"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Minimum Temperature in Celsius</ion-label>
+        <ion-label>Min temperature</ion-label>
         <ion-input formControlName="min_temp" type="number"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Suitable for rain</ion-label>
+        <ion-label>Rain-suitable</ion-label>
         <ion-toggle formControlName="rain"></ion-toggle>
       </ion-item>
 
     </form>
 
-  </ion-list>
 
-  <button ion-button full (click)="save()">Save Item</button>
+    <button ion-button (click)="save()">Save Item</button>
+
+  </ion-list>
 
 </ion-content>

@@ -23,7 +23,7 @@ export class ClothingDataService {
         let res = {};
         for (let attr of ["top", "bottom", "accessories"]) {
           res[attr] = data[attr].map(item => {
-            return new ClothingItem(item.name, item.url, item.max_temp, item.min_temp, item.rain, item.grade);
+            return new ClothingItem(item.name, item.url, item.max_temp, item.min_temp, item.rain, item.snow, item.grade);
           })
         }
         return res;

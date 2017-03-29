@@ -17,8 +17,6 @@ export class SaveItemPage {
 
   clothingItemForm: FormGroup;
 
-  public items;
-
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public formBuilder: FormBuilder,
@@ -30,10 +28,9 @@ export class SaveItemPage {
       name: [''],
       max_temp: [''],
       min_temp: [''],
-      rain: ['']
+      rain: [''],
+      snow: [''],
     });
-
-    this.items = storage.getData();
   }
 
   save() {
@@ -43,10 +40,14 @@ export class SaveItemPage {
       max_temp: this.clothingItemForm.value.max_temp,
       min_temp: this.clothingItemForm.value.min_temp,
       rain: this.clothingItemForm.value.rain,
+      snow: this.clothingItemForm.value.snow,
       grade: .5
     };
-    this.items[this.clothingItemForm.value.piece].push(item);
-    console.log(this.items);
+    this.storage.getData()
+      .then( items => {
+        items[this.clothingItemForm.value.piece].push(item);
+        console.log(items);
+      });
   }
 
 }
