@@ -25,7 +25,6 @@ export class HomePage {
   weather: any;
   temp_num: number;
   temp_str: string;
-  avatar_url: string;
 
   recommendation: any;
 
@@ -46,16 +45,11 @@ export class HomePage {
     // this.loadRecommendation();
     // clothingData.getData()
     //   .then((data) => console.log(data));
-    this.loadAvatarUrl();
   }
-
-  loadAvatarUrl(){
-    this.avatar_url = "../../assets/avatar/" + this.settingsService.gender + ".png";
-  }
-
 
   ngAfterViewInit() {
-    this.clothingDiv.nativeElement.style.background = "url("+this.avatar_url+") no-repeat center";
+    this.clothingDiv.nativeElement.style.backgroundImage =
+      "url(../../assets/avatar/" + this.settingsService.gender + ".png)";
   }
 
   loadCurrentLocation() {
@@ -67,7 +61,7 @@ export class HomePage {
     this.clothingService.weatherService = this.weatherService;
     return this.clothingService.recommend()
       .then( (recom) => {
-        this.recommendation = recom;
+          this.recommendation = recom;
         }
       )
       .catch((error) => console.log("Failed to load clothingService\n" + error.toString()))
