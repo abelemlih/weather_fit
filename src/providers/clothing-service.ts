@@ -31,22 +31,20 @@ export class ClothingService {
       })
   }
 
-  private generate(clothing_dict: Object, weather_data: Object ) {
-    function isSuitable(clothing) {
+  private convert_weather_json(weather_json: string) {
+    
+  }
+  
+  private generate(clothing_dict: Object, weather_data: {min_temp:number, max_temp:number, rain:boolean, snow:boolean}) {
+    function isSuitable(clothing: ClothingItem) {
       // TODO: rewrite this function to filter clothing items according to weather data
       // weather data format can be found at https://openweathermap.org/current#parameter
-
-      // for (let attr in weather_data) {
-      //   if (clothing._attributes[attr] < weather_data[attr]) return false;
-      // }
+      if (weather_data.max_temp < clothing.max_temp || weather_data.min_temp > clothing.min_temp) { return false }
+      if ((weather_data.rain==true && clothing.rain==false) || (weather_data.snow==true && clothing.snow==false)) { return false }
       return true
     }
-
     let result = {};
-    for (let attr of ["top", "bottom", "accessories"]) {
-      result[attr] = clothing_dict[attr].filter(isSuitable);
-    }
-
+    for (let attr of ["top", "bottom", "accessories"]) { result[attr] = clothing_dict[attr].filter(isSuitable) }
     return result;
   }
   

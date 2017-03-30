@@ -4,15 +4,17 @@ export class ClothingItem {
   private _max_temp: number;
   private _min_temp: number;
   private _rain: boolean;
+  private _snow: boolean;
   private _grade: number;
 
 
-  constructor(name: string, url: string, max_temp: number, min_temp: number, rain: boolean, grade: number) {
+  constructor(name: string, url: string, max_temp: number, min_temp: number, rain: boolean, grade: number, snow:boolean) {
     this._name = name;
     this._url = url;
     this._max_temp = max_temp;
     this._min_temp = min_temp;
     this._rain = rain;
+    this._snow = snow;
     this._grade = grade;
   }
 
@@ -35,6 +37,10 @@ export class ClothingItem {
 
   get rain(): boolean {
     return this._rain;
+  }
+  
+  get snow(): boolean {
+    return this._snow;
   }
 
   get grade(): number {
