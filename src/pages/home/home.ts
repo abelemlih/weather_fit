@@ -14,18 +14,17 @@ import {SettingsService} from "../../providers/settings-service";
 import {ClothingService} from "../../providers/clothing-service";
 import {Storage} from "@ionic/storage";
 
-import {ViewChild} from '@angular/core';
+import {ViewChild, AfterViewInit} from '@angular/core';
 import {Slides} from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
   providers: [WeatherService, GeolocationService, ClothingService],
-  queries: {
-    slideOne: new ViewChild('slideOne')
-  }
 })
 export class HomePage {
+
+  @ViewChild('slides') slides: Slides;
 
   // @ViewChild('slideOne') slideOne: Slides;
   // @ViewChild('slideTwo') slideTwo: Slides;
@@ -122,7 +121,7 @@ export class HomePage {
   }
 
   ionViewDidEnter() {
-    console.log(this.slide);
+      console.log(this.slides);
   }
 
   pushSettingsPage() {
@@ -150,7 +149,7 @@ export class HomePage {
     {
       this.color[index] = "transparent";
       this.slides.lockSwipes(false);
-      // this.slide_list[index].lockSwipes(false);
+      //this.slide_list[index].lockSwipes(false);
     }
   }
 

@@ -37,7 +37,7 @@
 
     <div class="clothing" *ngIf="recommendation">
       <ion-row>
-        <ion-slides #slideOne (ionSlideTap) = "slideTapped(0)">
+        <ion-slides #slides (ionSlideTap) = "slideTapped(0)">
           <ion-slide *ngFor="let slide of recommendation.top" [ngStyle]="{'background-color':color[0]}">
             <img class="top" [src]="slide._url">
           </ion-slide>
