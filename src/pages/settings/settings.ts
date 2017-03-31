@@ -17,15 +17,23 @@ export class SettingsPage {
   units;
   gender;
   location;
+  avatar;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public settingsService: SettingsService) {
     this.units = settingsService.units;
     this.gender = settingsService.gender;
     this.location = "current-location";
+    this.avatar = settingsService.avatar;
+
   }
 
   save() {
     this.settingsService.setUnits(this.units);
     this.settingsService.setGender(this.gender);
+    console.log("Testing Start");
+    console.log(this.avatar);
+    this.settingsService.setAvatar(this.avatar);
+    console.log("Testing End");
   }
+
 }

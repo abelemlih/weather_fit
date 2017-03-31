@@ -49,8 +49,10 @@ export class HomePage {
 
   ngAfterViewInit() {
     this.clothingDiv.nativeElement.style.backgroundImage =
-      "url(../../assets/avatar/" + this.settingsService.gender + ".png)";
+      "url(../../assets/avatar/" + this.settingsService.avatar + ".png)";
+
   }
+
 
   loadCurrentLocation() {
     return this.geolocationService.load()
