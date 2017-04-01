@@ -1,7 +1,7 @@
 
 import { Component } from '@angular/core';
 
-import { NavController } from 'ionic-angular';
+import {NavController, Slides} from 'ionic-angular';
 
 import { WeatherService } from '../../providers/weather-service'
 
@@ -15,28 +15,24 @@ import {ClothingService} from "../../providers/clothing-service";
 import {Storage} from "@ionic/storage";
 
 import {ViewChild} from '@angular/core';
-import {Slides} from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
   providers: [WeatherService, GeolocationService, ClothingService],
-  queries: {
-    slideOne: new ViewChild('slideOne')
-  }
 })
 export class HomePage {
 
-  // @ViewChild('slideOne') slideOne: Slides;
-  // @ViewChild('slideTwo') slideTwo: Slides;
-  // @ViewChild('slideThree') slideThree: Slides;
+  @ViewChild('slideOne') slideOne: Slides;
+  @ViewChild('slideTwo') slideTwo: Slides;
+  @ViewChild('slideThree') slideThree: Slides;
 
   weather: any;
   temp_num: number;
   temp_str: string;
-  // slide_list: Array<Slides> = [this.slideOne, this.slideTwo, this.slideThree];
   color: Array<string> = ["transparent", "transparent", "transparent"];
   picked: Array<boolean> = [false, false, false];
+  option: any;
 
   recommendation: any;
 
@@ -46,11 +42,14 @@ export class HomePage {
               public settingsService: SettingsService,
               public clothingService: ClothingService,
               public storage: Storage) {
+    this.option = {
+      loop: true
+    };
     this.loadCurrentLocation()
       .then(() => {
         this.loadWeather();
         this.loadRecommendation();
-      });
+      })
     // this.loadRecommendation();
     // clothingData.getData()
     //   .then((data) => console.log(data));
@@ -77,7 +76,6 @@ export class HomePage {
         this.weather = data;
         this.temp_num = this.weather.main.temp - 273.15;
         this.updateUnits();
-        console.log(this.weather)
       })
       .catch( (error) => console.log("Failed to load weather data\n" + error.toString())
       )
@@ -108,6 +106,7 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
+
     // This will make it repopulate the database every login, which is good for testing purposes.
     // Correctly it should be inside the then() method so that it only runs once.
     this.clothingService.initializeDB();
@@ -121,23 +120,17 @@ export class HomePage {
       })
   }
 
-  ionViewDidEnter() {
-    console.log(this.slide);
-  }
 
   pushSettingsPage() {
     this.navCtrl.push(SettingsPage)
       .catch( (error) => console.log("Failed to push to SettingsPage"));
   }
 
-  slideDragged()
-  {
-    console.log("Slides dragged");
-
-  }
 
   slideTapped(index)
   {
+    console.log(this.slideOne);
+    this.slideThree.lockSwipes(true);
     console.log("Slide tapped");
     this.picked[index] = !this.picked[index];
     // console.log(this.slide_list);
@@ -149,7 +142,7 @@ export class HomePage {
     else
     {
       this.color[index] = "transparent";
-      this.slides.lockSwipes(false);
+      // this.slides.lockSwipes(false);
       // this.slide_list[index].lockSwipes(false);
     }
   }
