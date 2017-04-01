@@ -49,7 +49,7 @@ export class HomePage {
       .then(() => {
         this.loadWeather();
         this.loadRecommendation();
-      })
+      });
     // this.loadRecommendation();
     // clothingData.getData()
     //   .then((data) => console.log(data));
@@ -120,13 +120,13 @@ export class HomePage {
       })
   }
 
-
   pushSettingsPage() {
     this.navCtrl.push(SettingsPage)
       .catch( (error) => console.log("Failed to push to SettingsPage"));
   }
 
 
+  //Changes the color, locking slides after user taps the slides
   slideTapped(index)
   {
     console.log(this.slideOne);
@@ -146,5 +146,4 @@ export class HomePage {
       // this.slide_list[index].lockSwipes(false);
     }
   }
-
 }
