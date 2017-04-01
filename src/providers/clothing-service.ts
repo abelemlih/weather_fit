@@ -36,15 +36,18 @@ export class ClothingService {
       .then( (values) => {
         let clothing_items = values[0];
         let weather_data = values[1];
-        return this.generate(clothing_items, extract_weather_data(weather_data));
+        //TODO: replace "neutral" with user_gender that we get from settings
+        return this.generate(clothing_items, extract_weather_data(weather_data), "neutral");
       })
   }
   
-  private generate(clothing_dict: Object, weather_data: {min_temp:number, max_temp:number, rain:boolean, snow:boolean}) {
+  private generate(clothing_dict: Object, weather_data: {min_temp:number, max_temp:number, rain:boolean, snow:boolean}, user_gender: string) {
     function isSuitable(clothing: ClothingItem) {
       // weather data format can be found at https://openweathermap.org/current#parameter
       if (weather_data.max_temp > clothing.max_temp || weather_data.min_temp < clothing.min_temp) {return false }
       if ((weather_data.rain==true && clothing.rain==false) || (weather_data.snow==true && clothing.snow==false)) { return false }
+      if ((user_gender=="male" && clothing.gender=="female") || (user_gender=="female" && clothing.gender=="male")) { return false }
+      if (user_gender=="neutral" && clothing.gender!=user_gender) { return false }
       return true
     }
     
