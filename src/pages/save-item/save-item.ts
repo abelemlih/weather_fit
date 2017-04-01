@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {ClothingDataService} from "../../providers/clothing-data-service";
+import {ClothingItem} from "../../providers/clothing-item";
 
 /*
   Generated class for the SaveItem page.
@@ -40,16 +41,15 @@ export class SaveItemPage {
     if (this.clothingItemForm.value.male == this.clothingItemForm.value.female) gend = "neutral";
     else gend = this.clothingItemForm.value.male ? "male" : "female";
 
-    let item = {
-      name: this.clothingItemForm.value.name,
-      url: "../../assets/clothing/" + this.clothingItemForm.value.file_name,
-      max_temp: this.fahtocel(this.clothingItemForm.value.max_temp),
-      min_temp: this.fahtocel(this.clothingItemForm.value.min_temp),
-      rain: this.clothingItemForm.value.rain,
-      snow: this.clothingItemForm.value.snow,
-      grade: .5,
-      gender: gend,
-    };
+    let item = new ClothingItem(this.clothingItemForm.value.name,
+      "../../assets/clothing/" + this.clothingItemForm.value.file_name,
+      this.fahtocel(this.clothingItemForm.value.max_temp),
+      this.fahtocel(this.clothingItemForm.value.min_temp),
+      this.clothingItemForm.value.rain,
+      this.clothingItemForm.value.snow,
+      .5,
+      gend,
+    );
 
     this.storage.getData()
       .then( items => {
