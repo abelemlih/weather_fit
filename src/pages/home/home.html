@@ -37,7 +37,7 @@
 
     <div class="clothing" *ngIf="recommendation">
       <ion-row>
-        <ion-slides #slides (ionSlideTap) = "slideTapped(0)" loop ="true">
+        <ion-slides #slides (ionSlideTap) = "slideTapped(0)" loop>
           <ion-slide *ngFor="let slide of recommendation.top" [ngStyle]="{'background-color':color[0]}">
             <img class="top" [src]="slide._url">
           </ion-slide>
@@ -45,7 +45,7 @@
       </ion-row>
 
       <ion-row>
-        <ion-slides #slideTwo (ionSlideTap) = "slideTapped(1)" loop ="true">
+        <ion-slides #slideTwo (ionSlideTap) = "slideTapped(1)" loop>
           <ion-slide *ngFor="let slide of recommendation.bottom" [ngStyle]="{'background-color':color[1]}">
             <img class="bottom" [src]="slide._url">
           </ion-slide>
@@ -53,7 +53,7 @@
       </ion-row>
 
       <ion-row>
-        <ion-slides #slideThree (ionSlideTap) = "slideTapped(2)" loop ="true">
+        <ion-slides #slideThree (ionSlideTap) = "slideTapped(2)" loop>
           <ion-slide *ngFor="let slide of recommendation.accessories" [ngStyle]="{'background-color':color[2]}">
             <img class="accessories" [src]="slide._url">
           </ion-slide>
