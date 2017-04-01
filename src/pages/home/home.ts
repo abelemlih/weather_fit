@@ -126,24 +126,37 @@ export class HomePage {
   }
 
 
-  //Changes the color, locking slides after user taps the slides
+  //Changes the color of the slide, locks slides when the slide is green
   slideTapped(index)
   {
-    console.log(this.slideOne);
-    this.slideThree.lockSwipes(true);
     console.log("Slide tapped");
     this.picked[index] = !this.picked[index];
-    // console.log(this.slide_list);
     if (this.picked[index])
     {
       this.color[index] = "#B1FEB1";
-      // this.slide_list[index].lockSwipes(true);
+      this.convertIndexToSlide(index).lockSwipes(true);
     }
     else
     {
       this.color[index] = "transparent";
-      // this.slides.lockSwipes(false);
-      // this.slide_list[index].lockSwipes(false);
+      this.convertIndexToSlide(index).lockSwipes(false);
+    }
+  }
+
+  //Converts indices to the correct slide variable
+  convertIndexToSlide(index)
+  {
+    if (index == 0)
+    {
+      return this.slideOne;
+    }
+    else if (index == 1)
+    {
+      return this.slideTwo;
+    }
+    else if (index == 2)
+    {
+      return this.slideThree;
     }
   }
 }
