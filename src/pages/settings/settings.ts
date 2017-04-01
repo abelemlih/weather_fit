@@ -36,4 +36,7 @@ export class SettingsPage {
     console.log("Testing End");
   }
 
+  ionViewWillLeave() {
+    this.save();
+  }
 }
