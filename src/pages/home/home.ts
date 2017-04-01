@@ -36,7 +36,6 @@ export class HomePage {
   // slide_list: Array<Slides> = [this.slideOne, this.slideTwo, this.slideThree];
   color: Array<string> = ["transparent", "transparent", "transparent"];
   picked: Array<boolean> = [false, false, false];
-  slideOptions: any;
 
   recommendation: any;
 
@@ -128,6 +127,10 @@ export class HomePage {
       .catch( (error) => console.log("Failed to push to SettingsPage"));
   }
 
+  ngAfterViewInit()
+  {
+    console.log(this.slides);
+  }
 
   slideDragged()
   {
@@ -154,5 +157,4 @@ export class HomePage {
       //this.slide_list[index].lockSwipes(false);
     }
   }
-
 }
