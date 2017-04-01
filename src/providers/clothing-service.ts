@@ -42,17 +42,39 @@ export class ClothingService {
   }
   
   private generate(clothing_dict: Object, weather_data: {min_temp:number, max_temp:number, rain:boolean, snow:boolean}, user_gender: string) {
+    
+    function capFilter(clothing_array: ClothingItem[], cap: number) {
+      // This function is defined, but not used anywhere
+      function randomCheck(clothing: ClothingItem) {
+        let random = Math.random()
+        return (random < clothing.grade)
+      }
+      
+      function randomFilter(clothing_array: ClothingItem[]) {
+        let return_array = [], cap_lim = 0, i = 0, l = clothing_array.length
+        while (cap_lim < l-cap && i<=l-1) {
+          randomCheck(clothing_array[i]) ? return_array.push(clothing_array[i]) : cap_lim++ 
+          i++
+        }
+        return return_array.concat(clothing_array.slice(i,l))
+      }
+      
+      return (clothing_array.length <= cap ? clothing_array : randomFilter(clothing_array))
+    }
+    
     function isSuitable(clothing: ClothingItem) {
       // weather data format can be found at https://openweathermap.org/current#parameter
       if (weather_data.max_temp > clothing.max_temp || weather_data.min_temp < clothing.min_temp) {return false }
       if ((weather_data.rain==true && clothing.rain==false) || (weather_data.snow==true && clothing.snow==false)) { return false }
       if ((user_gender=="male" && clothing.gender=="female") || (user_gender=="female" && clothing.gender=="male")) { return false }
-      if (user_gender=="neutral" && clothing.gender!=user_gender) { return false }
       return true
     }
     
     let result = {};
-    for (let attr of ["top", "bottom", "accessories"]) { result[attr] = clothing_dict[attr].filter(isSuitable) }
+    for (let attr of ["top", "bottom", "accessories"]) { 
+      result[attr] = clothing_dict[attr].filter(isSuitable) 
+      // You probably want to run your capFilter function here
+    }
     return result;
   }
   
