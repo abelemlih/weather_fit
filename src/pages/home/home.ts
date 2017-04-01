@@ -118,10 +118,8 @@ export class HomePage {
           // this.clothingService.initializeDB();
         }
       })
-  }
 
-  ionViewDidEnter() {
-      console.log(this.slides);
+
   }
 
   pushSettingsPage() {
@@ -129,15 +127,18 @@ export class HomePage {
       .catch( (error) => console.log("Failed to push to SettingsPage"));
   }
 
+
   slideDragged()
   {
     console.log("Slides dragged");
 
   }
 
+  //Changes the color, locking slides after user taps the slides
   slideTapped(index)
   {
     console.log("Slide tapped");
+    console.log(this.slides);
     this.picked[index] = !this.picked[index];
     // console.log(this.slide_list);
     if (this.picked[index])
