@@ -12,7 +12,6 @@ import {SettingsPage} from '../settings/settings';
 import {SettingsService} from "../../providers/settings-service";
 
 import {ClothingService} from "../../providers/clothing-service";
-import {Storage} from "@ionic/storage";
 
 
 @Component({
@@ -29,18 +28,16 @@ export class HomePage {
   recommendation: any;
 
   constructor(public navCtrl: NavController,
-              public weatherService: WeatherService,
+              private weatherService: WeatherService,
               public geolocationService: GeolocationService,
               public settingsService: SettingsService,
-              public clothingService: ClothingService,
-              public storage: Storage) {
+              public clothingService: ClothingService) {
 
     this.loadCurrentLocation()
       .then(() => {
         this.loadWeather();
         this.loadRecommendation();
       });
-    // this.loadRecommendation();
     // clothingData.getData()
     //   .then((data) => console.log(data));
   }
@@ -96,18 +93,10 @@ export class HomePage {
     if (this.temp_num != undefined) this.updateUnits();
   }
 
+  // This will make it repopulate the database every login, which is good for testing purposes.
+  // Correctly it should only be run on the first log-in.
   ionViewDidLoad() {
-    // This will make it repopulate the database every login, which is good for testing purposes.
-    // Correctly it should be inside the then() method so that it only runs once.
     this.clothingService.initializeDB();
-
-    this.storage.get('first-login')
-      .then(done => {
-        if (!done) {
-          this.storage.set('first-login', true);
-          // this.clothingService.initializeDB();
-        }
-      })
   }
 
   pushSettingsPage() {

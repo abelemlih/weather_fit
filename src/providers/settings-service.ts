@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import 'rxjs/add/operator/map';
 import {GeolocationService} from "./geolocation-service";
 
 /*
@@ -17,7 +15,7 @@ export class SettingsService {
   private _gender: string;
   private _location: Position;
 
-  constructor(public http: Http) {
+  constructor() {
     this._units = "celsius";
     this._gender = "female";
     this.setCurrentLocation();
