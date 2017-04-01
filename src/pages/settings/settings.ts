@@ -28,4 +28,8 @@ export class SettingsPage {
     this.settingsService.setUnits(this.units);
     this.settingsService.setGender(this.gender);
   }
+
+  ionViewWillLeave() {
+    this.save();
+  }
 }
