@@ -52,8 +52,10 @@ page-home {
     }
 
     .icon {
-      margin: auto;
+      //margin: auto;
       height: 150px;
+      //align-content: left;
+      float: left;
 
     }
     .location {
