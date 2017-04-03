@@ -47,7 +47,7 @@ export class ClothingService {
       // This function is defined, but not used anywhere
       function randomCheck(clothing: ClothingItem) {
         let random = Math.random()
-        console.log("Clothing item: " + clothing.name + ", Random number: " + random.toString() + ", User grade: " + clothing.grade)
+        console.log("Clothing item: " + clothing.name + ", Random number: " + random.toString() + ", User grade: " + clothing.grade.toString())
         return (random < clothing.grade)
       }
       
@@ -74,7 +74,7 @@ export class ClothingService {
     let result = {};
     for (let attr of ["top", "bottom", "accessories"]) { 
       result[attr] = clothing_dict[attr].filter(isSuitable)
-      result[attr] = capFilter(clothing_dict[attr], 3)
+      result[attr] = capFilter(clothing_dict[attr], 2)
     }
     return result;
   }
