@@ -47,6 +47,7 @@ export class ClothingService {
       // This function is defined, but not used anywhere
       function randomCheck(clothing: ClothingItem) {
         let random = Math.random()
+        console.log("Clothing item: " + clothing.name + ", Random number: " + random.toString() + ", User grade: " + clothing.grade)
         return (random < clothing.grade)
       }
       
@@ -67,13 +68,13 @@ export class ClothingService {
       if (weather_data.max_temp > clothing.max_temp || weather_data.min_temp < clothing.min_temp) {return false }
       if ((weather_data.rain==true && clothing.rain==false) || (weather_data.snow==true && clothing.snow==false)) { return false }
       if ((user_gender=="male" && clothing.gender=="female") || (user_gender=="female" && clothing.gender=="male")) { return false }
-      return true
+      return true 
     }
     
     let result = {};
     for (let attr of ["top", "bottom", "accessories"]) { 
-      result[attr] = clothing_dict[attr].filter(isSuitable) 
-      // You probably want to run your capFilter function here
+      result[attr] = clothing_dict[attr].filter(isSuitable)
+      result[attr] = capFilter(clothing_dict[attr], 3)
     }
     return result;
   }
