@@ -3,6 +3,7 @@ import 'rxjs/add/operator/map';
 import {ClothingItem} from "./clothing-item";
 import {ClothingDataService} from "./clothing-data-service";
 import {WeatherService} from "./weather-service";
+import {SettingsService} from "./settings-service";
 import * as unitConversion from "../assets/tools/unit_conversions"
 
 /*
@@ -23,12 +24,19 @@ export class ClothingService {
   constructor(public clothingData: ClothingDataService) {}
 
   recommend() {
+    
+    function between(id,min,max) { return id >= min && id <= max}
+    
+    function extract_condition(api_weather: any, min_id: number, max_id: number) {
+      for (let code of api_weather.weather) { if (between(code.id, min_id, max_id)) { return true } }
+      return false
+    }
+    
     function extract_weather_data(api_weather: any) {
       let min_temp = unitConversion.kelvin_to_celsius(api_weather.main.temp_max) 
       let max_temp = unitConversion.kelvin_to_celsius(api_weather.main.temp_min)
-      let rain = false, snow = false
-      if ("rain" in api_weather) { rain = true}
-      if ("snow" in api_weather) { snow = true}
+      //Refer to https://openweathermap.org/weather-conditions for weather codes
+      let rain = extract_condition(api_weather,500,531), snow = extract_condition(api_weather,600,622)
       return {min_temp: min_temp, max_temp: max_temp, rain: rain, snow: snow}
     }
     
@@ -47,7 +55,6 @@ export class ClothingService {
       // This function is defined, but not used anywhere
       function randomCheck(clothing: ClothingItem) {
         let random = Math.random()
-        console.log("Clothing item: " + clothing.name + ", Random number: " + random.toString() + ", User grade: " + clothing.grade.toString())
         return (random < clothing.grade)
       }
       
@@ -74,7 +81,7 @@ export class ClothingService {
     let result = {};
     for (let attr of ["top", "bottom", "accessories"]) { 
       result[attr] = clothing_dict[attr].filter(isSuitable)
-      result[attr] = capFilter(clothing_dict[attr], 2)
+      result[attr] = capFilter(result[attr], 2)
     }
     return result;
   }

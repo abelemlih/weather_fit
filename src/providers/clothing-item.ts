@@ -9,7 +9,7 @@ export class ClothingItem {
   private _gender: string;
 
 
-  constructor(name: string, url: string, max_temp: number, min_temp: number, rain: boolean, grade: number, snow:boolean, gender: string) {
+  constructor(name: string, url: string, max_temp: number, min_temp: number, rain: boolean, snow:boolean, grade: number, gender: string) {
     this._name = name;
     this._url = url;
     this._max_temp = max_temp;
