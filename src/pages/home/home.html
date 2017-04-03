@@ -19,27 +19,33 @@
         <ion-slides>
           <ion-slide>
             <img class="icon" src="../../assets/weather%20animated/{{weather.weather[0].icon}}.svg">
+            <div class="temperature">{{temp_str}}</div>
           </ion-slide>
 
           <ion-slide>
             <img class="icon" src="../../assets/weather%20animated/{{weather.weather[0].icon}}.svg">
+            <div class="temperature">{{temp_str}}</div>
           </ion-slide>
 
           <ion-slide>
             <img class="icon" src="../../assets/weather%20animated/{{weather.weather[0].icon}}.svg">
+            <div class="temperature">{{temp_str}}</div>
           </ion-slide>
 
           <ion-slide>
             <img class="icon" src="../../assets/weather%20animated/{{weather.weather[0].icon}}.svg">
+            <div class="temperature">{{temp_str}}</div>
           </ion-slide>
+
         </ion-slides>
 
       </ion-row>
 
-
+      <ion-row>
+        <div class="location">{{weather.name}}</div>
+      </ion-row>
 
     </div>
-
 
 
   </ion-grid>
@@ -48,81 +54,4 @@
 
 
 </ion-content>
-
-<!--<ion-header>-->
-<!--<ion-navbar>-->
-<!--&lt;!&ndash;<button ion-button icon-only menuToggle>&ndash;&gt;-->
-<!--&lt;!&ndash;<ion-icon name="menu"></ion-icon>&ndash;&gt;-->
-<!--&lt;!&ndash;</button>&ndash;&gt;-->
-<!--<ion-title>Weather Fit</ion-title>-->
-<!--<ion-buttons end>-->
-<!--<button ion-button icon-only (click)="pushSettingsPage()">-->
-<!--<ion-icon name="build"></ion-icon>-->
-<!--</button>-->
-<!--</ion-buttons>-->
-<!--</ion-navbar>-->
-<!--</ion-header>-->
-
-
-<!--<ion-content  padding id="main-display" class="main-display no-scroll">-->
-<!--<ion-grid>-->
-<!--<div class="weather" *ngIf="weather">-->
-<!--<ion-row center>-->
-<!--<img class="icon" src="../../assets/weather%20animated/{{weather.weather[0].icon}}.svg">-->
-<!--</ion-row>-->
-
-<!--<div class="temperature">-->
-<!--<ion-row center>-->
-<!--<div class="temperature_animation-container">-->
-<!--<div class="temperature_animation">-->
-<!--&lt;!&ndash;<div class="tem-color{{weather.weather[0].icon}}">&ndash;&gt;-->
-<!--<div class="front">{{temp_str}}</div>-->
-<!--<div class="front back">{{weather.name}}</div>-->
-<!--&lt;!&ndash;</div>&ndash;&gt;-->
-<!--</div>-->
-<!--</div>-->
-<!--</ion-row>-->
-<!--</div>-->
-<!--</div>-->
-
-
-
-<!--<div class ="avatar" #clothing>-->
-<!--<div *ngIf="recommendation">-->
-<!--&lt;!&ndash;<div class="avatar">-->
-<!-- -<ion-row center>-->
-<!--<img [src]="avatar_url">-->
-<!--</ion-row>-->
-<!--<img [src]="avatar_url">-->
-<!--</div>&ndash;&gt;-->
-
-<!--<ion-row>-->
-
-<!--<ion-slides>-->
-<!--<ion-slide *ngFor="let slide of recommendation.top">-->
-<!--<img class="top" [src]="slide._url">-->
-<!--</ion-slide>-->
-<!--</ion-slides>-->
-<!--</ion-row>-->
-
-<!--<ion-row>-->
-<!--<ion-slides>-->
-<!--<ion-slide *ngFor="let slide of recommendation.bottom">-->
-<!--<img class="bottom" [src]="slide._url">-->
-<!--</ion-slide>-->
-<!--</ion-slides>-->
-
-<!--</ion-row>-->
-
-<!--<ion-row>-->
-<!--<ion-slides>-->
-<!--<ion-slide *ngFor="let slide of recommendation.accessories">-->
-<!--<img class="accessories" [src]="slide._url">-->
-<!--</ion-slide>-->
-<!--</ion-slides>-->
-<!--</ion-row>-->
-<!--</div>-->
-<!--</div>-->
-<!--</ion-grid>-->
-<!--</ion-content>-->
 

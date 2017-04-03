@@ -11,9 +11,10 @@ page-home {
     .temperature{
       letter-spacing: 3px;
       color: white;
-      font-size: 2.5em;
-      font-weight: 800;
-      margin: auto;
+      font-size: calc(0.4em + 7vmin);
+      float:right;
+      padding-top: 8vh;
+
 
       .temperature_animation-container {/*this is the boundaries of the card*/
         height: 50px;
@@ -21,6 +22,7 @@ page-home {
         width: 100px;
         margin: auto;
       }
+
       .temperature_animation{
         transform-style: preserve-3d;
         transition: all 2s ease-in-out;
@@ -42,27 +44,30 @@ page-home {
           transform: rotateY(180deg);
         }
 
-
-
       }
       .temperature_animation:hover { /*Hover function on the card is added in order to have it animated when moved over the temperature*/
         max-height: 70px;
         transform: rotateY(180deg);
       }
+
     }
 
     .icon {
-      //margin: auto;
-      height: 150px;
-      //align-content: left;
-      float: left;
-
+      float : left;
+      //background-color: orange;
+      min-width: 30%;
+      width: auto;
+      min-height : 20vh;
     }
     .location {
-      font-size: 1.4em;
-      font-weight: 800;
-      margin: auto;
+      letter-spacing: 3px;
+      color: white;
+      font-size: calc(0.1em + 2vmin);
+      float:left;
+      padding-top: 8vh;
+
     }
+
   }
 
 
