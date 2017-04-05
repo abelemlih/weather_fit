@@ -26,43 +26,72 @@
     <form [formGroup]="clothingItemForm">
 
       <ion-item>
-        <ion-label floating>The clothing's file_name</ion-label>
-        <ion-input formControlName="file_name" type="text"></ion-input>
+        <ion-label>The clothing's file name</ion-label>
+        <ion-input formControlName="file_name" type="text" placeholder="Filename.ext"></ion-input>
+      </ion-item>
+
+      <ion-list radio-group formControlName="piece">
+        <ion-item>Piece of clothing, pick one: </ion-item>
+        <ion-item>
+          <ion-label>Top</ion-label>
+          <ion-radio value="top" checked></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Bottom</ion-label>
+          <ion-radio value="bottom"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Shoes</ion-label>
+          <ion-radio value="accessories"></ion-radio>
+        </ion-item>
+      </ion-list>
+
+      <ion-list>
+        <ion-label>Gender:</ion-label>
+
+        <ion-item>
+          <ion-label>Male</ion-label>
+          <ion-checkbox formControlName="male"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Female</ion-label>
+          <ion-checkbox formControlName="female"></ion-checkbox>
+        </ion-item>
+      </ion-list>
+
+      <ion-item>
+        <ion-label>Name to refer to:</ion-label>
+        <ion-input formControlName="name" type="text" placeholder="Name"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Piece of clothing</ion-label>
-        <ion-select formControlName="piece">
-          <ion-option value="top">Top</ion-option>
-          <ion-option value="bottom">Bottom</ion-option>
-          <ion-option value="accessories">Accessories</ion-option>
-        </ion-select>
+        <ion-label>Max temperature (F):</ion-label>
+        <ion-input formControlName="max_temp" type="number" placeholder="50"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Name (avoid using spaces)</ion-label>
-        <ion-input formControlName="name" type="text"></ion-input>
+        <ion-label>Min temperature(F):</ion-label>
+        <ion-input formControlName="min_temp" type="number" placeholder="10"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Warm grade (0-10)</ion-label>
-        <ion-input formControlName="warm" type="number"></ion-input>
+        <ion-label>Rain-suitable</ion-label>
+        <ion-toggle formControlName="rain"></ion-toggle>
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Cold grade (0-10)</ion-label>
-        <ion-input formControlName="cold" type="number"></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label floating>Rain grade (0-10)</ion-label>
-        <ion-input formControlName="rain" type="number"></ion-input>
+        <ion-label>Snow-suitable</ion-label>
+        <ion-toggle formControlName="snow"></ion-toggle>
       </ion-item>
 
     </form>
 
-  </ion-list>
 
-  <button ion-button full (click)="save()">Save Item</button>
+    <button ion-button (click)="save()">Save Item</button>
+
+  </ion-list>
 
 </ion-content>
