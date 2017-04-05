@@ -133,8 +133,9 @@ export class HomePage {
     this.picked[index] = !this.picked[index];
     if (this.picked[index])
     {
-      this.color[index] = "#B1FEB1";
+      this.color[index] = "#EDFAFD";
       this.convertIndexToSlide(index).lockSwipes(true);
+      console.log(this.convertIndexToSlide(index));
     }
     else
     {

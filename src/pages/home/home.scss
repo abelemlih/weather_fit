@@ -65,21 +65,17 @@ page-home {
 
 
 
-  .top {
-    height: 100px;
+  .top, .bottom{
+    height: 105px;
+    padding-top: 5px;
   }
 
-  .bottom{
-    height: 100px;
-  }
   .accessories{
     height: 70px;
+
   }
   .main-display{
-    /*
-    background-color: #6495ED;
-    */
-    background-color: steelblue;
+    background-color: #2A93D5;
   }
 
  /* .main-display{
@@ -93,12 +89,12 @@ page-home {
     //background-image: url(https://68.media.tumblr.com/ae343894fa97678e054a7216ad9756ba/tumblr_ohrxh8Gfju1u7gnm9o1_500.gif);
   }*/
 
-  .slider {
-    height: 200px; /* slider height you want */
-  }
-  .slider-slide {
-    height: 50%;
+  .slide
+  {
+    width: 200px;
+    margin: auto;
   }
 }
+
 
 
