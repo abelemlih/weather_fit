@@ -121,7 +121,6 @@ export class HomePage {
       .catch( (error) => console.log("Failed to push to SettingsPage"));
   }
 
-
   //Changes the color of the slide, locks slides when the slide is green
   slideTapped(index)
   {
