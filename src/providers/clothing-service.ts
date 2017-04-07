@@ -49,26 +49,20 @@ export class ClothingService {
       })
   }
   
-  private generate(clothing_dict: Object, weather_data: {min_temp:number, max_temp:number, rain:boolean, snow:boolean}, user_gender: string) {
+  private generate(clothing_dict: any, weather_data: any , user_gender: string) {
     
     function capFilter(clothing_array: ClothingItem[], cap: number) {
-      // This function is defined, but not used anywhere
-      function randomCheck(clothing: ClothingItem) {
-        let random = Math.random()
-        return (random < clothing.grade)
-      }
-      
-      function randomFilter(clothing_array: ClothingItem[]) {
-        let return_array = [], cap_lim = 0, i = 0, l = clothing_array.length
-        while (cap_lim < l-cap && i<=l-1) {
-          randomCheck(clothing_array[i]) ? return_array.push(clothing_array[i]) : cap_lim++ 
-          i++
+      let random_clothing_array = [], not_picked = 0
+      for (let item of clothing_array) {
+        if (Math.random() < item.grade || not_picked >= clothing_array.length - cap) {
+          random_clothing_array.push(item)
+          if (random_clothing_array.length==cap) { break }
         }
-        return return_array.concat(clothing_array.slice(i,l))
+        else { not_picked = not_picked + 1 } 
       }
-      
-      return (clothing_array.length <= cap ? clothing_array : randomFilter(clothing_array))
-    }
+      if (clothing_array.length <= cap) { return clothing_array }
+      else { return random_clothing_array }   
+  }
     
     function isSuitable(clothing: ClothingItem) {
       // weather data format can be found at https://openweathermap.org/current#parameter
@@ -80,8 +74,10 @@ export class ClothingService {
     
     let result = {};
     for (let attr of ["top", "bottom", "accessories"]) { 
+      //Phase 1: Suitable for weather and gender
       result[attr] = clothing_dict[attr].filter(isSuitable)
-      result[attr] = capFilter(result[attr], 2)
+      //Phase 2: Filtering by cap
+      result[attr] = capFilter(result[attr], 15)
     }
     return result;
   }
