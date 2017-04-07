@@ -86,5 +86,4 @@ export class ClothingService {
   initializeDB() {
     this.clothingData.initialize();
   }
-
 }

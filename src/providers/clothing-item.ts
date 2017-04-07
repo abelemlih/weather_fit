@@ -45,14 +45,15 @@ export class ClothingItem {
     return this._snow;
   }
 
+
   get grade(): number {
     return this._grade;
   }
   
   get gender(): string {
     return this._gender;
-  }
 
+  }
 
   set grade(value: number) {
     this._grade = value;

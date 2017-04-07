@@ -34,7 +34,7 @@
         <ion-item>Piece of clothing, pick one: </ion-item>
         <ion-item>
           <ion-label>Top</ion-label>
-          <ion-radio value="top"></ion-radio>
+          <ion-radio value="top" checked></ion-radio>
         </ion-item>
 
         <ion-item>
@@ -47,19 +47,31 @@
           <ion-radio value="accessories"></ion-radio>
         </ion-item>
       </ion-list>
+      <ion-list>
+        <ion-label>Gender:</ion-label>
 
+        <ion-item>
+          <ion-label>Male</ion-label>
+          <ion-checkbox formControlName="male"></ion-checkbox>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Female</ion-label>
+          <ion-checkbox formControlName="female"></ion-checkbox>
+        </ion-item>
+      </ion-list>
       <ion-item>
         <ion-label>Name to refer to:</ion-label>
         <ion-input formControlName="name" type="text" placeholder="Name"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>Max temperature:</ion-label>
+        <ion-label>Max temperature (F):</ion-label>
         <ion-input formControlName="max_temp" type="number" placeholder="50"></ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-label>Min temperature:</ion-label>
+        <ion-label>Min temperature(F):</ion-label>
         <ion-input formControlName="min_temp" type="number" placeholder="10"></ion-input>
       </ion-item>
 

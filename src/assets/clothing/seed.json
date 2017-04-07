@@ -19,7 +19,7 @@
       "rain": true,
       "snow": false,
       "grade": 0.5,
-      "gender": "male"
+      "gender": "neutral"
     },
     {
       "name": "puffy-jacket",
