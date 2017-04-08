@@ -5,72 +5,91 @@ page-home {
     overflow: hidden;
   }
 
-  .weather {
-    margin-bottom: 10%;
+  .weather_icon{
+    background-color: transparent;
+    min-width: 30%;
+    min-height: 20vh;
+    margin: auto;
 
+  }
+  .windicon{
+    width: calc(0.5px + 5vmin);
+    height: calc(0.5px + 5vmin);
+    background-color: transparent;
+
+  }
+  .temRange{
+    letter-spacing: 0.1px;
+    background-color: transparent;
+    color: white;
+    font-size: calc(0.5em + 2vmax);
+
+    margin-left: 10%;
+  }
+
+  .windspeed{
+    letter-spacing: 0.5px;
+    background-color: transparent;
+    color: white;
+    font-size: calc(0.5em + 2vmax);}
+
+  .location {
+    letter-spacing: 2px;
+    background-color: transparent;
+    color: white;
+    font-size: calc(0.3em + 2vmax);
+    //width: 50%;
+    margin: auto;
+    //top: 50%;
+    //transform: translate(50%, -50%)
+
+
+
+    //position: absolute;
+    //top: 50%;
+    //left: 50%;
+    //transform: translate(-50%, -50%);
+
+    //position: absolute;
+    //transform: translate(50%, -50%);
+
+    //font-size: calc(0.3em + 2vmin);
+    ////position: absolute;
+    //top:50%;
+    //transform: translate(50%, -50%);
+    //margin: auto;
+  }
+
+  .weather {
     .temperature{
+      position: absolute;
+      top:50%;
+      transform: translate(50%, -50%);
       letter-spacing: 3px;
       color: white;
       font-size: calc(0.4em + 7vmin);
-      float:right;
-      padding-top: 8vh;
+      margin:auto;
+      background-color: transparent;
 
-
-      .temperature_animation-container {/*this is the boundaries of the card*/
-        height: 50px;
-        perspective: 100px;
-        width: 100px;
-        margin: auto;
-      }
-
-      .temperature_animation{
-        transform-style: preserve-3d;
-        transition: all 2s ease-in-out;
-
-        .front {/*This is the part where it says it shows the tem in C.*/
-          backface-visibility: hidden;
-          background: transparent;
-          height: 100%;
-          position: absolute;
-          width: 100%;
-
-
-        }
-        .back {/*This is the part where it says it shows the tem in F.*/
-          font-size: 0.4em;
-          font-weight: 800;
-          margin: auto;
-          background: transparent;
-          transform: rotateY(180deg);
-        }
-
-      }
-      .temperature_animation:hover { /*Hover function on the card is added in order to have it animated when moved over the temperature*/
-        max-height: 70px;
-        transform: rotateY(180deg);
       }
 
     }
 
-    .icon {
-      float : left;
-      //background-color: orange;
-      min-width: 30%;
-      width: auto;
-      min-height : 20vh;
-    }
-    .location {
-      letter-spacing: 3px;
-      color: white;
-      font-size: calc(0.1em + 2vmin);
-      float:left;
-      padding-top: 8vh;
 
-    }
+
+    //.windicon{
+    //  width: calc(0.5px + 5vmin);
+    //  height: calc(0.5px + 5vmin);
+    //  position: relative;
+    //  margin: auto;
+    //
+    //}
 
   }
 
-
+  .row1{
+    flex-basis: 50%;
+  }
 
   .top {
     height: 100px;
@@ -89,17 +108,6 @@ page-home {
     background-color: steelblue;
   }
 
- /* .main-display{
-
-    background-color: lightsteelblue;
-    //The one with the clouds
-    !*
-    background-image: url(http://media3.giphy.com/media/jtavDv8iqstY4/giphy.gif);
-    *!
-    //The one with the snowflakes
-    //background-image: url(https://68.media.tumblr.com/ae343894fa97678e054a7216ad9756ba/tumblr_ohrxh8Gfju1u7gnm9o1_500.gif);
-  }*/
-
   .slider {
     height: 200px; /* slider height you want */
   }
@@ -107,6 +115,32 @@ page-home {
     height: 50%;
   }
 
-}
+  .row{
+    .location{
+      letter-spacing: 2px;
+      color: white;
+      font-size: calc(0.3em + 2vmin);
+      float:left;
+      margin-left: 2vh;
+      }
+
+    }
+    .windicon{
+      width: calc(0.5px + 5vmin);
+      height: calc(0.5px + 5vmin);
+      position: relative;
+      margin: auto;
+    }
+    .windspeed{
+
+    }
+    .temperature_range{
+
+    }
+
+
+
+
+
 
 
