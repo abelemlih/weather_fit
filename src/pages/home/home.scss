@@ -10,20 +10,19 @@ page-home {
     min-width: 30%;
     min-height: 20vh;
     margin: auto;
-
   }
   .windicon{
     width: calc(0.5px + 5vmin);
     height: calc(0.5px + 5vmin);
     background-color: transparent;
+    fill: white;
 
   }
   .temRange{
     letter-spacing: 0.1px;
     background-color: transparent;
     color: white;
-    font-size: calc(0.5em + 2vmax);
-
+    font-size: calc(0.05em + 4vmin);
     margin-left: 10%;
   }
 
@@ -31,33 +30,14 @@ page-home {
     letter-spacing: 0.5px;
     background-color: transparent;
     color: white;
-    font-size: calc(0.5em + 2vmax);}
+    font-size: calc(0.05em + 4vmin);}
 
   .location {
     letter-spacing: 2px;
     background-color: transparent;
     color: white;
-    font-size: calc(0.3em + 2vmax);
-    //width: 50%;
-    margin: auto;
-    //top: 50%;
-    //transform: translate(50%, -50%)
-
-
-
-    //position: absolute;
-    //top: 50%;
-    //left: 50%;
-    //transform: translate(-50%, -50%);
-
-    //position: absolute;
-    //transform: translate(50%, -50%);
-
-    //font-size: calc(0.3em + 2vmin);
-    ////position: absolute;
-    //top:50%;
-    //transform: translate(50%, -50%);
-    //margin: auto;
+    font-size: calc(0.05em + 4vmin);
+    padding-top:3%;
   }
 
   .weather {
@@ -70,21 +50,8 @@ page-home {
       font-size: calc(0.4em + 7vmin);
       margin:auto;
       background-color: transparent;
-
       }
-
     }
-
-
-
-    //.windicon{
-    //  width: calc(0.5px + 5vmin);
-    //  height: calc(0.5px + 5vmin);
-    //  position: relative;
-    //  margin: auto;
-    //
-    //}
-
   }
 
   .row1{
@@ -102,14 +69,10 @@ page-home {
     height: 70px;
   }
   .main-display{
-    /*
-    background-color: #6495ED;
-    */
     background-color: steelblue;
   }
-
   .slider {
-    height: 200px; /* slider height you want */
+    height: 200px;
   }
   .slider-slide {
     height: 50%;
