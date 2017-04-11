@@ -2,8 +2,8 @@
   "units": "celsius",
   "top": [
     {
-      "name": "basketball-jersey",
-      "url": "../../assets/clothing/basketball-jersey.png",
+      "name": "jersey",
+      "url": "../../assets/clothing/jersey.png",
       "max_temp": 35,
       "min_temp": 15,
       "rain": false,
@@ -22,8 +22,8 @@
       "gender": "neutral"
     },
     {
-      "name": "puffy-jacket",
-      "url": "../../assets/clothing/puffy%20jacket.png",
+      "name": "puffy_jacket",
+      "url": "../../assets/clothing/puffy_jacket.png",
       "max_temp": 10,
       "min_temp": -15,
       "rain": true,
@@ -34,8 +34,8 @@
   ],
   "bottom": [
     {
-      "name": "sport-shorts",
-      "url": "../../assets/clothing/sport%20shorts.png",
+      "name": "sport_shorts",
+      "url": "../../assets/clothing/sport_shorts.png",
       "max_temp": 35,
       "min_temp": 15,
       "rain": false,
@@ -57,7 +57,7 @@
   "accessories": [
     {
       "name": "sneakers",
-      "url": "../../assets/clothing/double%20sneakers.png",
+      "url": "../../assets/clothing/double_sneakers.png",
       "max_temp": 35,
       "min_temp": 0,
       "rain": false,
@@ -67,7 +67,7 @@
     },
     {
       "name": "uggs",
-      "url": "../../assets/clothing/double%20brown%20uggs.png",
+      "url": "../../assets/clothing/double_brown_uggs.png",
       "max_temp": 25,
       "min_temp": -15,
       "rain": false,
@@ -77,7 +77,7 @@
     },
     {
       "name": "timberlands",
-      "url": "../../assets/clothing/double%20timberlands.png",
+      "url": "../../assets/clothing/double_timberlands.png",
       "max_temp": 25,
       "min_temp": -25,
       "rain": true,
