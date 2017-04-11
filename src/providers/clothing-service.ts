@@ -66,6 +66,8 @@ export class ClothingService {
     
     function isSuitable(clothing: ClothingItem) {
       // weather data format can be found at https://openweathermap.org/current#parameter
+      //TODO: split into separate functions
+      //TODO: implement instance methods within CLothingItem that take in weather_data and return true or false for suitable
       if (weather_data.max_temp > clothing.max_temp || weather_data.min_temp < clothing.min_temp) {return false }
       if ((weather_data.rain==true && clothing.rain==false) || (weather_data.snow==true && clothing.snow==false)) { return false }
       if ((user_gender=="male" && clothing.gender=="female") || (user_gender=="female" && clothing.gender=="male")) { return false }
