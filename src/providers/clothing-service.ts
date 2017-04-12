@@ -22,13 +22,19 @@ export class ClothingService {
   }
 
   constructor(public clothingData: ClothingDataService) {}
-
+  
+  /**
+ * Recommend tops, bottoms, and accessories to the user based on weather conditions.
+ * @return hash with keys "top", "bottom", "accessories" and values as arrays of ClothingItem objects
+ */
   recommend() {
-    
-    function between(id,min,max) { return id >= min && id <= max}
-    
+    /**
+   * Check whether a weather code id is within the bounds of a weather condition code
+   * Check https://openweathermap.org/weather-conditions for weather condition codes
+   * @return hash with keys "top", "bottom", "accessories" and values as arrays of ClothingItem objects
+   */
     function extract_condition(api_weather: any, min_id: number, max_id: number) {
-      for (let code of api_weather.weather) { if (between(code.id, min_id, max_id)) { return true } }
+      for (let code of api_weather.weather) { if (code.id >= min_id && code.id <= max_id) { return true } }
       return false
     }
     
@@ -65,18 +71,12 @@ export class ClothingService {
   }
     
     function isSuitable(clothing: ClothingItem) {
-      // weather data format can be found at https://openweathermap.org/current#parameter
-      //TODO: split into separate functions
-      //TODO: implement instance methods within CLothingItem that take in weather_data and return true or false for suitable
-      if (weather_data.max_temp > clothing.max_temp || weather_data.min_temp < clothing.min_temp) {return false }
-      if ((weather_data.rain==true && clothing.rain==false) || (weather_data.snow==true && clothing.snow==false)) { return false }
-      if ((user_gender=="male" && clothing.gender=="female") || (user_gender=="female" && clothing.gender=="male")) { return false }
-      return true 
+      return (clothing.suits_weather(weather_data) && clothing.suits_precipitation(weather_data) && clothing.suits_gender(user_gender)) 
     }
     
     let result = {};
     for (let attr of ["top", "bottom", "accessories"]) { 
-      //Phase 1: Suitable for weather and gender
+      //Phase 1: Suitable for weather, precipitation, and gender
       result[attr] = clothing_dict[attr].filter(isSuitable)
       //Phase 2: Filtering by cap
       result[attr] = capFilter(result[attr], 15)
