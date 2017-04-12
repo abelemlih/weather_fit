@@ -13,6 +13,8 @@ import {SettingsService} from "../../providers/settings-service";
 
 import {ClothingService} from "../../providers/clothing-service";
 
+import {ClothingDataService} from "../../providers/clothing-data-service";
+
 import {Storage} from "@ionic/storage";
 
 import {ViewChild} from '@angular/core';
@@ -42,6 +44,7 @@ export class HomePage {
               public geolocationService: GeolocationService,
               public settingsService: SettingsService,
               public clothingService: ClothingService,
+              public clothingDataService: ClothingDataService,
               public storage: Storage) {
     this.option = {
       loop: true
@@ -124,19 +127,33 @@ export class HomePage {
   //Changes the color of the slide, locks slides when the slide is green
   slideTapped(index)
   {
-    console.log("Slide tapped");
     this.picked[index] = !this.picked[index];
     if (this.picked[index])
     {
       this.color[index] = "#EDFAFD";
       this.convertIndexToSlide(index).lockSwipes(true);
-      console.log(this.convertIndexToSlide(index));
     }
     else
     {
       this.color[index] = "transparent";
       this.convertIndexToSlide(index).lockSwipes(false);
     }
+  }
+  
+  allTapped() {
+    if (this.picked.every(Boolean)) {
+      //TODO: increase the user grade of all items picked by (1-grade)*10%
+      // console.log(this.recommendation)
+      // console.log(this.storage.get("ClothingData"))
+      let data =  Promise.all([this.clothingDataService.getData()])
+        .then( (values) => {
+          let clothing_items = values[0];
+          //TODO: replace "neutral" with user_gender that we get from settings
+          console.log(clothing_items)
+          return clothing_items
+        })
+    }
+    
   }
 
   //Converts indices to the correct slide variable
