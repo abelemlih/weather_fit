@@ -25,8 +25,13 @@ export class HomePage {
   weather: any;
   temp_num: number;
   temp_str: string;
+  temp_min: number;
+  temp_max: number;
 
   recommendation: any;
+  weather_icon:string;
+
+  future_weather: any;
 
   constructor(public navCtrl: NavController,
               public weatherService: WeatherService,
@@ -38,12 +43,22 @@ export class HomePage {
     this.loadCurrentLocation()
       .then(() => {
         this.loadWeather();
+        this.loadFutureWeather();
         this.loadRecommendation();
+        // this.loadWeatherIcon();
       });
     // this.loadRecommendation();
     // clothingData.getData()
     //   .then((data) => console.log(data));
   }
+
+  // loadWeatherIcon(){
+  //   return this.weatherService.load()
+  //     .then(data => {
+  //       this.weather = data;
+  //       this.weather_icon = "../../assets/weather%20animated/" + this. weather.weather[0].icon + ".svg"
+  //     })
+  // }
 
   loadCurrentLocation() {
     return this.geolocationService.load()
@@ -60,11 +75,20 @@ export class HomePage {
       .catch((error) => console.log("Failed to load clothingService\n" + error.toString()))
   }
 
+  loadFutureWeather() {
+    return this.weatherService.loadFutureData()
+      .then(data => {
+        this.future_weather = data;
+      })
+  }
+
+
   loadWeather() {
     return this.weatherService.load()
       .then(data => {
         this.weather = data;
         this.temp_num = this.weather.main.temp - 273.15;
+
         this.updateUnits();
         // console.log(this.weather)
       })
@@ -72,12 +96,15 @@ export class HomePage {
       )
   }
 
+
   loadWeatherTest() {
     this.weatherService.load()
       .catch(error => console.log("weatherService fails"))
       .then(data =>{
         this.weather = data;
         this.temp_num = this.weather.main.temp - 273.15;
+        this.temp_max = this.weather.main.temp_max - 273.15;
+        this.temp_min = this.weather.main.temp_min - 273.15;
         this.updateUnits();
       })
       .catch(error => console.log("loadWeatherTest fails"))

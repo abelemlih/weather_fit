@@ -5,8 +5,8 @@ page-home {
     overflow: hidden;
   }
 
-  .weather_icon{
-    background-color: transparent;
+  .weathericon{
+    background-color: orange;
     min-width: 30%;
     min-height: 20vh;
     margin: auto;
@@ -54,9 +54,6 @@ page-home {
     }
   }
 
-  .row1{
-    flex-basis: 50%;
-  }
 
   .top {
     height: 100px;
@@ -77,29 +74,6 @@ page-home {
   .slider-slide {
     height: 50%;
   }
-
-  .row{
-    .location{
-      letter-spacing: 2px;
-      color: white;
-      font-size: calc(0.3em + 2vmin);
-      float:left;
-      margin-left: 2vh;
-      }
-
-    }
-    .windicon{
-      width: calc(0.5px + 5vmin);
-      height: calc(0.5px + 5vmin);
-      position: relative;
-      margin: auto;
-    }
-    .windspeed{
-
-    }
-    .temperature_range{
-
-    }
 
 
 
