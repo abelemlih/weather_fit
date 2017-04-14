@@ -97,6 +97,12 @@ export class HomePage {
       )
   }
 
+
+  update_clothing_data(data: any) {
+    this.clothing_data = data;
+  }
+  
+  
   loadWeatherTest() {
     this.weatherService.load()
       .catch(error => console.log("weatherService fails"))
@@ -153,7 +159,11 @@ export class HomePage {
   
   allTapped() {
     function findIndex (element: ClothingItem, array: Array<ClothingItem>): any {
-      for (let i in array) { if (array[i].url === element.url) { return i } }
+      for (let i in array) { 
+        if (array[i].url === element.url) { 
+          return i 
+        } 
+      }
       console.log("cannot find the item #{element}")
       return -1
     }
@@ -161,6 +171,7 @@ export class HomePage {
     function updateItemGrade(item: ClothingItem, array: Array<ClothingItem>) {
       //TODO: fix grade of undefined error
       let new_item_grade = ((1-item.grade)*(0.05)) + item.grade
+      console.log(`Previous grade: ${item.grade} ; New grade: ${new_item_grade}`)
       let updated_array = array
       updated_array[findIndex(item,array)].grade = new_item_grade
       return updated_array
@@ -175,8 +186,8 @@ export class HomePage {
         let chosen_clothing_array = this.recommendation[clothing_types[i]]
         let item = chosen_clothing_array[this.convertIndexToSlide(i).getActiveIndex()]
         updated_clothing_data[clothing_types[i]] = updateItemGrade(item, updated_clothing_data[clothing_types[i]])
-      }
-      console.log(updated_clothing_data)
+      }    
+      this.clothing_data = updated_clothing_data
       this.storage.set("ClothingData", updated_clothing_data)
         .catch((error) => "Failed to store data");
     }
