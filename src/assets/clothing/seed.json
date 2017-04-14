@@ -52,6 +52,16 @@
       "gender": "neutral"
     },
     {
+      "name": "holiday_sweater",
+      "url": "../../assets/clothing/holiday_sweater.png",
+      "max_temp": 25,
+      "min_temp": 5,
+      "rain": false,
+      "snow": false,
+      "grade": 0.5,
+      "gender": "neutral"
+    },
+    {
       "name": "letterman_jacket",
       "url": "../../assets/clothing/letterman_jacket.png",
       "max_temp": 25,
@@ -134,6 +144,16 @@
     {
       "name": "tshirt",
       "url": "../../assets/clothing/tshirt.png",
+      "max_temp": 35,
+      "min_temp": 10,
+      "rain": false,
+      "snow": false,
+      "grade": 0.5,
+      "gender": "neutral"
+    },
+    {
+      "name": "graphic_tee",
+      "url": "../../assets/clothing/graphic_tee.png",
       "max_temp": 35,
       "min_temp": 10,
       "rain": false,
@@ -266,6 +286,36 @@
       "gender": "neutral"
     },
     {
+      "name": "adidas",
+      "url": "../../assets/clothing/double_adidas.png",
+      "max_temp": 35,
+      "min_temp": 0,
+      "rain": false,
+      "snow": false,
+      "grade": 0.5,
+      "gender": "neutral"
+    },
+    {
+      "name": "converse",
+      "url": "../../assets/clothing/double_converse.png",
+      "max_temp": 35,
+      "min_temp": 0,
+      "rain": false,
+      "snow": false,
+      "grade": 0.5,
+      "gender": "neutral"
+    },
+    {
+      "name": "vans",
+      "url": "../../assets/clothing/double_vans.png",
+      "max_temp": 35,
+      "min_temp": 0,
+      "rain": false,
+      "snow": false,
+      "grade": 0.5,
+      "gender": "neutral"
+    },
+    {
       "name": "uggs",
       "url": "../../assets/clothing/double_brown_uggs.png",
       "max_temp": 25,
@@ -279,7 +329,7 @@
       "name": "flats",
       "url": "../../assets/clothing/double_flats.png",
       "max_temp": 35,
-      "min_temp": 0,
+      "min_temp": 5,
       "rain": false,
       "snow": false,
       "grade": 0.5,
@@ -289,7 +339,7 @@
       "name": "heels",
       "url": "../../assets/clothing/double_heels.png",
       "max_temp": 35,
-      "min_temp": 0,
+      "min_temp": 5,
       "rain": false,
       "snow": false,
       "grade": 0.5,
@@ -299,7 +349,37 @@
       "name": "slingback_heels",
       "url": "../../assets/clothing/double_slingback_heels.png",
       "max_temp": 35,
-      "min_temp": 0,
+      "min_temp": 5,
+      "rain": false,
+      "snow": false,
+      "grade": 0.5,
+      "gender": "female"
+    },
+    {
+      "name": "peeptoe_heels",
+      "url": "../../assets/clothing/double_peeptoe_heels.png",
+      "max_temp": 35,
+      "min_temp": 5,
+      "rain": false,
+      "snow": false,
+      "grade": 0.5,
+      "gender": "female"
+    },
+    {
+      "name": "strappy_heels",
+      "url": "../../assets/clothing/double_strappy_heels.png",
+      "max_temp": 35,
+      "min_temp": 5,
+      "rain": false,
+      "snow": false,
+      "grade": 0.5,
+      "gender": "female"
+    },
+    {
+      "name": "wedges",
+      "url": "../../assets/clothing/double_wedges.png",
+      "max_temp": 35,
+      "min_temp": 10,
       "rain": false,
       "snow": false,
       "grade": 0.5,
@@ -309,7 +389,7 @@
       "name": "slippers",
       "url": "../../assets/clothing/double_slippers.png",
       "max_temp": 35,
-      "min_temp": 0,
+      "min_temp": 5,
       "rain": false,
       "snow": false,
       "grade": 0.5,
@@ -326,6 +406,56 @@
       "gender": "neutral"
     },
     {
+      "name": "birkenstocks",
+      "url": "../../assets/clothing/double_birkenstocks.png",
+      "max_temp": 35,
+      "min_temp": 5,
+      "rain": false,
+      "snow": false,
+      "grade": 0.5,
+      "gender": "neutral"
+    },
+    {
+      "name": "flip_flops",
+      "url": "../../assets/clothing/double_flip_flops.png",
+      "max_temp": 35,
+      "min_temp": 5,
+      "rain": false,
+      "snow": false,
+      "grade": 0.5,
+      "gender": "neutral"
+    },
+    {
+      "name": "girly_sandals",
+      "url": "../../assets/clothing/double_fun_sandals.png",
+      "max_temp": 35,
+      "min_temp": 5,
+      "rain": false,
+      "snow": false,
+      "grade": 0.5,
+      "gender": "female"
+    },
+    {
+      "name": "slides",
+      "url": "../../assets/clothing/double_slides.png",
+      "max_temp": 35,
+      "min_temp": 5,
+      "rain": false,
+      "snow": false,
+      "grade": 0.5,
+      "gender": "neutral"
+    },
+    {
+      "name": "rain_boots",
+      "url": "../../assets/clothing/double_rainboots.png",
+      "max_temp": 25,
+      "min_temp": 0,
+      "rain": true,
+      "snow": false,
+      "grade": 0.5,
+      "gender": "neutral"
+    },
+    {
       "name": "short_boots",
       "url": "../../assets/clothing/double_short_boots.png",
       "max_temp": 25,
@@ -334,6 +464,16 @@
       "snow": true,
       "grade": 0.5,
       "gender": "neutral"
+    },
+    {
+      "name": "booties",
+      "url": "../../assets/clothing/double_booties.png",
+      "max_temp": 25,
+      "min_temp": -25,
+      "rain": true,
+      "snow": true,
+      "grade": 0.5,
+      "gender": "female"
     },
     {
       "name": "tall_boots",
