@@ -28,6 +28,7 @@
                 <div class="front">{{temp_str}}</div>
                 <div class="front back">{{weather.name}}</div>
               <!--</div>-->
+
           </div>
           </div>
         </ion-row>
@@ -36,7 +37,7 @@
 
 
 
-    <div class ="avatar" #clothing>
+    <div class ="avatar" #clothing></div>
     <div *ngIf="recommendation">
       <!--<div class="avatar">
         -<ion-row center>
@@ -46,17 +47,16 @@
       </div>-->
 
       <ion-row>
-
-        <ion-slides>
-          <ion-slide *ngFor="let slide of recommendation.top">
+        <ion-slides class="slide" #slideOne (ionSlideTap) = "slideTapped(0)">
+          <ion-slide *ngFor="let slide of recommendation.top" [ngStyle]="{'background-color':color[0]}">
             <img class="top" [src]="slide._url">
           </ion-slide>
         </ion-slides>
       </ion-row>
 
       <ion-row>
-        <ion-slides>
-          <ion-slide *ngFor="let slide of recommendation.bottom">
+        <ion-slides class="slide" #slideTwo (ionSlideTap) = "slideTapped(1)">
+          <ion-slide *ngFor="let slide of recommendation.bottom" [ngStyle]="{'background-color':color[1]}">
             <img class="bottom" [src]="slide._url">
           </ion-slide>
         </ion-slides>
@@ -64,13 +64,12 @@
       </ion-row>
 
       <ion-row>
-        <ion-slides>
-          <ion-slide *ngFor="let slide of recommendation.accessories">
+        <ion-slides class="slide" #slideThree (ionSlideTap) = "slideTapped(2)">
+          <ion-slide *ngFor="let slide of recommendation.accessories" [ngStyle]="{'background-color':color[2]}">
             <img class="accessories" [src]="slide._url">
           </ion-slide>
         </ion-slides>
       </ion-row>
-    </div>
     </div>
   </ion-grid>
 </ion-content>
