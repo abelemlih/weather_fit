@@ -15,8 +15,6 @@ import {ClothingService} from "../../providers/clothing-service";
 
 import {Storage} from "@ionic/storage";
 
-import {ViewChild} from '@angular/core';
-
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
