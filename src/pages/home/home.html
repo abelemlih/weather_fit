@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding id="main-display" class="main-display no-scroll">
+<ion-content  padding id="main-display" class="main-display no-scroll">
   <ion-grid>
     <div class="weather" *ngIf="weather">
       <ion-row center>
@@ -35,7 +35,17 @@
       </div>
     </div>
 
-    <div class="clothing" *ngIf="recommendation">
+
+
+    <div class ="avatar" #clothing></div>
+    <div *ngIf="recommendation">
+      <!--<div class="avatar">
+        -<ion-row center>
+          <img [src]="avatar_url">
+        </ion-row>
+        <img [src]="avatar_url">
+      </div>-->
+
       <ion-row>
         <ion-slides class="slide" #slideOne (ionSlideTap) = "slideTapped(0)">
           <ion-slide *ngFor="let slide of recommendation.top" [ngStyle]="{'background-color':color[0]}">
@@ -50,6 +60,7 @@
             <img class="bottom" [src]="slide._url">
           </ion-slide>
         </ion-slides>
+
       </ion-row>
 
       <ion-row>
@@ -60,8 +71,6 @@
         </ion-slides>
       </ion-row>
     </div>
-
-
   </ion-grid>
 </ion-content>
 

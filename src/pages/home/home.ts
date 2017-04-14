@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 import {NavController, Slides} from 'ionic-angular';
 
@@ -37,6 +37,8 @@ export class HomePage {
 
   recommendation: any;
 
+  @ViewChild('clothing') clothingDiv : ElementRef;
+
   constructor(public navCtrl: NavController,
               private weatherService: WeatherService,
               public geolocationService: GeolocationService,
@@ -56,6 +58,13 @@ export class HomePage {
     //   .then((data) => console.log(data));
   }
 
+  ngAfterViewInit() {
+    this.clothingDiv.nativeElement.style.backgroundImage =
+      "url(../../assets/avatar/" + this.settingsService.avatar + ".png)";
+
+  }
+
+
   loadCurrentLocation() {
     return this.geolocationService.load()
       .then((pos) => this.weatherService.pos = pos);
@@ -65,7 +74,7 @@ export class HomePage {
     this.clothingService.weatherService = this.weatherService;
     return this.clothingService.recommend()
       .then( (recom) => {
-        this.recommendation = recom;
+          this.recommendation = recom;
         }
       )
       .catch((error) => console.log("Failed to load clothingService\n" + error.toString()))
