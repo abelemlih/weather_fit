@@ -25,11 +25,17 @@ export class HomePage {
   weather: any;
   temp_num: number;
   temp_str: string;
-  temp_min: number;
-  temp_max: number;
+  mintemp_str: string;
+  maxtemp_str: string;
+  min_temp: number;
+  max_temp: number;
+  current_time: Date;
+  threeHour_time: Date;
+  sixHour_time: Date;
+  nineHour_time: Date;
+  twelveHour_time: Date;
 
   recommendation: any;
-  weather_icon:string;
 
   future_weather: any;
 
@@ -44,21 +50,13 @@ export class HomePage {
       .then(() => {
         this.loadWeather();
         this.loadFutureWeather();
+        this.loadTime();
         this.loadRecommendation();
-        // this.loadWeatherIcon();
       });
     // this.loadRecommendation();
     // clothingData.getData()
     //   .then((data) => console.log(data));
   }
-
-  // loadWeatherIcon(){
-  //   return this.weatherService.load()
-  //     .then(data => {
-  //       this.weather = data;
-  //       this.weather_icon = "../../assets/weather%20animated/" + this. weather.weather[0].icon + ".svg"
-  //     })
-  // }
 
   loadCurrentLocation() {
     return this.geolocationService.load()
@@ -82,17 +80,33 @@ export class HomePage {
       })
   }
 
-
   loadWeather() {
     return this.weatherService.load()
       .then(data => {
         this.weather = data;
         this.temp_num = this.weather.main.temp - 273.15;
+        this.min_temp = this.weather.main.temp_min  - 273.15;
+        this.max_temp = this.weather.main.temp_max - 273.15;
 
         this.updateUnits();
         // console.log(this.weather)
       })
       .catch( (error) => console.log("Failed to load weather data\n" + error.toString())
+      )
+  }
+
+  loadTime(){
+    this.weatherService.loadFutureData()
+      .then(data => {
+        this.future_weather = data;
+        this.current_time = this.future_weather.list[0].dt.getUTCHours();
+        this.threeHour_time = this.future_weather.list[1].dt.getUTCHours();
+        this.sixHour_time = this.future_weather.list[2].dt.getUTCHours();
+        this.nineHour_time = this.future_weather.list[3].dt.getUTCHours();
+        this.twelveHour_time = this.future_weather.list[4].dt.getUTCHours();
+        })
+
+      .catch( (error) => console.log("Failed to load time data\n" + error.toString())
       )
   }
 
@@ -103,24 +117,33 @@ export class HomePage {
       .then(data =>{
         this.weather = data;
         this.temp_num = this.weather.main.temp - 273.15;
-        this.temp_max = this.weather.main.temp_max - 273.15;
-        this.temp_min = this.weather.main.temp_min - 273.15;
         this.updateUnits();
       })
       .catch(error => console.log("loadWeatherTest fails"))
   }
 
   updateUnits() {
-    if (this.settingsService.units == "celsius")
+    if (this.settingsService.units == "celsius"){
       this.temp_str = this.temp_num.toFixed().toString() + "°C";
+      this.mintemp_str = this.min_temp.toFixed().toString() + "°C";
+      this.maxtemp_str = this.max_temp.toFixed().toString() + "°C";
+    }
+
     else {
         let fah_temp = (this.temp_num * 1.8) + 32;
+        let fah_mintemp = (this.min_temp * 1.8) +32;
+        let fah_maxtemp = (this.max_temp * 1.8) +32;
         this.temp_str = fah_temp.toFixed().toString() + "°F";
+        this.mintemp_str = fah_mintemp.toFixed().toString() + "°F";
+        this.maxtemp_str = fah_maxtemp.toFixed().toString() + "°F";
+
     }
   }
 
   ionViewWillEnter() {
     if (this.temp_num != undefined) this.updateUnits();
+    if (this.min_temp != undefined) this.updateUnits();
+    if (this.max_temp != undefined) this.updateUnits();
   }
 
   ionViewDidLoad() {

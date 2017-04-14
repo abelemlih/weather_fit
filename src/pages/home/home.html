@@ -12,21 +12,25 @@
 <ion-content  padding id="main-display" class="main-display no-scroll">
   <ion-grid>
     <div class="weather" *ngIf="weather">
-        <ion-row>
 
+        <ion-row *ngIf="future_weather">
           <ion-slides>
             <ion-slide>
+              <ion-row>
+                <div> Forecast is {{current_time}}</div>
+              </ion-row>
               <ion-row>
                 <ion-col width-50>
                   <img class="icon" src="../../assets/weather%20animated/{{future_weather.list[0].weather.icon}}.svg">
                 </ion-col>
                 <ion-col width-50>
-                  <div class="temperature" *ngIf="future_weather">{{future_weather.list[0].main.temp}}</div>
+                  <div class="temperature" *ngIf="future_weather">{{temp_str}}</div>
+
                 </ion-col>
               </ion-row>
             </ion-slide>
 
-            <ion-slide *ngFor="let slide of weather_icon">
+            <ion-slide>
               <ion-row>
                 <ion-col width-50>
                   <img class="icon" src="../../assets/weather%20animated/{{future_weather.list[1].weather.icon}}.svg">
@@ -37,7 +41,7 @@
               </ion-row>
             </ion-slide>
 
-            <ion-slide *ngFor="let slide of weather_icon">
+            <ion-slide>
               <ion-row>
                 <ion-col width-50>
                   <img class="icon" src="../../assets/weather%20animated/{{future_weather.list[2].weather.icon}}.svg">
@@ -48,7 +52,7 @@
               </ion-row>
             </ion-slide>
 
-            <ion-slide >
+            <ion-slide>
               <ion-row>
                 <ion-col width-50>
                   <img class="icon" src="../../assets/weather%20animated/{{future_weather.list[3].weather.icon}}.svg">
@@ -84,7 +88,7 @@
             </ion-col>
 
             <ion-col width-50>
-              <div class="temRange">{{weather.main.temp_min}}  ~  {{weather.main.temp_max}}</div>
+              <div class="temRange">{{mintemp_str}} ~  {{maxtemp_str}}</div>
             </ion-col>
 
           </ion-row>
