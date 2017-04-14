@@ -127,7 +127,6 @@ export class HomePage {
 
     // This will make it repopulate the database every login, which is good for testing purposes.
     // Correctly it should be inside the then() method so that it only runs once.
-
     this.clothingService.initializeDB();
   }
 
@@ -154,12 +153,14 @@ export class HomePage {
   
   allTapped() {
     function findIndex (element: ClothingItem, array: Array<ClothingItem>): any {
-      for (let i in array) { if (array[i].url == element.url) { return i } }
+      for (let i in array) { if (array[i].url === element.url) { return i } }
+      console.log("cannot find the item #{element}")
       return -1
     }
     
     function updateItemGrade(item: ClothingItem, array: Array<ClothingItem>) {
-      let new_item_grade = item.grade = ((1-item.grade)*(0.05)) + item.grade
+      //TODO: fix grade of undefined error
+      let new_item_grade = ((1-item.grade)*(0.05)) + item.grade
       let updated_array = array
       updated_array[findIndex(item,array)].grade = new_item_grade
       return updated_array
@@ -175,19 +176,10 @@ export class HomePage {
         let item = chosen_clothing_array[this.convertIndexToSlide(i).getActiveIndex()]
         updated_clothing_data[clothing_types[i]] = updateItemGrade(item, updated_clothing_data[clothing_types[i]])
       }
-      console.log("Updating---------------------")
       console.log(updated_clothing_data)
       this.storage.set("ClothingData", updated_clothing_data)
         .catch((error) => "Failed to store data");
-      //this.clothingDataService.save(updated_clothing_data)
-      console.log("-----------------------------")
     }
-    else {
-      console.log("Displaying existing data")
-      console.log(this.clothing_data)
-      console.log("-----------------------------")
-    }
-    
   }
 
   //Converts indices to the correct slide variable
