@@ -1,4 +1,3 @@
-
 import {Component} from '@angular/core';
 
 import {ElementRef} from '@angular/core';
@@ -38,7 +37,6 @@ export class HomePage {
   color: Array<string> = ["transparent", "transparent", "transparent"];
   picked: Array<boolean> = [false, false, false];
   option: any;
-
   recommendation: any;
 
   @ViewChild('clothing') clothingDiv : ElementRef;

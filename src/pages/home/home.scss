@@ -71,12 +71,10 @@ page-home {
     }
   }
 
-  .top {
+  .top, .bottom{
     max-width: 35%;
   }
-  .bottom{
-    max-width: 35%;
-  }
+
   .accessories{
     max-width: 30%;
   }
@@ -98,7 +96,7 @@ page-home {
 
   .slide
   {
-    width: 200px;
+    max-width: 80%;
     margin: auto;
   }
 }
