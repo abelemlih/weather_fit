@@ -1,7 +1,11 @@
 
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import {Component} from '@angular/core';
 
-import {NavController, Slides} from 'ionic-angular';
+import {ElementRef} from '@angular/core';
+
+import {NavController} from 'ionic-angular';
+
+import {Slides} from 'ionic-angular';
 
 import { WeatherService } from '../../providers/weather-service'
 
