@@ -99,7 +99,8 @@ export class HomePage {
     this.weatherService.loadFutureData()
       .then(data => {
         this.future_weather = data;
-        this.current_time = this.future_weather.list[0].dt.getUTCHours();
+        this.current_time = this.future_weather.list[0].dt;
+        this.current_time.getUTCHours()
         this.threeHour_time = this.future_weather.list[1].dt.getUTCHours();
         this.sixHour_time = this.future_weather.list[2].dt.getUTCHours();
         this.nineHour_time = this.future_weather.list[3].dt.getUTCHours();
