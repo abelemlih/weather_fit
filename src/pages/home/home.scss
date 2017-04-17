@@ -60,10 +60,8 @@ page-home {
     }
   }
   .avatar{
-    //width: 100%;
-    //height: 100%;
     overflow: visible;
-    padding-top: 22%;
+    padding-top: 18%;
     background: {
       repeat: no-repeat;
       position: center;
@@ -98,7 +96,7 @@ page-home {
 
   .slide
   {
-    width: 200px;
+    max-width: 80%;
     margin: auto;
   }
 }
