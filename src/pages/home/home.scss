@@ -3,7 +3,6 @@ page-home {
   .no-scroll .scroll-content{
     overflow: hidden;
   }
-
   .weather {
     margin-bottom: 10%;
 
@@ -31,8 +30,6 @@ page-home {
           height: 100%;
           position: absolute;
           width: 100%;
-
-
         }
 
         .back {/*This is the part where it says it shows the tem in F.*/
@@ -62,35 +59,34 @@ page-home {
       margin: auto;
     }
   }
-
-  .top, .bottom{
-    height: 105px;
-    padding-top: 5px;
+  .avatar{
+    overflow: visible;
+    padding-top: 18%;
+    background: {
+      repeat: no-repeat;
+      position: center;
+      size: contain;
+    }
   }
 
+  .top {
+    max-width: 35%;
+  }
+  .bottom{
+    max-width: 35%;
+  }
   .accessories{
-    height: 70px;
-
+    max-width: 30%;
   }
 
   .main-display{
     background-color: #2A93D5;
   }
 
- /* .main-display{
-
-    background-color: lightsteelblue;
-    //The one with the clouds
-    !*
-    background-image: url(http://media3.giphy.com/media/jtavDv8iqstY4/giphy.gif);
-    *!
-    //The one with the snowflakes
-    //background-image: url(https://68.media.tumblr.com/ae343894fa97678e054a7216ad9756ba/tumblr_ohrxh8Gfju1u7gnm9o1_500.gif);
-  }*/
 
   .slide
   {
-    width: 200px;
+    max-width: 80%;
     margin: auto;
   }
 }

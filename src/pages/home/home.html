@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding id="main-display" class="main-display no-scroll">
+<ion-content  padding id="main-display" class="main-display no-scroll">
   <ion-grid>
     <div class="weather" *ngIf="weather">
       <ion-row center>
@@ -24,18 +24,20 @@
         <ion-row center>
           <div class="temperature_animation-container">
             <div class="temperature_animation">
-              <!--<div class="tem-color{{weather.weather[0].icon}}">-->
                 <div class="front">{{temp_str}}</div>
                 <div class="front back">{{weather.name}}</div>
-              <!--</div>-->
-
+          
           </div>
           </div>
         </ion-row>
       </div>
     </div>
 
-    <div class="clothing" *ngIf="recommendation">
+
+
+    <div class ="avatar" #clothing>
+    <div *ngIf="recommendation">
+
       <ion-row>
         <ion-slides class="slide" #slideOne (ionSlideTap) = "slideTapped(0)">
           <ion-slide *ngFor="let slide of recommendation.top" [ngStyle]="{'background-color':color[0]}">
@@ -50,6 +52,7 @@
             <img class="bottom" [src]="slide._url">
           </ion-slide>
         </ion-slides>
+
       </ion-row>
 
       <ion-row>
@@ -60,8 +63,7 @@
         </ion-slides>
       </ion-row>
     </div>
-
-
+    </div>
   </ion-grid>
 </ion-content>
 

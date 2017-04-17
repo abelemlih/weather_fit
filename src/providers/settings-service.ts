@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {GeolocationService} from "./geolocation-service";
+import {isBoolean} from "ionic-angular/umd/util/util";
 
 /*
   Generated class for the SettingsService provider.
@@ -14,11 +15,17 @@ export class SettingsService {
   private _units: string;
   private _gender: string;
   private _location: Position;
+  private _avatar: boolean;
 
   constructor() {
     this._units = "celsius";
     this._gender = "female";
+    this._avatar = true;
     this.setCurrentLocation();
+  }
+
+  setAvatar(avatar: boolean){
+    this._avatar = avatar;
   }
 
   setUnits(units: string) {
@@ -37,6 +44,10 @@ export class SettingsService {
     let geolocation = new GeolocationService();
     geolocation.load()
       .then(data => this._location = data)
+  }
+
+  get avatar(): boolean{
+    return this._avatar;
   }
 
   get units(): string {

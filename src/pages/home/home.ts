@@ -1,5 +1,5 @@
 
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 import {NavController, Slides} from 'ionic-angular';
 
@@ -14,8 +14,6 @@ import {SettingsService} from "../../providers/settings-service";
 import {ClothingService} from "../../providers/clothing-service";
 
 import {Storage} from "@ionic/storage";
-
-import {ViewChild} from '@angular/core';
 
 @Component({
   selector: 'page-home',
@@ -37,6 +35,8 @@ export class HomePage {
 
   recommendation: any;
 
+  @ViewChild('clothing') clothingDiv : ElementRef;
+
   constructor(public navCtrl: NavController,
               private weatherService: WeatherService,
               public geolocationService: GeolocationService,
@@ -56,6 +56,15 @@ export class HomePage {
     //   .then((data) => console.log(data));
   }
 
+  ngAfterViewInit() {
+    if (this.settingsService.avatar)
+      this.clothingDiv.nativeElement.style.backgroundImage = "url(../../assets/avatar/true.png)";
+    else {
+      this.clothingDiv.nativeElement.style.backgroundImage = "url(../../assets/avatar/false.png)";
+    }
+  }
+
+
   loadCurrentLocation() {
     return this.geolocationService.load()
       .then((pos) => this.weatherService.pos = pos);
@@ -65,7 +74,7 @@ export class HomePage {
     this.clothingService.weatherService = this.weatherService;
     return this.clothingService.recommend()
       .then( (recom) => {
-        this.recommendation = recom;
+          this.recommendation = recom;
         }
       )
       .catch((error) => console.log("Failed to load clothingService\n" + error.toString()))
@@ -89,6 +98,7 @@ export class HomePage {
         this.weather = data;
         this.temp_num = this.weather.main.temp - 273.15;
         this.updateUnits();
+        this.ngAfterViewInit();
       })
       .catch(error => console.log("loadWeatherTest fails"))
   }
@@ -102,8 +112,12 @@ export class HomePage {
     }
   }
 
+
+
   ionViewWillEnter() {
-    if (this.temp_num != undefined) this.updateUnits();
+    if (this.temp_num != undefined)
+      this.updateUnits();
+      this.ngAfterViewInit();
   }
 
   // This will make it repopulate the database every login, which is good for testing purposes.
@@ -130,6 +144,7 @@ export class HomePage {
     {
       this.color[index] = "#EDFAFD";
       this.convertIndexToSlide(index).lockSwipes(true);
+
       console.log(this.convertIndexToSlide(index));
     }
     else
