@@ -57,9 +57,11 @@ export class HomePage {
   }
 
   ngAfterViewInit() {
-    this.clothingDiv.nativeElement.style.backgroundImage =
-      "url(../../assets/avatar/" + this.settingsService.avatar + ".png)";
-
+    if (this.settingsService.avatar)
+      this.clothingDiv.nativeElement.style.backgroundImage = "url(../../assets/avatar/true.png)";
+    else {
+      this.clothingDiv.nativeElement.style.backgroundImage = "url(../../assets/avatar/false.png)";
+    }
   }
 
 
@@ -96,6 +98,7 @@ export class HomePage {
         this.weather = data;
         this.temp_num = this.weather.main.temp - 273.15;
         this.updateUnits();
+        this.ngAfterViewInit();
       })
       .catch(error => console.log("loadWeatherTest fails"))
   }
@@ -109,8 +112,12 @@ export class HomePage {
     }
   }
 
+
+
   ionViewWillEnter() {
-    if (this.temp_num != undefined) this.updateUnits();
+    if (this.temp_num != undefined)
+      this.updateUnits();
+      this.ngAfterViewInit();
   }
 
   // This will make it repopulate the database every login, which is good for testing purposes.
