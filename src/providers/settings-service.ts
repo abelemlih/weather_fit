@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {GeolocationService} from "./geolocation-service";
+import {isBoolean} from "ionic-angular/umd/util/util";
 
 /*
   Generated class for the SettingsService provider.
