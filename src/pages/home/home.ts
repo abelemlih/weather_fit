@@ -15,7 +15,6 @@ import {ClothingService} from "../../providers/clothing-service";
 
 import {Storage} from "@ionic/storage";
 
-import {ViewChild} from '@angular/core';
 
 @Component({
   selector: 'page-home',
@@ -139,6 +138,7 @@ export class HomePage {
     {
       this.color[index] = "#EDFAFD";
       this.convertIndexToSlide(index).lockSwipes(true);
+
       console.log(this.convertIndexToSlide(index));
     }
     else
