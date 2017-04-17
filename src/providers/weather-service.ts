@@ -26,7 +26,6 @@ export class WeatherService {
     }
 
     return new Promise( (resolve) => {
-window.setTimeout( () => {
       let url = "http://api.openweathermap.org/data/2.5/weather?";
       let coords = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
       // let coords = "lat=45&lon=-93";
@@ -42,7 +41,6 @@ window.setTimeout( () => {
           this.data = data;
           resolve(data);
         })
-}, 2000)
     })
   }
 
