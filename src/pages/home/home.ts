@@ -30,10 +30,11 @@ export class HomePage {
   min_temp: number;
   max_temp: number;
   current_time: Date;
-  threeHour_time: Date;
-  sixHour_time: Date;
-  nineHour_time: Date;
-  twelveHour_time: Date;
+
+  // threeHour_time: Date;
+  // sixHour_time: Date;
+  // nineHour_time: Date;
+  // twelveHour_time: Date;
 
   recommendation: any;
 
@@ -50,7 +51,7 @@ export class HomePage {
       .then(() => {
         this.loadWeather();
         this.loadFutureWeather();
-        this.loadTime();
+        // this.loadTime();
         this.loadRecommendation();
       });
     // this.loadRecommendation();
@@ -95,21 +96,20 @@ export class HomePage {
       )
   }
 
-  loadTime(){
-    this.weatherService.loadFutureData()
-      .then(data => {
-        this.future_weather = data;
-        this.current_time = this.future_weather.list[0].dt;
-        this.current_time.getUTCHours()
-        this.threeHour_time = this.future_weather.list[1].dt.getUTCHours();
-        this.sixHour_time = this.future_weather.list[2].dt.getUTCHours();
-        this.nineHour_time = this.future_weather.list[3].dt.getUTCHours();
-        this.twelveHour_time = this.future_weather.list[4].dt.getUTCHours();
-        })
-
-      .catch( (error) => console.log("Failed to load time data\n" + error.toString())
-      )
-  }
+  // loadTime(){
+  //   this.weatherService.load()
+  //     .then(data => {
+  //       this.weather = data;
+  //       this.current_time = this.weather.dt.getMilliseconds();
+  //       this.threeHour_time = this.future_weather.list[1].dt.getUTCHours();
+  //       this.sixHour_time = this.future_weather.list[2].dt.getUTCHours();
+  //       this.nineHour_time = this.future_weather.list[3].dt.getUTCHours();
+  //       this.twelveHour_time = this.future_weather.list[4].dt.getUTCHours();
+  //       })
+  //
+  //     .catch( (error) => console.log("Failed to load time data\n" + error.toString())
+  //     )
+  // }
 
 
   loadWeatherTest() {
@@ -126,7 +126,7 @@ export class HomePage {
   updateUnits() {
     if (this.settingsService.units == "celsius"){
       this.temp_str = this.temp_num.toFixed().toString() + "°C";
-      this.mintemp_str = this.min_temp.toFixed().toString() + "°C";
+      this.mintemp_str = this.min_temp.toFixed().toString();
       this.maxtemp_str = this.max_temp.toFixed().toString() + "°C";
     }
 
@@ -135,7 +135,7 @@ export class HomePage {
         let fah_mintemp = (this.min_temp * 1.8) +32;
         let fah_maxtemp = (this.max_temp * 1.8) +32;
         this.temp_str = fah_temp.toFixed().toString() + "°F";
-        this.mintemp_str = fah_mintemp.toFixed().toString() + "°F";
+        this.mintemp_str = fah_mintemp.toFixed().toString();
         this.maxtemp_str = fah_maxtemp.toFixed().toString() + "°F";
 
     }

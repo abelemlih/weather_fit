@@ -13,55 +13,54 @@
   <ion-grid>
     <div class="weather" *ngIf="weather">
 
-        <ion-row *ngIf="future_weather">
+        <ion-row>
           <ion-slides>
             <ion-slide>
-              <ion-row>
-                <div> Forecast is {{current_time}}</div>
-              </ion-row>
+              <!--<ion-row>-->
+                <!--<div> Forecast is {{current_time}}</div>-->
+              <!--</ion-row>-->
               <ion-row>
                 <ion-col width-50>
-                  <img class="icon" src="../../assets/weather%20animated/{{future_weather.list[0].weather.icon}}.svg">
+                  <img class="weathericon" src="../../assets/weather%20animated/{{weather.weather[0].icon}}.svg">
                 </ion-col>
                 <ion-col width-50>
                   <div class="temperature" *ngIf="future_weather">{{temp_str}}</div>
-
                 </ion-col>
               </ion-row>
             </ion-slide>
 
-            <ion-slide>
-              <ion-row>
-                <ion-col width-50>
-                  <img class="icon" src="../../assets/weather%20animated/{{future_weather.list[1].weather.icon}}.svg">
-                </ion-col>
-                <ion-col width-50>
-                  <div class="temperature" *ngIf="future_weather">{{future_weather.list[1].main.temp}}</div>
-                </ion-col>
-              </ion-row>
-            </ion-slide>
+            <!--<ion-slide>-->
+              <!--<ion-row>-->
+                <!--<ion-col width-50>-->
+                  <!--<img class="icon" src="../../assets/weather%20animated/{{future_weather.list[1].weather.icon}}.svg">-->
+                <!--</ion-col>-->
+                <!--<ion-col width-50>-->
+                  <!--<div class="temperature" *ngIf="future_weather">{{future_weather.list[1].main.temp}}</div>-->
+                <!--</ion-col>-->
+              <!--</ion-row>-->
+            <!--</ion-slide>-->
 
-            <ion-slide>
-              <ion-row>
-                <ion-col width-50>
-                  <img class="icon" src="../../assets/weather%20animated/{{future_weather.list[2].weather.icon}}.svg">
-                </ion-col>
-                <ion-col width-50>
-                  <div class="temperature" *ngIf="future_weather">{{future_weather.list[2].main.temp}}</div>
-                </ion-col>
-              </ion-row>
-            </ion-slide>
+            <!--<ion-slide>-->
+              <!--<ion-row>-->
+                <!--<ion-col width-50>-->
+                  <!--<img class="icon" src="../../assets/weather%20animated/{{future_weather.list[2].weather.icon}}.svg">-->
+                <!--</ion-col>-->
+                <!--<ion-col width-50>-->
+                  <!--<div class="temperature" *ngIf="future_weather">{{future_weather.list[2].main.temp}}</div>-->
+                <!--</ion-col>-->
+              <!--</ion-row>-->
+            <!--</ion-slide>-->
 
-            <ion-slide>
-              <ion-row>
-                <ion-col width-50>
-                  <img class="icon" src="../../assets/weather%20animated/{{future_weather.list[3].weather.icon}}.svg">
-                </ion-col>
-                <ion-col width-50>
-                  <div class="temperature" *ngIf="future_weather">{{future_weather.list[3].main.temp}}</div>
-                </ion-col>
-              </ion-row>
-            </ion-slide>
+            <!--<ion-slide>-->
+              <!--<ion-row>-->
+                <!--<ion-col width-50>-->
+                  <!--<img class="icon" src="../../assets/weather%20animated/{{future_weather.list[3].weather.icon}}.svg">-->
+                <!--</ion-col>-->
+                <!--<ion-col width-50>-->
+                  <!--<div class="temperature" *ngIf="future_weather">{{future_weather.list[3].main.temp}}</div>-->
+                <!--</ion-col>-->
+              <!--</ion-row>-->
+            <!--</ion-slide>-->
 
           </ion-slides>
         </ion-row>
@@ -88,7 +87,7 @@
             </ion-col>
 
             <ion-col width-50>
-              <div class="temRange">{{mintemp_str}} ~  {{maxtemp_str}}</div>
+              <div class="temRange">{{mintemp_str}} ~ {{maxtemp_str}}</div>
             </ion-col>
 
           </ion-row>
@@ -96,6 +95,9 @@
       </ion-row>
     </div>
 
+
+
+    <ion-row>
     <div class ="avatar" #clothing>
       <div *ngIf="recommendation">
         <ion-row>
@@ -123,6 +125,9 @@
         </ion-row>
       </div>
     </div>
+
+
+    </ion-row>
   </ion-grid>
 </ion-content>
 
