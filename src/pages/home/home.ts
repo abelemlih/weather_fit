@@ -30,14 +30,12 @@ export class HomePage {
   min_temp: number;
   max_temp: number;
   current_time: Date;
-
-  // threeHour_time: Date;
-  // sixHour_time: Date;
-  // nineHour_time: Date;
-  // twelveHour_time: Date;
+  threeHour_time: Date;
+  sixHour_time: Date;
+  nineHour_time: Date;
+  twelveHour_time: Date;
 
   recommendation: any;
-
   future_weather: any;
 
   constructor(public navCtrl: NavController,
@@ -51,7 +49,7 @@ export class HomePage {
       .then(() => {
         this.loadWeather();
         this.loadFutureWeather();
-        // this.loadTime();
+        this.loadTime();
         this.loadRecommendation();
       });
     // this.loadRecommendation();
@@ -96,20 +94,23 @@ export class HomePage {
       )
   }
 
-  // loadTime(){
-  //   this.weatherService.load()
-  //     .then(data => {
-  //       this.weather = data;
-  //       this.current_time = this.weather.dt.getMilliseconds();
-  //       this.threeHour_time = this.future_weather.list[1].dt.getUTCHours();
-  //       this.sixHour_time = this.future_weather.list[2].dt.getUTCHours();
-  //       this.nineHour_time = this.future_weather.list[3].dt.getUTCHours();
-  //       this.twelveHour_time = this.future_weather.list[4].dt.getUTCHours();
-  //       })
-  //
-  //     .catch( (error) => console.log("Failed to load time data\n" + error.toString())
-  //     )
-  // }
+  loadTime(){
+    this.weatherService.loadFutureData()
+      .then(data => {
+        this.future_weather = data;
+
+        this.current_time =  new Date(this.future_weather.list[0].dt);
+        // this.current_time.setUTCSeconds(utcSeconds);
+
+        // this.threeHour_time = this.future_weather.list[1].dt;
+        // this.sixHour_time = this.future_weather.list[2].dt;
+        // this.nineHour_time = this.future_weather.list[3].dt;
+        // this.twelveHour_time = this.future_weather.list[4].dt;
+        })
+
+      .catch( (error) => console.log("Failed to load time data\n" + error.toString())
+      )
+  }
 
 
   loadWeatherTest() {
