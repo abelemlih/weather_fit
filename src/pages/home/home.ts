@@ -38,9 +38,8 @@ export class HomePage {
   color: Array<string> = ["transparent", "transparent", "transparent"];
   picked: Array<boolean> = [false, false, false];
   option: any;
-
-  recommendation: any;
-  clothing_data: any;
+  _recommendation: any;
+  _clothing_data: any;
   
   constructor(public navCtrl: NavController,
               private weatherService: WeatherService,
@@ -62,7 +61,26 @@ export class HomePage {
     // clothingData.getData()
     //   .then((data) => console.log(data));
   }
-
+  
+  get recommendation() {
+    return this._recommendation
+  }
+  
+  set recommendation(recom: any) {
+    this._recommendation = recom
+  }
+  
+  
+  get clothing_data() {
+    return this._clothing_data
+  }
+  
+  set clothing_data(data: any) {
+    this._clothing_data = data
+  }
+  
+  //-----------------------------------------------------
+  
   loadCurrentLocation() {
     return this.geolocationService.load()
       .then((pos) => this.weatherService.pos = pos);
@@ -71,7 +89,7 @@ export class HomePage {
   loadClothing() {
     return this.clothingDataService.getData()
     .then( (data) => {
-      this.clothing_data = data;
+      this._clothing_data = data;
       }
     )
     .catch((error) => console.log("Failed to load clothingDataService\n" + error.toString()))
@@ -97,10 +115,6 @@ export class HomePage {
       )
   }
 
-
-  update_clothing_data(data: any) {
-    this.clothing_data = data;
-  }
   
   
   loadWeatherTest() {
@@ -160,38 +174,62 @@ export class HomePage {
   allTapped() {
     function findIndex (element: ClothingItem, array: Array<ClothingItem>): any {
       for (let i in array) { 
-        if (array[i].url === element.url) { 
+        if (array[i].name === element.name) { 
           return i 
         } 
       }
-      console.log("cannot find the item #{element}")
-      return -1
+      return `Error: Cannot find element ${element} within ${array}`
     }
     
-    function updateItemGrade(item: ClothingItem, array: Array<ClothingItem>) {
-      //TODO: fix grade of undefined error
-      let new_item_grade = ((1-item.grade)*(0.05)) + item.grade
-      console.log(`Previous grade: ${item.grade} ; New grade: ${new_item_grade}`)
-      let updated_array = array
-      updated_array[findIndex(item,array)].grade = new_item_grade
-      return updated_array
+    function newItemGrade(item: ClothingItem) {
+      return ((1-item.grade)*(0.05)) + item.grade
     }
     
     
     if (this.picked.every(Boolean)) {
-      //TODO: increase the user grade of all items picked by (1-grade)*10%
-      let clothing_types = ["top","bottom","accessories"]
+      //Updating top
       let updated_clothing_data = this.clothing_data
+      let clothing_types = ["top","bottom","accessories"]
       for (let i in clothing_types) {
         let chosen_clothing_array = this.recommendation[clothing_types[i]]
-        let item = chosen_clothing_array[this.convertIndexToSlide(i).getActiveIndex()]
-        updated_clothing_data[clothing_types[i]] = updateItemGrade(item, updated_clothing_data[clothing_types[i]])
-      }    
-      this.clothing_data = updated_clothing_data
+        let chosen_item
+        
+        Promise.resolve('Success')
+        .then((res) => {
+          let item = chosen_clothing_array[this.convertIndexToSlide(i).getActiveIndex()]
+          while(typeof item === "undefined") {
+            item = chosen_clothing_array[this.convertIndexToSlide(i).getActiveIndex()]
+          }
+          return item
+        })
+        .catch((error) => console.log("Failed to load current chosen item\n" + error.toString()))
+        
+        .then((_chosen_item) => {
+          chosen_item = _chosen_item
+          chosen_item.grade = newItemGrade(chosen_item)
+          return 1
+        })
+        .catch((error) => console.log("Failed to update chosen item grade\n" + error.toString()))
+        
+        .then((res) => {
+          return findIndex(chosen_item, updated_clothing_data["top"])
+        })
+        .catch((error) => console.log("Failed to find index of chosen item\n" + error.toString()))
+        
+        .then((_chosen_item_index) => {
+          console.log(`Type: ${clothing_types[i]} ; Item: ${chosen_item.name} ; new grade: ${chosen_item.grade}`)
+          updated_clothing_data[clothing_types[i]] = updated_clothing_data[clothing_types[i]].splice(_chosen_item_index,1).concat([chosen_item])
+          this.clothing_data = updated_clothing_data
+          return 'Success';
+        })
+        .catch((error) => console.log("Failed to update clothing data\n" + error.toString()))
+      }
       this.storage.set("ClothingData", updated_clothing_data)
-        .catch((error) => "Failed to store data");
+        .catch((error) => "Failed to store data");  
     }
   }
+  
+  
 
   //Converts indices to the correct slide variable
   convertIndexToSlide(index)
