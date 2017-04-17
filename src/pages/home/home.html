@@ -26,8 +26,7 @@
             <div class="temperature_animation">
                 <div class="front">{{temp_str}}</div>
                 <div class="front back">{{weather.name}}</div>
-              <!--</div>-->
-
+          
           </div>
           </div>
         </ion-row>
@@ -38,12 +37,6 @@
 
     <div class ="avatar" #clothing>
     <div *ngIf="recommendation">
-      <!--<div class="avatar">
-        -<ion-row center>
-          <img [src]="avatar_url">
-        </ion-row>
-        <img [src]="avatar_url">
-      </div>-->
 
       <ion-row>
         <ion-slides class="slide" #slideOne (ionSlideTap) = "slideTapped(0)">
