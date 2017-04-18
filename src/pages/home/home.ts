@@ -42,14 +42,14 @@ export class HomePage {
   temp_num: number;
   temp_str: string;
 
-  color: Array<string> = ["transparent", "transparent", "transparent"];
-  picked: Array<boolean> = [false, false, false];
-  option: any;
-
   mintemp_str: string;
   maxtemp_str: string;
+
+  temperature_range: string;
+
   min_temp: number;
   max_temp: number;
+
   current_time: Date;
   threeHour_time: Date;
   sixHour_time: Date;
@@ -59,6 +59,9 @@ export class HomePage {
   future_weather: any;
 
 
+  color: Array<string> = ["transparent", "transparent", "transparent"];
+  picked: Array<boolean> = [false, false, false];
+  option: any;
 
   _recommendation: any;
   _clothing_data: any;
@@ -103,7 +106,6 @@ export class HomePage {
     this._clothing_data = data
   }
 
-
   updateAvatar() {
     if (this.settingsService.avatar)
       this.clothingDiv.nativeElement.style.backgroundImage = "url(../../assets/avatar/true.png)";
@@ -125,6 +127,7 @@ export class HomePage {
     )
     .catch((error) => console.log("Failed to load clothingDataService\n" + error.toString()))
   }
+
   loadRecommendation() {
     this.clothingService.weatherService = this.weatherService;
     return this.clothingService.recommend()
@@ -155,7 +158,6 @@ export class HomePage {
       .catch( (error) => console.log("Failed to load weather data\n" + error.toString())
       )
   }
-
 
   loadTime(){
     this.weatherService.loadFutureData()
@@ -190,8 +192,7 @@ export class HomePage {
   updateUnits() {
     if (this.settingsService.units == "celsius"){
       this.temp_str = this.temp_num.toFixed().toString() + "°C";
-      this.mintemp_str = this.min_temp.toFixed().toString();
-      this.maxtemp_str = this.max_temp.toFixed().toString() + "°C";
+      this.temperature_range = this.min_temp.toFixed().toString() + " ~ " + this.max_temp.toFixed().toString() + "°C";
     }
 
     else {
@@ -199,9 +200,7 @@ export class HomePage {
         let fah_mintemp = (this.min_temp * 1.8) +32;
         let fah_maxtemp = (this.max_temp * 1.8) +32;
         this.temp_str = fah_temp.toFixed().toString() + "°F";
-        this.mintemp_str = fah_mintemp.toFixed().toString();
-        this.maxtemp_str = fah_maxtemp.toFixed().toString() + "°F";
-
+        this.temperature_range = fah_mintemp.toFixed().toString() + " ~ " + fah_maxtemp.toFixed().toString() + "°F";
     }
   }
 
@@ -210,10 +209,6 @@ export class HomePage {
       this.updateUnits();
       this.updateAvatar();
     }
-
-    if (this.temp_num != undefined) this.updateUnits();
-    if (this.min_temp != undefined) this.updateUnits();
-    if (this.max_temp != undefined) this.updateUnits();
   }
 
   ionViewDidLoad() {
