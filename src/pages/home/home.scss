@@ -3,7 +3,7 @@ page-home {
   .no-scroll .scroll-content{
     overflow: hidden;
   }
-  .avatar{
+  .avatar {
     overflow: visible;
     padding-top: 18%;
     background: {
@@ -11,6 +11,7 @@ page-home {
       position: center;
       size: contain;
     }
+  }
 
   .weathericon{
     min-width: 30%;
@@ -36,7 +37,8 @@ page-home {
     letter-spacing: 0.5px;
     background-color: transparent;
     color: white;
-    font-size: calc(0.1em + 3.3vmin);}
+    font-size: calc(0.1em + 3.3vmin);
+  }
 
   .location {
     letter-spacing: 2px;
@@ -59,7 +61,7 @@ page-home {
       background-color: transparent;
       }
     }
-  }
+
 
 
 
