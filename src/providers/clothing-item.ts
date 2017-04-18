@@ -9,8 +9,7 @@ export class ClothingItem {
   private _gender: string;
 
 
-  constructor(name: string, url: string, max_temp: number, min_temp: number,
-              rain: boolean, snow: boolean, grade: number, gender: string) {
+  constructor(name: string, url: string, max_temp: number, min_temp: number, rain: boolean, snow:boolean, grade: number, gender: string) {
     this._name = name;
     this._url = url;
     this._max_temp = max_temp;
@@ -21,10 +20,6 @@ export class ClothingItem {
     this._gender = gender;
   }
 
-
-  get gender(): string {
-    return this._gender;
-  }
 
   get name(): string {
     return this._name;
@@ -45,17 +40,37 @@ export class ClothingItem {
   get rain(): boolean {
     return this._rain;
   }
-
-  get grade(): number {
-    return this._grade;
-  }
-
+  
   get snow(): boolean {
     return this._snow;
   }
 
 
+  get grade(): number {
+    return this._grade;
+  }
+  
+  get gender(): string {
+    return this._gender;
+
+  }
+
   set grade(value: number) {
     this._grade = value;
   }
+  
+  suits_weather(weather_data: any) {
+    return (weather_data.max_temp < this.max_temp && weather_data.min_temp > this.min_temp)
+  }
+  
+  suits_precipitation(weather_data: any) {
+    if ((weather_data.rain==true && this.rain==false) || (weather_data.snow==true && this.snow==false)) { return false }
+    return true
+  }
+  
+  suits_gender(user_gender: string) {
+    if ((user_gender=="male" && this.gender=="female") || (user_gender=="female" && this.gender=="male")) { return false }
+    return true
+  }
+  
 }
