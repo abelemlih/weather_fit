@@ -99,7 +99,7 @@ export class HomePage {
       .then(data => {
         this.future_weather = data;
 
-        this.current_time =  new Date(this.future_weather.list[0].dt);
+        this.current_time =  new Date(this.future_weather.list[0].dt_txt);
         // this.current_time.setUTCSeconds(utcSeconds);
         // this.threeHour_time = this.future_weather.list[1].dt;
         // this.sixHour_time = this.future_weather.list[2].dt;
