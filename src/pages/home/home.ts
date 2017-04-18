@@ -197,8 +197,11 @@ export class HomePage {
         Promise.resolve('Success')
         .then((res) => {
           let item = chosen_clothing_array[this.convertIndexToSlide(i).getActiveIndex()]
-          while(typeof item === "undefined") {
+          let repeat = 0
+          while(typeof item === "undefined" && repeat <= 10) {
             item = chosen_clothing_array[this.convertIndexToSlide(i).getActiveIndex()]
+            repeat = repeat + 1 
+            console.log(repeat)
           }
           return item
         })
