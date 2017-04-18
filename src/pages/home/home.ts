@@ -76,7 +76,7 @@ export class HomePage {
     //   .then((data) => console.log(data));
   }
 
-  ngAfterViewInit() {
+  updateAvatar() {
     if (this.settingsService.avatar)
       this.clothingDiv.nativeElement.style.backgroundImage = "url(../../assets/avatar/true.png)";
     else {
@@ -145,7 +145,7 @@ export class HomePage {
         this.weather = data;
         this.temp_num = this.weather.main.temp - 273.15;
         this.updateUnits();
-        this.ngAfterViewInit();
+        this.updateAvatar();
       })
       .catch(error => console.log("loadWeatherTest fails"))
   }
@@ -169,9 +169,10 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
-    if (this.temp_num != undefined)
+    if (this.temp_num != undefined) {
       this.updateUnits();
-      this.ngAfterViewInit();
+      this.updateAvatar();
+    }
 
     if (this.temp_num != undefined) this.updateUnits();
     if (this.min_temp != undefined) this.updateUnits();

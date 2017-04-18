@@ -19,7 +19,7 @@ export class SettingsService {
   constructor() {
     this._units = "celsius";
     this._gender = "female";
-    this._avatar = true;
+    this._avatar = false;
     this.setCurrentLocation();
   }
 
