@@ -27,8 +27,8 @@ export class WeatherService {
 
     return new Promise( (resolve) => {
       let url = "http://api.openweathermap.org/data/2.5/weather?";
-      let coords = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
-      // let coords = "lat=45&lon=-93";
+      // let coords = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
+      let coords = "lat=45&lon=-93";
       const key = "6a24316a673761513e82c0ee0315bdea";
       let appID = "&APPID=" + key;
 
