@@ -26,20 +26,21 @@ export class WeatherService {
     }
 
     return new Promise( (resolve) => {
-      window.setTimeout( () => {
-        let url = "http://api.openweathermap.org/data/2.5/weather?";
-        let coords = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
-        // let coords = "lat=45&lon=-93";
-        const key = "6a24316a673761513e82c0ee0315bdea";
-        let appID = "&APPID=" + key;
-        this.http
+
+      let url = "http://api.openweathermap.org/data/2.5/weather?";
+      let coords = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
+      // let coords = "lat=45&lon=-93";
+      const key = "6a24316a673761513e82c0ee0315bdea";
+      let appID = "&APPID=" + key;
+      // console.log(url + coords + appID);
+      this.http
         .get(url + coords + appID)
         .map(response => response.json())
         .subscribe(data => {
           this.data = data;
-          resolve(data);})
-        }, 2000)
-      })
+          resolve(data);
+        })
+    })
   }
 
 

@@ -1,7 +1,10 @@
+import {Component} from '@angular/core';
 
-import { Component } from '@angular/core';
+import {ElementRef} from '@angular/core';
 
-import {NavController, Slides} from 'ionic-angular';
+import {NavController} from 'ionic-angular';
+
+import {Slides} from 'ionic-angular';
 
 import { WeatherService } from '../../providers/weather-service'
 
@@ -21,6 +24,7 @@ import {Storage} from "@ionic/storage";
 
 import {ViewChild} from '@angular/core';
 
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -31,6 +35,8 @@ export class HomePage {
   @ViewChild('slideOne') slideOne: Slides;
   @ViewChild('slideTwo') slideTwo: Slides;
   @ViewChild('slideThree') slideThree: Slides;
+  @ViewChild('clothing') clothingDiv : ElementRef;
+
 
   weather: any;
   temp_num: number;
@@ -78,9 +84,16 @@ export class HomePage {
   set clothing_data(data: any) {
     this._clothing_data = data
   }
-  
-  //-----------------------------------------------------
-  
+
+
+  ngAfterViewInit() {
+    if (this.settingsService.avatar)
+      this.clothingDiv.nativeElement.style.backgroundImage = "url(../../assets/avatar/true.png)";
+    else {
+      this.clothingDiv.nativeElement.style.backgroundImage = "url(../../assets/avatar/false.png)";
+    }
+  }
+
   loadCurrentLocation() {
     return this.geolocationService.load()
       .then((pos) => this.weatherService.pos = pos);
@@ -98,7 +111,7 @@ export class HomePage {
     this.clothingService.weatherService = this.weatherService;
     return this.clothingService.recommend()
       .then( (recom) => {
-        this.recommendation = recom;
+          this.recommendation = recom;
         }
       )
       .catch((error) => console.log("Failed to load clothingService\n" + error.toString()))
@@ -124,6 +137,7 @@ export class HomePage {
         this.weather = data;
         this.temp_num = this.weather.main.temp - 273.15;
         this.updateUnits();
+        this.ngAfterViewInit();
       })
       .catch(error => console.log("loadWeatherTest fails"))
   }
@@ -138,16 +152,24 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
-    if (this.temp_num != undefined) this.updateUnits();
+    if (this.temp_num != undefined)
+      this.updateUnits();
+      this.ngAfterViewInit();
   }
 
-  // This will make it repopulate the database every login, which is good for testing purposes.
-  // Correctly it should only be run on the first log-in.
   ionViewDidLoad() {
-
     // This will make it repopulate the database every login, which is good for testing purposes.
     // Correctly it should be inside the then() method so that it only runs once.
-    this.clothingService.initializeDB();
+    
+    // this.clothingService.initializeDB();
+    this.storage.get('first-login')
+      .then(done => {
+        if (!done) {
+          this.storage.set('first-login', true)
+            .catch((error) => console.log("Can not set first login\n" + error.toString()));
+          this.clothingService.initializeDB();
+        }
+      })
   }
 
   pushSettingsPage() {
