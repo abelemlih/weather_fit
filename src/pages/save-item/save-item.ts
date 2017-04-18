@@ -50,7 +50,6 @@ export class SaveItemPage {
       .5,
       gend,
     );
-
     this.storage.getData()
       .then( items => {
         items[this.clothingItemForm.value.piece].push(item);

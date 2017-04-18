@@ -39,7 +39,7 @@
       "rain": true,
       "snow": true,
       "grade": 0.5,
-      "gender": "neutral"
+      "gender": "male"
     },
     {
       "name": "hoodie",
