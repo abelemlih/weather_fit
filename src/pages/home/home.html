@@ -1,8 +1,5 @@
 <ion-header>
   <ion-navbar>
-    <!--<button ion-button icon-only menuToggle>-->
-      <!--<ion-icon name="menu"></ion-icon>-->
-    <!--</button>-->
     <ion-title>Weather Fit</ion-title>
     <ion-buttons end>
       <button ion-button icon-only (click)="pushSettingsPage()">
@@ -12,26 +9,90 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content  padding id="main-display" class="main-display no-scroll">
   <ion-grid>
     <div class="weather" *ngIf="weather">
-      <ion-row center>
-        <img class="icon" src="../../assets/weather%20animated/{{weather.weather[0].icon}}.svg">
-      </ion-row>
 
-      <div class="temperature">
-        <ion-row center>
-          <div class="temperature_animation-container">
-            <div class="temperature_animation">
-                <div class="front">{{temp_str}}</div>
-                <div class="front back">{{weather.name}}</div>
+        <ion-row>
+          <ion-slides>
+            <ion-slide>
+              <ion-row>
+                <div> Forecast is {{current_time}}</div>
+              </ion-row>
+              <ion-row>
+                <ion-col width-50>
+                  <img class="weathericon" src="../../assets/weather%20animated/{{weather.weather[0].icon}}.svg">
+                </ion-col>
+                <ion-col width-50>
+                  <div class="temperature" *ngIf="future_weather">{{temp_str}}</div>
+                </ion-col>
+              </ion-row>
+            </ion-slide>
 
-          </div>
-          </div>
+            <!--<ion-slide>-->
+              <!--<ion-row>-->
+                <!--<ion-col width-50>-->
+                  <!--<img class="icon" src="../../assets/weather%20animated/{{future_weather.list[1].weather.icon}}.svg">-->
+                <!--</ion-col>-->
+                <!--<ion-col width-50>-->
+                  <!--<div class="temperature" *ngIf="future_weather">{{future_weather.list[1].main.temp}}</div>-->
+                <!--</ion-col>-->
+              <!--</ion-row>-->
+            <!--</ion-slide>-->
+
+            <!--<ion-slide>-->
+              <!--<ion-row>-->
+                <!--<ion-col width-50>-->
+                  <!--<img class="icon" src="../../assets/weather%20animated/{{future_weather.list[2].weather.icon}}.svg">-->
+                <!--</ion-col>-->
+                <!--<ion-col width-50>-->
+                  <!--<div class="temperature" *ngIf="future_weather">{{future_weather.list[2].main.temp}}</div>-->
+                <!--</ion-col>-->
+              <!--</ion-row>-->
+            <!--</ion-slide>-->
+
+            <!--<ion-slide>-->
+              <!--<ion-row>-->
+                <!--<ion-col width-50>-->
+                  <!--<img class="icon" src="../../assets/weather%20animated/{{future_weather.list[3].weather.icon}}.svg">-->
+                <!--</ion-col>-->
+                <!--<ion-col width-50>-->
+                  <!--<div class="temperature" *ngIf="future_weather">{{future_weather.list[3].main.temp}}</div>-->
+                <!--</ion-col>-->
+              <!--</ion-row>-->
+            <!--</ion-slide>-->
+
+          </ion-slides>
         </ion-row>
-      </div>
-    </div>
+
+      <ion-row>
+        <ion-col width-50>
+          <div class="location">{{weather.name}}</div>
+        </ion-col>
+
+        <ion-col width-50>
+          <ion-row>
+
+            <ion-col width-25>
+              <svg class="windicon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 91 91" enable-background="new 0 0 91 91" xml:space="preserve">
+                <g>
+                  <path d="M73.2 18.2c-3.4 0-6.7 1.4-9 3.9 -1.5 1.6-1.4 4.1 0.2 5.7 1.6 1.5 4.1 1.4 5.7-0.2 0.8-0.9 1.9-1.4 3.1-1.4 2.4 0 4.3 1.9 4.3 4.3 0 2.4-1.9 4.3-4.3 4.3H9.5c-2.2 0-4 1.8-4 4s1.8 4 4 4h63.7c6.8 0 12.3-5.5 12.3-12.3C85.5 23.7 80 18.2 73.2 18.2z"/>
+                  <path d="M55 48.2H9.5c-2.2 0-4 1.8-4 4s1.8 4 4 4H55c2.4 0 4.3 1.9 4.3 4.3 0 2.4-1.9 4.3-4.3 4.3 -1.2 0-2.3-0.5-3.1-1.4 -1.5-1.6-4-1.7-5.7-0.2 -1.6 1.5-1.7 4-0.2 5.7 2.3 2.5 5.6 3.9 9 3.9 6.8 0 12.3-5.5 12.3-12.3C67.2 53.7 61.7 48.2 55 48.2z"/>
+                </g>
+              </svg>
+            </ion-col>
+
+            <ion-col width-25>
+              <div class="windspeed">{{weather.wind.speed}}</div>
+            </ion-col>
+
+            <ion-col width-50>
+              <div class="temRange">{{mintemp_str}} ~ {{maxtemp_str}}</div>
+            </ion-col>
+
+          </ion-row>
+        </ion-col>
+      </ion-row>
 
     <div class ="avatar" #clothing>
     <div *ngIf="recommendation">
@@ -62,6 +123,10 @@
       </ion-row>
     </div>
     </div>
+
+    </div>
+    </ion-row>
+
   </ion-grid>
 </ion-content>
 
