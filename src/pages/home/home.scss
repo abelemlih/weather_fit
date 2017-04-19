@@ -1,86 +1,82 @@
 page-home {
 
-  .no-scroll .scroll-content{
+  .no-scroll .scroll-content {
     overflow: hidden;
   }
+
+  .weatherInformation {
+
+    .weather_icon {
+      min: {
+        width: 30%;
+        height: 20vh;
+      }
+      margin: auto;
+    }
+
+    .current_temperature {
+      position: absolute;
+      top: 50%;
+      transform: translate(50%, -50%);
+      letter-spacing: 3px;
+      color: white;
+      font: {
+        size: calc(0.4em + 7vmin);
+      }
+    }
+
+    .location {
+      letter-spacing: 2px;
+      text-align: center;
+      padding-top: 3%;
+    }
+
+    .wind_icon {
+      width: calc(0.5px + 5vmin);
+      height: calc(0.5px + 5vmin);
+      fill: white;
+    }
+
+    .min_max_temperature {
+      letter-spacing: 0.05px;
+    }
+
+    .wind_speed {
+      letter-spacing: 0.5px;
+    }
+  }
+
+  #font_features {
+    color: white;
+    font-size: calc(0.1em + 3.3vmin);
+  }
+
   .avatar {
     overflow: visible;
     padding-top: 18%;
     background: {
       repeat: no-repeat;
       position: center;
-      size: contain;
-    }
-  }
+      size: contain;}
+  }}
 
-  .weathericon{
-    min-width: 30%;
-    min-height: 20vh;
-    margin: auto;
-  }
-  .windicon{
-    width: calc(0.5px + 5vmin);
-    height: calc(0.5px + 5vmin);
-    background-color: transparent;
-    fill: white;
-
-  }
-  .temRange{
-    letter-spacing: 0.05px;
-    background-color: transparent;
-    color: white;
-    font-size: calc(0.1em + 3.3vmin);
-    //margin-left: 10%;
-  }
-
-  .windspeed{
-    letter-spacing: 0.5px;
-    background-color: transparent;
-    color: white;
-    font-size: calc(0.1em + 3.3vmin);
-  }
-
-  .location {
-    letter-spacing: 2px;
-    background-color: transparent;
-    color: white;
-    font-size: calc(0.1em + 3.3vmin);
-    padding-top:3%;
-
-  }
-
-  .weather {
-    .temperature{
-      position: absolute;
-      top:50%;
-      transform: translate(50%, -50%);
-      letter-spacing: 3px;
-      color: white;
-      font-size: calc(0.4em + 7vmin);
-      margin:auto;
-      background-color: transparent;
-      }
-    }
-
-
-
-
-  .top, .bottom{
+  .top, .bottom {
     max-width: 35%;
   }
 
-  .accessories{
+  .accessories {
     max-width: 30%;
   }
 
-  .main-display{
+  .main-display {
     background-color: #2A93D5;
   }
 
-
-  .slide
-  {
+  .slide {
     max-width: 80%;
     margin: auto;
   }
-}
+
+
+
+
