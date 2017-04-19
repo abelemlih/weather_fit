@@ -44,38 +44,46 @@ page-home {
     .wind_speed {
       letter-spacing: 0.5px;
     }
-  }
+
+    .avatar {
+       overflow: visible;
+       padding-top: 33%;
+       background: {
+         repeat: no-repeat;
+         position: center;
+         size: contain;}
+     }}
+
+   .top {
+     //background-color: green;
+     max-width: 35%;
+   }
+
+   .bottom {
+     //background-color: green;
+     max-width: 35%;
+   }
+
+   .accessories {
+    max-width: 30%;
+     //background-color: #e93a3a;
+     padding-top: 5%;
+   }
+
+   .main-display {
+    background-color: #2A93D5;
+   }
+
+   .slide {
+     max-width: 80%;
+     margin:-3% auto;
+  }}
 
   #font_features {
     color: white;
     font-size: calc(0.1em + 3.3vmin);
   }
 
-  .avatar {
-    overflow: visible;
-    padding-top: 18%;
-    background: {
-      repeat: no-repeat;
-      position: center;
-      size: contain;}
-  }}
-
-  .top, .bottom {
-    max-width: 35%;
-  }
-
-  .accessories {
-    max-width: 30%;
-  }
-
-  .main-display {
-    background-color: #2A93D5;
-  }
-
-  .slide {
-    max-width: 80%;
-    margin: auto;
-  }
 
 
 
