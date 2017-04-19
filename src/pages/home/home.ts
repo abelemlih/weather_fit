@@ -216,15 +216,15 @@ export class HomePage {
     // Correctly it should be inside the then() method so that it only runs once.
 
 
-    // this.clothingService.initializeDB();
-    this.storage.get('first-login')
-      .then(done => {
-        if (!done) {
-          this.storage.set('first-login', true)
-            .catch((error) => console.log("Can not set first login\n" + error.toString()));
-          this.clothingService.initializeDB();
-        }
-      })
+    this.clothingService.initializeDB();
+    // this.storage.get('first-login')
+    //   .then(done => {
+    //     if (!done) {
+    //       this.storage.set('first-login', true)
+    //         .catch((error) => console.log("Can not set first login\n" + error.toString()));
+    //       this.clothingService.initializeDB();
+    //     }
+    //   })
   }
 
   pushSettingsPage() {
