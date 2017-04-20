@@ -93,38 +93,35 @@
         </ion-col>
       </ion-row>
 
+      <div class ="avatar" #clothing *ngIf="recommendation">
+        <!--<div [[ngStyle]="{'background-image': 'url(../../assets/avatar/true.png)'}"]>-->
+        <ion-row>
+          <ion-slides class="slide" #slideOne (ionSlideTap) = "slideTapped(0); allTapped();">
+            <ion-slide *ngFor="let slide of recommendation.top" [ngStyle]="{'background-color':color[0]}">
+              <img class="top" [src]="slide._url">
+            </ion-slide>
+          </ion-slides>
+        </ion-row>
 
-    <div class ="avatar" #clothing>
-    <div *ngIf="recommendation">
+        <ion-row>
+          <ion-slides class="slide" #slideTwo (ionSlideTap) = "slideTapped(1); allTapped();">
+            <ion-slide *ngFor="let slide of recommendation.bottom" [ngStyle]="{'background-color':color[1]}">
+              <img class="bottom" [src]="slide._url">
+            </ion-slide>
+          </ion-slides>
 
-      <ion-row>
-        <ion-slides class="slide" #slideOne (ionSlideTap) = "slideTapped(0); allTapped();">
-          <ion-slide *ngFor="let slide of recommendation.top" [ngStyle]="{'background-color':color[0]}">
-            <img class="top" [src]="slide._url">
-          </ion-slide>
-        </ion-slides>
-      </ion-row>
+        </ion-row>
 
-      <ion-row>
-        <ion-slides class="slide" #slideTwo (ionSlideTap) = "slideTapped(1); allTapped();">
-          <ion-slide *ngFor="let slide of recommendation.bottom" [ngStyle]="{'background-color':color[1]}">
-            <img class="bottom" [src]="slide._url">
-          </ion-slide>
-        </ion-slides>
-
-      </ion-row>
-
-      <ion-row>
-        <ion-slides class="slide" #slideThree (ionSlideTap) = "slideTapped(2); allTapped();">
-          <ion-slide *ngFor="let slide of recommendation.accessories" [ngStyle]="{'background-color':color[2]}">
-            <img class="accessories" [src]="slide._url">
-          </ion-slide>
-        </ion-slides>
-      </ion-row>
+        <ion-row>
+          <ion-slides class="slide" #slideThree (ionSlideTap) = "slideTapped(2); allTapped();">
+            <ion-slide *ngFor="let slide of recommendation.accessories" [ngStyle]="{'background-color':color[2]}">
+              <img class="accessories" [src]="slide._url">
+            </ion-slide>
+          </ion-slides>
+        </ion-row>
+      <!--</div>-->
     </div>
     </div>
-    </div>
-
   </ion-grid>
 </ion-content>
 

@@ -51,22 +51,21 @@ page-home {
        background: {
          repeat: no-repeat;
          position: center;
-         size: contain;}
-     }}
+         size: contain;
+         image:url("../../assets/avatar/true.png");
+       }
+    }}
 
    .top {
-     //background-color: green;
      max-width: 35%;
    }
 
    .bottom {
-     //background-color: green;
      max-width: 35%;
    }
 
    .accessories {
     max-width: 30%;
-     //background-color: #e93a3a;
      padding-top: 5%;
    }
 

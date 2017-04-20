@@ -59,6 +59,7 @@ export class HomePage {
   future_weather: any;
 
 
+
   color: Array<string> = ["transparent", "transparent", "transparent"];
   picked: Array<boolean> = [false, false, false];
   option: any;
@@ -113,6 +114,7 @@ export class HomePage {
       this.clothingDiv.nativeElement.style.backgroundImage = "url(../../assets/avatar/false.png)";
     }
   }
+
 
   loadCurrentLocation() {
     return this.geolocationService.load()
@@ -184,7 +186,6 @@ export class HomePage {
         this.weather = data;
         this.temp_num = this.weather.main.temp - 273.15;
         this.updateUnits();
-        this.updateAvatar();
       })
       .catch(error => console.log("loadWeatherTest fails"))
   }
