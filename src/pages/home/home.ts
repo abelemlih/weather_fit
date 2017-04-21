@@ -37,7 +37,6 @@ export class HomePage {
   @ViewChild('slideThree') slideThree: Slides;
   @ViewChild('clothing') clothingDiv : ElementRef;
 
-
   weather: any;
   temp_num: number;
   temp_str: string;
@@ -232,7 +231,7 @@ export class HomePage {
       .catch( (error) => console.log("Failed to push to SettingsPage"));
   }
 
-  //Changes the color of the slide, locks slides when the slide is green
+  //Changes the color of the slide, locks slides when the slide is whitish blue
   slideTapped(index)
   {
     this.picked[index] = !this.picked[index];
@@ -308,8 +307,6 @@ export class HomePage {
         .catch((error) => "Failed to store data");
     }
   }
-
-
 
   //Converts indices to the correct slide variable
   convertIndexToSlide(index)
