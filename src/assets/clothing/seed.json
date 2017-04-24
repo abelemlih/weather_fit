@@ -112,16 +112,6 @@
       "gender": "neutral"
     },
     {
-      "name": "coat",
-      "url": "../../assets/clothing/coat.png",
-      "max_temp": 25,
-      "min_temp": 5,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "neutral"
-    },
-    {
       "name": "sporty_jacket",
       "url": "../../assets/clothing/sporty_jacket.png",
       "max_temp": 25,
@@ -240,16 +230,6 @@
       "snow": false,
       "grade": 0.5,
       "gender": "neutral"
-    },
-    {
-      "name": "blouse",
-      "url": "../../assets/clothing/blouse.png",
-      "max_temp": 35,
-      "min_temp": 10,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "female"
     }
   ],
   "bottom": [
