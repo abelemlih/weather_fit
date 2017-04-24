@@ -12,26 +12,6 @@
       "gender": "neutral"
     },
     {
-      "name": "long_coat",
-      "url": "../../assets/clothing/long_coat.png",
-      "max_temp": 10,
-      "min_temp": -15,
-      "rain": true,
-      "snow": true,
-      "grade": 0.5,
-      "gender": "neutral"
-    },
-    {
-      "name": "trench_coat",
-      "url": "../../assets/clothing/trench_coat.png",
-      "max_temp": 10,
-      "min_temp": -15,
-      "rain": true,
-      "snow": true,
-      "grade": 0.5,
-      "gender": "male"
-    },
-    {
       "name": "hoodie",
       "url": "../../assets/clothing/hoodie.png",
       "max_temp": 25,
@@ -54,16 +34,6 @@
     {
       "name": "patterned_sweater",
       "url": "../../assets/clothing/patterned_sweater.png",
-      "max_temp": 25,
-      "min_temp": 5,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "neutral"
-    },
-    {
-      "name": "holiday_sweater",
-      "url": "../../assets/clothing/holiday_sweater.png",
       "max_temp": 25,
       "min_temp": 5,
       "rain": false,
@@ -312,26 +282,6 @@
       "snow": false,
       "grade": 0.5,
       "gender": "male"
-    },
-    {
-      "name": "overalls",
-      "url": "../../assets/clothing/overalls.png",
-      "max_temp": 35,
-      "min_temp": -15,
-      "rain": true,
-      "snow": true,
-      "grade": 0.5,
-      "gender": "neutral"
-    },
-    {
-      "name": "flared_jeans",
-      "url": "../../assets/clothing/flared_pants.png",
-      "max_temp": 35,
-      "min_temp": -15,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "female"
     },
     {
       "name": "jeans",
