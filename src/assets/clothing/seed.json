@@ -32,16 +32,6 @@
       "gender": "neutral"
     },
     {
-      "name": "patterned_sweater",
-      "url": "../../assets/clothing/patterned_sweater.png",
-      "max_temp": 25,
-      "min_temp": 5,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "neutral"
-    },
-    {
       "name": "letterman_jacket",
       "url": "../../assets/clothing/letterman_jacket.png",
       "max_temp": 25,
@@ -134,16 +124,6 @@
     {
       "name": "jersey",
       "url": "../../assets/clothing/jersey.png",
-      "max_temp": 35,
-      "min_temp": 15,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "neutral"
-    },
-    {
-      "name": "other_jersey",
-      "url": "../../assets/clothing/other_basketball.png",
       "max_temp": 35,
       "min_temp": 15,
       "rain": false,
