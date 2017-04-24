@@ -12,16 +12,6 @@
       "gender": "neutral"
     },
     {
-      "name": "snow_jacket",
-      "url": "../../assets/clothing/winter_jacket.png",
-      "max_temp": 10,
-      "min_temp": -15,
-      "rain": true,
-      "snow": true,
-      "grade": 0.5,
-      "gender": "neutral"
-    },
-    {
       "name": "long_coat",
       "url": "../../assets/clothing/long_coat.png",
       "max_temp": 10,
