@@ -152,16 +152,6 @@
       "gender": "female"
     },
     {
-      "name": "off_the_shoulder",
-      "url": "../../assets/clothing/off_the_shoulder.png",
-      "max_temp": 35,
-      "min_temp": 10,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "female"
-    },
-    {
       "name": "graphic_tank",
       "url": "../../assets/clothing/graphic_tank.png",
       "max_temp": 35,
