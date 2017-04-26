@@ -11,7 +11,7 @@ page-settings {
 
     .units{
       background: {
-        image: url("../../assets/avatar/thermometer.png");
+        image: url("../../assets/temperature.png");
         repeat: no-repeat;
         size: contain;
       }
@@ -21,16 +21,15 @@ page-settings {
 
     .gender{
       background: {
-        image:url("../../assets/avatar/gender.jpg");
+        image:url("../../assets/gender.png");
         repeat: no-repeat;
         size:contain;
       };
       padding-left:40px;
     }
-
   }
-
 }
+
 #font_attributes{
   font: {
     size: 15px;
