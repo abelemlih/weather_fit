@@ -17,6 +17,7 @@
 
 <ion-content padding class="no-scroll">
 
+
   <div class = "settingPage">
   <!-- Unit selection -->
   <ion-list radio-group [(ngModel)]="units">
@@ -54,11 +55,12 @@
       <ion-radio value="neutral"></ion-radio>
     </ion-item>
   </ion-list>
+    
+    <ion-item>
+      <ion-label> Avatar </ion-label>
+      <ion-toggle [(ngModel)]="avatar" checked="true"></ion-toggle>
+    </ion-item>
 
-  <ion-item>
-    <ion-label> Avatar </ion-label>
-    <ion-toggle [(ngModel)]="avatar" checked="true"></ion-toggle>
-  </ion-item>
 
   <!-- Message toggle -->
   <!--<ion-item>-->
