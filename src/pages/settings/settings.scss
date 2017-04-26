@@ -7,5 +7,35 @@ page-settings {
   #save-button {
     margin: auto;
   }
+  .settingPage{
+
+    .units{
+      background: {
+        image: url("../../assets/avatar/thermometer.png");
+        repeat: no-repeat;
+        size: contain;
+      }
+    ;
+      padding-left: 40px;
+    }
+
+    .gender{
+      background: {
+        image:url("../../assets/avatar/gender.jpg");
+        repeat: no-repeat;
+        size:contain;
+      };
+      padding-left:40px;
+    }
+
+  }
+
+}
+#font_attributes{
+  font: {
+    size: 20px;
+    weight: bold;
+    family: Times;
+  }
 
 }

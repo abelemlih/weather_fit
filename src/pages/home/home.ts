@@ -50,10 +50,7 @@ export class HomePage {
   max_temp: number;
 
   current_time: Date;
-  threeHour_time: Date;
-  sixHour_time: Date;
-  nineHour_time: Date;
-  twelveHour_time: Date;
+
 
   future_weather: any;
 
@@ -80,7 +77,6 @@ export class HomePage {
     this.loadCurrentLocation()
       .then(() => {
         this.loadWeather();
-        this.loadFutureWeather();
         this.loadTime();
         this.loadClothing();
         this.loadRecommendation();
