@@ -234,12 +234,10 @@ export class HomePage {
     this.picked[index] = !this.picked[index];
     if (this.picked[index])
     {
-      this.color[index] = "#EDFAFD";
       this.convertIndexToSlide(index).lockSwipes(true);
     }
     else
     {
-      this.color[index] = "transparent";
       this.convertIndexToSlide(index).lockSwipes(false);
     }
   }
