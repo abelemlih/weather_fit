@@ -78,12 +78,14 @@ export class HomePage {
 
     this.loadCurrentLocation()
       .then(() => {
-        this.loadWeather();
-        this.loadFutureWeather();
-        this.loadTime();
-        this.loadClothing();
-        this.loadRecommendation();
-      });
+    	this.loadWeather();
+    	this.loadFutureWeather();
+    	this.loadTime();
+    	this.loadClothing();
+    	this.loadRecommendation();
+    })
+       .catch((error) => console.log("Failed to load current position in HomePage constructor\n" + error.toString())
+	     );
     // clothingData.getData()
     //   .then((data) => console.log(data));
   }
