@@ -32,34 +32,43 @@ import {ViewChild} from '@angular/core';
 })
 export class HomePage {
 
+  // Control for the slides on the home page
   @ViewChild('slideOne') slideOne: Slides;
   @ViewChild('slideTwo') slideTwo: Slides;
   @ViewChild('slideThree') slideThree: Slides;
+
+  // Control for the avatar
   @ViewChild('clothing') clothingDiv : ElementRef;
 
+  // The weather data
   weather: any;
+
+  // Temperature in different formats
   temp_num: number;
   temp_str: string;
 
   mintemp_str: string;
   maxtemp_str: string;
 
+  // The range of temperature for the day
   temperature_range: string;
 
+  // Minimum and maximum temperature for the current weather
   min_temp: number;
   max_temp: number;
 
+  // Current time to display
   current_time: Date;
 
-
+  // Future weather data from the API
   future_weather: any;
 
-
-
+  // Color and boolean arrays for the slides to be picked
   color: Array<string> = ["transparent", "transparent", "transparent"];
   picked: Array<boolean> = [false, false, false];
   option: any;
 
+  // Recommendation array of clothing items from the clothing services
   _recommendation: any;
   _clothing_data: any;
 
@@ -74,6 +83,7 @@ export class HomePage {
       loop: true
     };
 
+    // Load the current location before loading everything else
     this.loadCurrentLocation()
       .then(() => {
         this.loadWeather();
@@ -102,6 +112,9 @@ export class HomePage {
     this._clothing_data = data
   }
 
+  /**
+   * Update the avatar on/off based on the settings
+   */
   updateAvatar() {
     if (this.settingsService.avatar)
       this.clothingDiv.nativeElement.style.backgroundImage = "url(../../assets/avatar/true.png)";
@@ -116,6 +129,9 @@ export class HomePage {
       .then((pos) => this.weatherService.pos = pos);
   }
 
+  /**
+   * Load all the clothing data from the storage. Returns a promise that resolves with the data.
+   */
   loadClothing() {
     return this.clothingDataService.getData()
     .then( (data) => {
@@ -174,6 +190,7 @@ export class HomePage {
   }
 
 
+  // For testing purposes
   loadWeatherTest() {
     this.weatherService.load()
       .catch(error => console.log("weatherService fails"))
@@ -185,6 +202,9 @@ export class HomePage {
       .catch(error => console.log("loadWeatherTest fails"))
   }
 
+  /**
+   * Update units of the temperature according to the settings
+   */
   updateUnits() {
     if (this.settingsService.units == "celsius"){
       this.temp_str = this.temp_num.toFixed().toString() + "°C";
@@ -200,6 +220,9 @@ export class HomePage {
     }
   }
 
+  /**
+   * Re-update the units and the avatar each time the home page is loaded
+   */
   ionViewWillEnter() {
     if (this.temp_num != undefined) {
       this.updateUnits();
@@ -208,11 +231,11 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
+
     // This will make it repopulate the database every login, which is good for testing purposes.
-    // Correctly it should be inside the then() method so that it only runs once.
-
-
     this.clothingService.initializeDB();
+
+    // This will make it popilates the database on first login
     // this.storage.get('first-login')
     //   .then(done => {
     //     if (!done) {
@@ -223,6 +246,9 @@ export class HomePage {
     //   })
   }
 
+  /**
+   * Go to settings page
+   */
   pushSettingsPage() {
     this.navCtrl.push(SettingsPage)
       .catch( (error) => console.log("Failed to push to SettingsPage"));
@@ -303,7 +329,9 @@ export class HomePage {
     }
   }
 
-  //Converts indices to the correct slide variable
+  /**
+   * Converts indices to the correct slide variable
+   */
   convertIndexToSlide(index)
   {
     if (index == 0)

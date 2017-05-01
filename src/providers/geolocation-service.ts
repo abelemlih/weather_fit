@@ -16,7 +16,12 @@ export class GeolocationService {
 
   constructor() {}
 
-  load() {
+  load()
+  /**
+   * Load the current location via the Geolocation plugin
+   * @returns A promise that resolves with the current location.
+   */
+  {
     if (this.data != undefined) return this.data;
 
     return Geolocation.getCurrentPosition()
