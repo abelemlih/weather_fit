@@ -24,6 +24,8 @@ There are two pages within the weatherFit app: __Home__ and __Settings__.
 
 __Home__
 
+<img src="home.png" align="right">
+
 Home is the main page within the app and contains both the day's weather information and the clothing suggestions. 
 
 The upper section of the app contains the current temperature, maximum and minimum temperature, wind speed, and the location of the user. By default, the app accesses the current location of the user. Therefore, the app always needs to be authorized to access the current location from the device. #Add screenshots from the app
