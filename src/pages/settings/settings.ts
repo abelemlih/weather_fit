@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
 import { SettingsService } from '../../providers/settings-service';
 
 /*
@@ -19,6 +18,12 @@ export class SettingsPage {
   location;
   avatar;
 
+  /**
+   *
+   * @param navCtrl
+   * @param navParams
+   * @param settingsService
+   */
   constructor(public navCtrl: NavController, public navParams: NavParams, public settingsService: SettingsService) {
     this.units = settingsService.units;
     this.gender = settingsService.gender;
@@ -27,6 +32,9 @@ export class SettingsPage {
 
   }
 
+  /**
+   *
+   */
   save() {
     this.settingsService.setUnits(this.units);
     this.settingsService.setGender(this.gender);
@@ -36,6 +44,9 @@ export class SettingsPage {
     console.log("Testing End");
   }
 
+  /**
+   *
+   */
   ionViewWillLeave() {
     this.save();
   }
