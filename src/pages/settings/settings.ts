@@ -30,10 +30,7 @@ export class SettingsPage {
   save() {
     this.settingsService.setUnits(this.units);
     this.settingsService.setGender(this.gender);
-    console.log("Testing Start");
-    console.log(this.avatar);
     this.settingsService.setAvatar(this.avatar);
-    console.log("Testing End");
   }
 
   ionViewWillLeave() {
