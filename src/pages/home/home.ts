@@ -32,17 +32,18 @@ import {ViewChild} from '@angular/core';
 })
 export class HomePage {
 
+  //Variables associated with slide functions
   @ViewChild('slideOne') slideOne: Slides;
   @ViewChild('slideTwo') slideTwo: Slides;
   @ViewChild('slideThree') slideThree: Slides;
+  color: Array<string> = ["transparent", "transparent", "transparent"];
+  picked: Array<boolean> = [false, false, false];
+
   @ViewChild('clothing') clothingDiv : ElementRef;
 
   weather: any;
   temp_num: number;
   temp_str: string;
-
-  mintemp_str: string;
-  maxtemp_str: string;
 
   temperature_range: string;
 
@@ -51,18 +52,23 @@ export class HomePage {
 
   current_time: Date;
 
-
   future_weather: any;
 
-
-
-  color: Array<string> = ["transparent", "transparent", "transparent"];
-  picked: Array<boolean> = [false, false, false];
   option: any;
 
   _recommendation: any;
   _clothing_data: any;
 
+  /**
+   *
+   * @param navCtrl
+   * @param weatherService
+   * @param geolocationService
+   * @param settingsService
+   * @param clothingService
+   * @param clothingDataService
+   * @param storage
+   */
   constructor(public navCtrl: NavController,
               private weatherService: WeatherService,
               public geolocationService: GeolocationService,
@@ -85,23 +91,41 @@ export class HomePage {
     //   .then((data) => console.log(data));
   }
 
+  /**
+   *
+   * @returns {any}
+   */
   get recommendation() {
     return this._recommendation
   }
 
+  /**
+   *
+   * @param recom
+   */
   set recommendation(recom: any) {
     this._recommendation = recom
   }
 
-
+  /**
+   *
+   * @returns {any}
+   */
   get clothing_data() {
     return this._clothing_data
   }
 
+  /**
+   *
+   * @param data
+   */
   set clothing_data(data: any) {
     this._clothing_data = data
   }
 
+  /**
+   *
+   */
   updateAvatar() {
     if (this.settingsService.avatar)
       this.clothingDiv.nativeElement.style.backgroundImage = "url(../../assets/avatar/true.png)";
@@ -110,12 +134,19 @@ export class HomePage {
     }
   }
 
-
+  /**
+   *
+   * @returns {PromiseLike<TResult>|Promise<R>|Promise<TResult>|Promise<T>|Promise<TResult2|TResult1>}
+   */
   loadCurrentLocation() {
     return this.geolocationService.load()
       .then((pos) => this.weatherService.pos = pos);
   }
 
+  /**
+   *
+   * @returns {Promise<void|void>}
+   */
   loadClothing() {
     return this.clothingDataService.getData()
     .then( (data) => {
@@ -125,6 +156,10 @@ export class HomePage {
     .catch((error) => console.log("Failed to load clothingDataService\n" + error.toString()))
   }
 
+  /**
+   *
+   * @returns {Promise<void|void>}
+   */
   loadRecommendation() {
     this.clothingService.weatherService = this.weatherService;
     return this.clothingService.recommend()
@@ -135,6 +170,10 @@ export class HomePage {
       .catch((error) => console.log("Failed to load clothingService\n" + error.toString()))
   }
 
+  /**
+   *
+   * @returns {PromiseLike<TResult>|Promise<R>|Promise<TResult>|Promise<T>|Promise<TResult2|TResult1>}
+   */
   loadFutureWeather() {
     return this.weatherService.loadFutureData()
       .then(data => {
@@ -142,6 +181,10 @@ export class HomePage {
       })
   }
 
+  /**
+   *
+   * @returns {Promise<void|T>}
+   */
   loadWeather() {
     return this.weatherService.load()
       .then(data => {
@@ -156,6 +199,9 @@ export class HomePage {
       )
   }
 
+  /**
+   *
+   */
   loadTime(){
     this.weatherService.loadFutureData()
       .then(data => {
@@ -173,7 +219,9 @@ export class HomePage {
       )
   }
 
-
+  /**
+   *
+   */
   loadWeatherTest() {
     this.weatherService.load()
       .catch(error => console.log("weatherService fails"))
@@ -185,6 +233,9 @@ export class HomePage {
       .catch(error => console.log("loadWeatherTest fails"))
   }
 
+  /**
+   *
+   */
   updateUnits() {
     if (this.settingsService.units == "celsius"){
       this.temp_str = this.temp_num.toFixed().toString() + "°C";
@@ -200,6 +251,9 @@ export class HomePage {
     }
   }
 
+  /**
+   *
+   */
   ionViewWillEnter() {
     if (this.temp_num != undefined) {
       this.updateUnits();
@@ -207,6 +261,9 @@ export class HomePage {
     }
   }
 
+  /**
+   *
+   */
   ionViewDidLoad() {
     // This will make it repopulate the database every login, which is good for testing purposes.
     // Correctly it should be inside the then() method so that it only runs once.
@@ -223,12 +280,18 @@ export class HomePage {
     //   })
   }
 
+  /**
+   *
+   */
   pushSettingsPage() {
     this.navCtrl.push(SettingsPage)
       .catch( (error) => console.log("Failed to push to SettingsPage"));
   }
 
-  //Changes the color of the slide, locks slides when the slide is whitish blue
+  /**
+   * When the slideTapped event occurs, lock the slide
+   * @param index a number representative of the slides in array form
+   */
   slideTapped(index)
   {
     this.picked[index] = !this.picked[index];
@@ -242,6 +305,9 @@ export class HomePage {
     }
   }
 
+  /**
+   *
+   */
   allTapped() {
     function findIndex (element: ClothingItem, array: Array<ClothingItem>): any {
       for (let i in array) {
@@ -303,7 +369,11 @@ export class HomePage {
     }
   }
 
-  //Converts indices to the correct slide variable
+  /**
+   * Converts indices in reference to slides to the correct slide variable
+   * @param index a number representative of the slides in array form
+   * @returns {Slides} a specific slide variable that corresponds to the index in question
+   */
   convertIndexToSlide(index)
   {
     if (index == 0)
