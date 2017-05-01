@@ -16,8 +16,31 @@ export class WeatherService {
   private data: any;
   private _pos: Position;
 
-  constructor(public http: Http) {
-    console.log("Initializing weather service")
+
+  future_data: any;
+
+  constructor(public http: Http) {}
+
+  loadFutureData() {
+    if (this.future_data) {
+      return Promise.resolve(this.future_data);
+    }
+
+    return new Promise( (resolve) => {
+      let url = "http://api.openweathermap.org/data/2.5/forecast?"
+      let coords = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
+      // let coords = "lat=45&lon=-93";
+      const key = "6a24316a673761513e82c0ee0315bdea";
+      let appID = "&APPID=" + key;
+
+      this.http
+        .get(url + coords + appID)
+        .map(res => res.json())
+        .subscribe(data => {
+          this.future_data = data;
+          resolve(data);
+        })
+    })
   }
 
   load() {
@@ -26,15 +49,13 @@ export class WeatherService {
     }
 
     return new Promise( (resolve) => {
-window.setTimeout( () => {
+
       let url = "http://api.openweathermap.org/data/2.5/weather?";
       let coords = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
       // let coords = "lat=45&lon=-93";
       const key = "6a24316a673761513e82c0ee0315bdea";
       let appID = "&APPID=" + key;
-
       // console.log(url + coords + appID);
-
       this.http
         .get(url + coords + appID)
         .map(response => response.json())
@@ -42,7 +63,6 @@ window.setTimeout( () => {
           this.data = data;
           resolve(data);
         })
-}, 2000)
     })
   }
 

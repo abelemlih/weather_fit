@@ -6,7 +6,6 @@
 <ion-header>
 
   <ion-navbar>
-
     <button ion-button icon-only menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -18,10 +17,12 @@
 
 <ion-content padding class="no-scroll">
 
+
+  <div class = "settingPage">
   <!-- Unit selection -->
   <ion-list radio-group [(ngModel)]="units">
     <ion-list-header>
-      Units
+      <div class = "units" id="font_attributes">Units </div>
     </ion-list-header>
     <ion-item>
       <ion-label>°F</ion-label>
@@ -37,7 +38,7 @@
   <!-- Gender selection-->
   <ion-list radio-group [(ngModel)]="gender">
     <ion-list-header>
-      Gender
+      <div class="gender" id="font_attributes">Gender of Clothing</div>
     </ion-list-header>
     <ion-item>
       <ion-label>Female</ion-label>
@@ -50,11 +51,16 @@
     </ion-item>
 
     <ion-item>
-      <ion-label>Neutral</ion-label>
+      <ion-label>Neutral (Everything)</ion-label>
       <ion-radio value="neutral"></ion-radio>
     </ion-item>
-
   </ion-list>
+
+    <ion-item>
+      <ion-label> Avatar </ion-label>
+      <ion-toggle [(ngModel)]="avatar" checked="true"></ion-toggle>
+    </ion-item>
+
 
   <!-- Message toggle -->
   <!--<ion-item>-->
@@ -77,5 +83,5 @@
 
   <!--About Button-->
   <!--<button ion-button outline>About</button>-->
-
+  </div>
 </ion-content>
