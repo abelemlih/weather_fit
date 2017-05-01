@@ -1,7 +1,5 @@
 # weatherFit: for the weather confused!
 
-<img src="../home.png" align="right">
-
 weatherFit is an [Ionic](https://ionicframework.com/) application that help users choose their attire for the day. The app generates choices for tops, bottoms, and accessories that match the weather of the day.
 
 ### Getting started
