@@ -77,10 +77,9 @@ export class ClothingService {
     let result = {};
     for (let attr of ["top", "bottom", "accessories"]) {
       //Phase 1: Suitable for weather, precipitation, and gender
-      // result[attr] = clothing_dict[attr].filter(isSuitable)
+      result[attr] = clothing_dict[attr].filter(isSuitable)
       //Phase 2: Filtering by cap
-      // result[attr] = capFilter(result[attr], 15)
-      result[attr] = clothing_dict[attr]
+      result[attr] = capFilter(result[attr], 15)
     }
     return result;
   }

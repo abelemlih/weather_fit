@@ -17,7 +17,6 @@ To run weatherFit, run this command on your terminal:
 ```
 $ ionic serve
 ```
-and then access the app on your browser through http://localhost:8100/
 
 ### User Manual
 
@@ -25,7 +24,7 @@ There are two pages within the weatherFit app: __Home__ and __Settings__.
 
 __Home__
 
-<img src="home.png" align="right">
+<img src="../home.png" align="right">
 
 Home is the main page within the app and contains both the day's weather information and the clothing suggestions. 
 

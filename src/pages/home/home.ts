@@ -32,10 +32,12 @@ import {ViewChild} from '@angular/core';
 })
 export class HomePage {
 
-  // Control for the slides on the home page
+  //Variables associated with slide functions
   @ViewChild('slideOne') slideOne: Slides;
   @ViewChild('slideTwo') slideTwo: Slides;
   @ViewChild('slideThree') slideThree: Slides;
+  color: Array<string> = ["transparent", "transparent", "transparent"];
+  picked: Array<boolean> = [false, false, false];
 
   // Control for the avatar
   @ViewChild('clothing') clothingDiv : ElementRef;
@@ -63,15 +65,22 @@ export class HomePage {
   // Future weather data from the API
   future_weather: any;
 
-  // Color and boolean arrays for the slides to be picked
-  color: Array<string> = ["transparent", "transparent", "transparent"];
-  picked: Array<boolean> = [false, false, false];
   option: any;
 
   // Recommendation array of clothing items from the clothing services
   _recommendation: any;
   _clothing_data: any;
 
+  /**
+   *
+   * @param navCtrl
+   * @param weatherService
+   * @param geolocationService
+   * @param settingsService
+   * @param clothingService
+   * @param clothingDataService
+   * @param storage
+   */
   constructor(public navCtrl: NavController,
               private weatherService: WeatherService,
               public geolocationService: GeolocationService,
@@ -95,19 +104,34 @@ export class HomePage {
     //   .then((data) => console.log(data));
   }
 
+  /**
+   *
+   * @returns {any}
+   */
   get recommendation() {
     return this._recommendation
   }
 
+  /**
+   *
+   * @param recom
+   */
   set recommendation(recom: any) {
     this._recommendation = recom
   }
 
-
+  /**
+   *
+   * @returns {any}
+   */
   get clothing_data() {
     return this._clothing_data
   }
 
+  /**
+   *
+   * @param data
+   */
   set clothing_data(data: any) {
     this._clothing_data = data
   }
@@ -123,7 +147,10 @@ export class HomePage {
     }
   }
 
-
+  /**
+   *
+   * @returns {PromiseLike<TResult>|Promise<R>|Promise<TResult>|Promise<T>|Promise<TResult2|TResult1>}
+   */
   loadCurrentLocation() {
     return this.geolocationService.load()
       .then((pos) => this.weatherService.pos = pos);
@@ -172,6 +199,9 @@ export class HomePage {
       )
   }
 
+  /**
+   *
+   */
   loadTime(){
     this.weatherService.loadFutureData()
       .then(data => {
@@ -188,7 +218,6 @@ export class HomePage {
       .catch( (error) => console.log("Failed to load time data\n" + error.toString())
       )
   }
-
 
   // For testing purposes
   loadWeatherTest() {
@@ -230,6 +259,9 @@ export class HomePage {
     }
   }
 
+  /**
+   *
+   */
   ionViewDidLoad() {
 
     // This will make it repopulate the database every login, which is good for testing purposes.
@@ -254,7 +286,10 @@ export class HomePage {
       .catch( (error) => console.log("Failed to push to SettingsPage"));
   }
 
-  //Changes the color of the slide, locks slides when the slide is whitish blue
+  /**
+   * When the slideTapped event occurs, lock the slide
+   * @param index a number representative of the slides in array form
+   */
   slideTapped(index)
   {
     this.picked[index] = !this.picked[index];
@@ -268,6 +303,9 @@ export class HomePage {
     }
   }
 
+  /**
+   *
+   */
   allTapped() {
     function findIndex (element: ClothingItem, array: Array<ClothingItem>): any {
       for (let i in array) {
@@ -330,7 +368,9 @@ export class HomePage {
   }
 
   /**
-   * Converts indices to the correct slide variable
+   * Converts indices in reference to slides to the correct slide variable
+   * @param index a number representative of the slides in array form
+   * @returns {Slides} a specific slide variable that corresponds to the index in question
    */
   convertIndexToSlide(index)
   {
