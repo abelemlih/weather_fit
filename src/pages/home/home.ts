@@ -304,9 +304,13 @@ export class HomePage {
   }
 
   /**
-   *
+   * Update the grade of the items chosen by the user when the three sliders are clicked
    */
   allTapped() {
+    
+    /**
+    * Find index of a clothing item within an array of clothing items
+    */
     function findIndex (element: ClothingItem, array: Array<ClothingItem>): any {
       for (let i in array) {
         if (array[i].name === element.name) {
@@ -316,6 +320,10 @@ export class HomePage {
       return `Error: Cannot find element ${element} within ${array}`
     }
 
+    /**
+    * Generate new grade for a clothing item
+    * @return number that represents the new grade of the clothing item
+    */
     function newItemGrade(item: ClothingItem) {
       return ((1-item.grade)*(0.05)) + item.grade
     }

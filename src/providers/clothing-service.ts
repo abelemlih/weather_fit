@@ -38,10 +38,13 @@ export class ClothingService {
       return false
     }
 
+    /** 
+    * Extract temperature and precipitation parameters from weather data
+    * @return hash of temparature and precipitation values
+    */
     function extract_weather_data(api_weather: any) {
       let min_temp = unitConversion.kelvin_to_celsius(api_weather.main.temp_max)
       let max_temp = unitConversion.kelvin_to_celsius(api_weather.main.temp_min)
-      //Refer to https://openweathermap.org/weather-conditions for weather codes
       let rain = extract_condition(api_weather,500,531), snow = extract_condition(api_weather,600,622)
       return {min_temp: min_temp, max_temp: max_temp, rain: rain, snow: snow}
     }
@@ -55,8 +58,16 @@ export class ClothingService {
       })
   }
 
+  /**
+  * Generate a hash with top, bottom, and shoes arrays.
+  */
   private generate(clothing_dict: any, weather_data: any , user_gender: string) {
 
+    /**
+    * @param clothing_array: array of clothing items of a specific type
+    * @param cap: maximum number of items to be displayed for a specific type of clothing
+    * @return  array of clothing items of a specific type (e.g. tops)
+    */
     function capFilter(clothing_array: ClothingItem[], cap: number) {
       let random_clothing_array = [], not_picked = 0
       for (let item of clothing_array) {
@@ -69,7 +80,10 @@ export class ClothingService {
       if (clothing_array.length <= cap) { return clothing_array }
       else { return random_clothing_array }
   }
-
+    
+    /**
+    * Check if clothing items matches weather conditions and the user's gender
+    */
     function isSuitable(clothing: ClothingItem) {
       return (clothing.suits_weather(weather_data) && clothing.suits_precipitation(weather_data) && clothing.suits_gender(user_gender))
     }
