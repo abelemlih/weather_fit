@@ -38,7 +38,12 @@ Settings is the page where the user can change the temperature units or the gend
 
 ### Developer Documentation
 
-__Relevant Files__
+__Pages__
+
+Location: /src/pages
+
+Pages in the app: __Home__ and __Settings__
+
 
 |  File |  Content |
 |---|---|
@@ -48,3 +53,42 @@ __Relevant Files__
 |__settings.ts__|Contains the methods that load the settings page and respond to user interactions|
 |__settings.scss__|Contains the stylesheets of the settings page|
 |__settings.html__|Contains the markup of the elements of the settings page|
+
+__Providers__
+
+Location: /src/providers
+
+|  File |  Content |
+|---|---|
+|__clothing-data-service.ts__|Contains methods to initialize, save, and retrieve clothing data|
+|__clothing-item.ts__|Class that represents a clothing item within the application. Contains getters, setters, and methods to check whether a clothing item matches weather, precipitation, and gender|
+|__clothing-service.ts__|Contains methods to filter clothing recommendations with respect to weather, and user preferences|
+|__geolocation-service.ts__|Contains a method to retrieve the current location of the user|
+|__settings-service.ts__|Class that represents the settings of the app. Contains getters and setters for the settings parameters|
+|__weather-service.ts__|Contains methods to retrieve weather data using the OpenWeatherMap API|
+
+__Assets__
+
+Location: /src/assets
+
+|  File |  Content |
+|---|---|
+|__avatar__||
+|__clothing__||
+|__icon__||
+|__tools__||
+|__weather__||
+|__weather_animated__||
+
+
+__Resources__
+
+* OpenWeatherMap API: https://openweathermap.org/current#parameter
+
+* OpenWeatherMap Weather Condition Codes: https://openweathermap.org/weather-conditions
+
+* Ionic Geolocation: https://ionicframework.com/docs/native/geolocation/
+
+* Ionic Storage: https://ionicframework.com/docs/storage/
+
+
