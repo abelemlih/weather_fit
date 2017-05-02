@@ -310,6 +310,7 @@ export class HomePage {
     
     /**
     * Find index of a clothing item within an array of clothing items
+    * @return number which represents the index of the item searched
     */
     function findIndex (element: ClothingItem, array: Array<ClothingItem>): any {
       for (let i in array) {
@@ -330,7 +331,6 @@ export class HomePage {
 
 
     if (this.picked.every(Boolean)) {
-      //Updating top
       let updated_clothing_data = this.clothing_data
       let clothing_types = ["top","bottom","accessories"]
       for (let i in clothing_types) {
@@ -340,12 +340,6 @@ export class HomePage {
         Promise.resolve('Success')
         .then((res) => {
           let item = chosen_clothing_array[this.convertIndexToSlide(i).getActiveIndex()]
-          let repeat = 0
-          while(typeof item === "undefined" && repeat <= 10) {
-            item = chosen_clothing_array[this.convertIndexToSlide(i).getActiveIndex()]
-            repeat = repeat + 1
-            console.log(repeat)
-          }
           return item
         })
         .catch((error) => console.log("Failed to load current chosen item\n" + error.toString()))

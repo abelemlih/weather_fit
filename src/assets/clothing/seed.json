@@ -356,16 +356,6 @@
       "gender": "female"
     },
     {
-      "name": "peeptoe_heels",
-      "url": "../../assets/clothing/double_peeptoe_heels.png",
-      "max_temp": 35,
-      "min_temp": 5,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "female"
-    },
-    {
       "name": "strappy_heels",
       "url": "../../assets/clothing/double_strappy_heels.png",
       "max_temp": 35,
