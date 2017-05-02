@@ -56,12 +56,10 @@ Location: /src/assets
 
 |  File |  Content |
 |---|---|
-|__avatar__||
-|__clothing__||
-|__icon__||
-|__tools__||
-|__weather__||
-|__weather_animated__||
+|__avatar__| Folder that contains the avatar related pictures|
+|__clothing__| Folder that contains pictures of clothing displayed on the app|
+|__weather__| Folder that contains weather icons|
+|__weather animated__| Folder that contains weather animations|
 
 
 __Resources__
