@@ -76,16 +76,18 @@ export class HomePage {
       loop: true
     };
 
-    this.loadCurrentLocation()
-      .then(() => {
-    	this.loadWeather();
-    	this.loadFutureWeather();
-    	this.loadTime();
-    	this.loadClothing();
-    	this.loadRecommendation();
-    })
-       .catch((error) => console.log("Failed to load current position in HomePage constructor\n" + error.toString())
-	     );
+    clothingDataService.initialize();
+    
+    // this.loadCurrentLocation()
+      // .then(() => {
+    	   this.loadWeather();
+    	   this.loadFutureWeather();
+    	   this.loadTime();
+    	   this.loadClothing();
+    	   this.loadRecommendation();
+    // })
+       // .catch((error) => console.log("Failed to load current position in HomePage constructor\n" + error.toString())
+	     // );
     // clothingData.getData()
     //   .then((data) => console.log(data));
   }
@@ -109,9 +111,9 @@ export class HomePage {
 
   updateAvatar() {
     if (this.settingsService.avatar)
-      this.clothingDiv.nativeElement.style.backgroundImage = "url(../../assets/avatar/true.png)";
+      this.clothingDiv.nativeElement.style.backgroundImage = "url(assets/avatar/true.png)";
     else {
-      this.clothingDiv.nativeElement.style.backgroundImage = "url(../../assets/avatar/false.png)";
+      this.clothingDiv.nativeElement.style.backgroundImage = "url(assets/avatar/false.png)";
     }
   }
 
@@ -217,7 +219,8 @@ export class HomePage {
     // Correctly it should be inside the then() method so that it only runs once.
 
 
-    this.clothingService.initializeDB();
+    // this.clothingService.initializeDB();
+    // console.log("Initialize database");
     // this.storage.get('first-login')
     //   .then(done => {
     //     if (!done) {

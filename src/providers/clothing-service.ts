@@ -21,7 +21,7 @@ export class ClothingService {
     this._weatherService = value;
   }
 
-  constructor(public clothingData: ClothingDataService) {}
+  constructor(public clothingData: ClothingDataService, public settingService: SettingsService) {}
 
   /**
  * Recommend tops, bottoms, and accessories to the user based on weather conditions.

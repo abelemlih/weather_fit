@@ -36,7 +36,7 @@ export class ClothingDataService {
   }
 
   initialize() {
-    this.http.get("../../assets/clothing/seed.json")
+    this.http.get("assets/clothing/seed.json")
       .map(res => res.json())
       .subscribe(data => {
         this.save(data);
