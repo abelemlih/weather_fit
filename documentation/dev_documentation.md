@@ -71,4 +71,6 @@ __Resources__
 
 * Ionic Storage: https://ionicframework.com/docs/storage/
 
+* Admin Folder: Contains the schedule we used to organize our development process, suggestions from user testing, and a page we used to facilitate the data input process.
+
 
