@@ -41,4 +41,4 @@ Settings is the page where the user can change the temperature units or the gend
 
 ### Developer Documentation
 
-To access the developer documentation, please refer to `documentation.md` in the repository.
+To access the developer documentation, please refer to `dev_documentation.md` in the documentation folder.
