@@ -45,7 +45,7 @@ Location: /src/providers
 |---|---|
 |__clothing-data-service.ts__|Contains methods to initialize, save, and retrieve clothing data|
 |__clothing-item.ts__|Class that represents a clothing item within the application. Contains getters, setters, and methods to check whether a clothing item matches weather, precipitation, and gender|
-|__clothing-service.ts__|Contains methods to filter clothing recommendations with respect to weather, and user preferences|
+|__clothing-service.ts__|Contains methods to filter clothing recommendations with respect to weather and user preferences|
 |__geolocation-service.ts__|Contains a method to retrieve the current location of the user|
 |__settings-service.ts__|Class that represents the settings of the app. Contains getters and setters for the settings parameters|
 |__weather-service.ts__|Contains methods to retrieve weather data using the OpenWeatherMap API|
