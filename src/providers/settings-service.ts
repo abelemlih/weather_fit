@@ -2,13 +2,11 @@ import { Injectable } from '@angular/core';
 import {GeolocationService} from "./geolocation-service";
 
 /*
-  Generated class for the SettingsService provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular 2 DI.
-*/
+  Load the settings
+ */
 @Injectable()
-export class SettingsService {
+export class SettingsService
+{
 
   // Not units = fahrenheit
   private _units: string;

@@ -32,37 +32,55 @@ import {ViewChild} from '@angular/core';
 })
 export class HomePage {
 
+  //Variables associated with slide functions
   @ViewChild('slideOne') slideOne: Slides;
   @ViewChild('slideTwo') slideTwo: Slides;
   @ViewChild('slideThree') slideThree: Slides;
+  color: Array<string> = ["transparent", "transparent", "transparent"];
+  picked: Array<boolean> = [false, false, false];
+
+  // Control for the avatar
   @ViewChild('clothing') clothingDiv : ElementRef;
 
+  // The weather data
   weather: any;
+
+  // Temperature in different formats
   temp_num: number;
   temp_str: string;
 
   mintemp_str: string;
   maxtemp_str: string;
 
+  // The range of temperature for the day
   temperature_range: string;
 
+  // Minimum and maximum temperature for the current weather
   min_temp: number;
   max_temp: number;
 
+  // Current time to display
   current_time: Date;
 
-
+  // Future weather data from the API
   future_weather: any;
 
-
-
-  color: Array<string> = ["transparent", "transparent", "transparent"];
-  picked: Array<boolean> = [false, false, false];
   option: any;
 
+  // Recommendation array of clothing items from the clothing services
   _recommendation: any;
   _clothing_data: any;
 
+  /**
+   *
+   * @param navCtrl
+   * @param weatherService
+   * @param geolocationService
+   * @param settingsService
+   * @param clothingService
+   * @param clothingDataService
+   * @param storage
+   */
   constructor(public navCtrl: NavController,
               private weatherService: WeatherService,
               public geolocationService: GeolocationService,
@@ -74,48 +92,77 @@ export class HomePage {
       loop: true
     };
 
-    this.loadCurrentLocation()
-      .then(() => {
-        this.loadWeather();
-        this.loadTime();
-        this.loadClothing();
-        this.loadRecommendation();
-      });
+    clothingDataService.initialize();
+    
+    // this.loadCurrentLocation()
+      // .then(() => {
+    	   this.loadWeather();
+    	   this.loadFutureWeather();
+    	   this.loadTime();
+    	   this.loadClothing();
+    	   this.loadRecommendation();
+    // })
+       // .catch((error) => console.log("Failed to load current position in HomePage constructor\n" + error.toString())
+	     // );
     // clothingData.getData()
     //   .then((data) => console.log(data));
   }
 
+  /**
+   *
+   * @returns {any}
+   */
   get recommendation() {
     return this._recommendation
   }
 
+  /**
+   *
+   * @param recom
+   */
   set recommendation(recom: any) {
     this._recommendation = recom
   }
 
-
+  /**
+   *
+   * @returns {any}
+   */
   get clothing_data() {
     return this._clothing_data
   }
 
+  /**
+   *
+   * @param data
+   */
   set clothing_data(data: any) {
     this._clothing_data = data
   }
 
+  /**
+   * Update the avatar on/off based on the settings
+   */
   updateAvatar() {
     if (this.settingsService.avatar)
-      this.clothingDiv.nativeElement.style.backgroundImage = "url(../../assets/avatar/true.png)";
+      this.clothingDiv.nativeElement.style.backgroundImage = "url(assets/avatar/true.png)";
     else {
-      this.clothingDiv.nativeElement.style.backgroundImage = "url(../../assets/avatar/false.png)";
+      this.clothingDiv.nativeElement.style.backgroundImage = "url(assets/avatar/false.png)";
     }
   }
 
-
+  /**
+   *
+   * @returns {PromiseLike<TResult>|Promise<R>|Promise<TResult>|Promise<T>|Promise<TResult2|TResult1>}
+   */
   loadCurrentLocation() {
     return this.geolocationService.load()
       .then((pos) => this.weatherService.pos = pos);
   }
 
+  /**
+   * Load all the clothing data from the storage. Returns a promise that resolves with the data.
+   */
   loadClothing() {
     return this.clothingDataService.getData()
     .then( (data) => {
@@ -156,6 +203,9 @@ export class HomePage {
       )
   }
 
+  /**
+   *
+   */
   loadTime(){
     this.weatherService.loadFutureData()
       .then(data => {
@@ -173,7 +223,7 @@ export class HomePage {
       )
   }
 
-
+  // For testing purposes
   loadWeatherTest() {
     this.weatherService.load()
       .catch(error => console.log("weatherService fails"))
@@ -185,6 +235,9 @@ export class HomePage {
       .catch(error => console.log("loadWeatherTest fails"))
   }
 
+  /**
+   * Update units of the temperature according to the settings
+   */
   updateUnits() {
     if (this.settingsService.units == "celsius"){
       this.temp_str = this.temp_num.toFixed().toString() + "°C";
@@ -200,6 +253,9 @@ export class HomePage {
     }
   }
 
+  /**
+   * Re-update the units and the avatar each time the home page is loaded
+   */
   ionViewWillEnter() {
     if (this.temp_num != undefined) {
       this.updateUnits();
@@ -207,12 +263,14 @@ export class HomePage {
     }
   }
 
+  /**
+   *
+   */
   ionViewDidLoad() {
-    // This will make it repopulate the database every login, which is good for testing purposes.
-    // Correctly it should be inside the then() method so that it only runs once.
 
-
-    this.clothingService.initializeDB();
+    // this.clothingService.initializeDB();
+    // console.log("Initialize database");
+    
     // this.storage.get('first-login')
     //   .then(done => {
     //     if (!done) {
@@ -223,12 +281,18 @@ export class HomePage {
     //   })
   }
 
+  /**
+   * Go to settings page
+   */
   pushSettingsPage() {
     this.navCtrl.push(SettingsPage)
       .catch( (error) => console.log("Failed to push to SettingsPage"));
   }
 
-  //Changes the color of the slide, locks slides when the slide is whitish blue
+  /**
+   * When the slideTapped event occurs, lock the slide
+   * @param index a number representative of the slides in array form
+   */
   slideTapped(index)
   {
     this.picked[index] = !this.picked[index];
@@ -242,7 +306,15 @@ export class HomePage {
     }
   }
 
+  /**
+   * Update the grade of the items chosen by the user when the three sliders are clicked
+   */
   allTapped() {
+    
+    /**
+    * Find index of a clothing item within an array of clothing items
+    * @return number which represents the index of the item searched
+    */
     function findIndex (element: ClothingItem, array: Array<ClothingItem>): any {
       for (let i in array) {
         if (array[i].name === element.name) {
@@ -252,13 +324,16 @@ export class HomePage {
       return `Error: Cannot find element ${element} within ${array}`
     }
 
+    /**
+    * Generate new grade for a clothing item
+    * @return number that represents the new grade of the clothing item
+    */
     function newItemGrade(item: ClothingItem) {
       return ((1-item.grade)*(0.05)) + item.grade
     }
 
 
     if (this.picked.every(Boolean)) {
-      //Updating top
       let updated_clothing_data = this.clothing_data
       let clothing_types = ["top","bottom","accessories"]
       for (let i in clothing_types) {
@@ -268,12 +343,6 @@ export class HomePage {
         Promise.resolve('Success')
         .then((res) => {
           let item = chosen_clothing_array[this.convertIndexToSlide(i).getActiveIndex()]
-          let repeat = 0
-          while(typeof item === "undefined" && repeat <= 10) {
-            item = chosen_clothing_array[this.convertIndexToSlide(i).getActiveIndex()]
-            repeat = repeat + 1
-            console.log(repeat)
-          }
           return item
         })
         .catch((error) => console.log("Failed to load current chosen item\n" + error.toString()))
@@ -303,7 +372,11 @@ export class HomePage {
     }
   }
 
-  //Converts indices to the correct slide variable
+  /**
+   * Converts indices in reference to slides to the correct slide variable
+   * @param index a number representative of the slides in array form
+   * @returns {Slides} a specific slide variable that corresponds to the index in question
+   */
   convertIndexToSlide(index)
   {
     if (index == 0)
