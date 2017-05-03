@@ -21,7 +21,12 @@ export class WeatherService {
 
   constructor(public http: Http) {}
 
-  loadFutureData() {
+  loadFutureData()
+  /**
+   * Load future weather data from the API.
+   * @returns {Promise<>} Resolve with future weather data from Open Weather Map API.
+   */
+  {
     if (this.future_data) {
       return Promise.resolve(this.future_data);
     }
@@ -43,7 +48,12 @@ export class WeatherService {
     })
   }
 
-  load() {
+  load()
+  /**
+   * Load the weather from the API.
+   * @returns {Promise<>} Resolve with current weather data from the API.
+   */
+  {
     if (this.data) {
       return Promise.resolve(this.data)
     }
@@ -56,9 +66,13 @@ export class WeatherService {
       const key = "8d8c3c27de32631513a46a6cbc70ea96";
       let appID = "&APPID=" + key;
       // console.log(url + coords + appID);
+
       this.http
+        // Send the HTTP request
         .get(url + coords + appID)
+        // Turn the response into json format
         .map(response => response.json())
+        // Resolve when the data arrives
         .subscribe(data => {
           this.data = data;
           resolve(data);

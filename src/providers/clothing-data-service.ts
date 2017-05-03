@@ -17,10 +17,14 @@ export class ClothingDataService {
 
   constructor(public storage: Storage, public http: Http) {}
 
+  /**
+   * Get data of the clothing items from the storage
+   */
   getData() {
     return this.storage.get("ClothingData")
       .then(data => {
         let res = {};
+        // Turn the raw json strings into clothing item objects
         for (let attr of ["top", "bottom", "accessories"]) {
           res[attr] = data[attr].map(item => {
             return new ClothingItem(item.name, item.url, item.max_temp, item.min_temp, item.rain, item.snow, item.grade, item.gender);

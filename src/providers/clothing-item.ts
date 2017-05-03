@@ -1,3 +1,7 @@
+/*
+  A class to hold a clothing item data
+ */
+
 export class ClothingItem {
   private _name: string;
   private _url: string;
@@ -40,7 +44,7 @@ export class ClothingItem {
   get rain(): boolean {
     return this._rain;
   }
-  
+
   get snow(): boolean {
     return this._snow;
   }
@@ -49,7 +53,7 @@ export class ClothingItem {
   get grade(): number {
     return this._grade;
   }
-  
+
   get gender(): string {
     return this._gender;
 
@@ -58,19 +62,19 @@ export class ClothingItem {
   set grade(value: number) {
     this._grade = value;
   }
-  
+
   suits_weather(weather_data: any) {
     return (weather_data.max_temp < this.max_temp && weather_data.min_temp > this.min_temp)
   }
-  
+
   suits_precipitation(weather_data: any) {
     if ((weather_data.rain==true && this.rain==false) || (weather_data.snow==true && this.snow==false)) { return false }
     return true
   }
-  
+
   suits_gender(user_gender: string) {
     if ((user_gender=="male" && this.gender=="female") || (user_gender=="female" && this.gender=="male")) { return false }
     return true
   }
-  
+
 }

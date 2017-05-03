@@ -7,5 +7,35 @@ page-settings {
   #save-button {
     margin: auto;
   }
+  .settingPage{
+
+    .units{
+      background: {
+        image: url("../../assets/temperature.png");
+        repeat: no-repeat;
+        size: contain;
+      }
+    ;
+      padding-left: 40px;
+    }
+
+    .gender{
+      background: {
+        image:url("../../assets/gender.png");
+        repeat: no-repeat;
+        size:contain;
+
+      };
+      padding-left:40px;
+    }
+  }
+}
+
+#font_attributes{
+  font: {
+    size: 15px;
+    weight: bold;
+    family: Arial;
+  }
 
 }
