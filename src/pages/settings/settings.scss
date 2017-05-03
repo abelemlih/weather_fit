@@ -1,40 +1,22 @@
+
 page-settings {
 
   .no-scroll .scroll-content{
     overflow: hidden;
   }
 
-  #save-button {
-    margin: auto;
-  }
   .settingPage{
-
-    .units{
-      background: {
-        image: url("../../assets/temperature.png");
-        repeat: no-repeat;
-        size: contain;
+    .header_font_customization{
+      color: white;
+      font: {
+        size: calc(0.3em + 5vmin);
       }
-    ;
-      padding-left: 40px;
     }
-
-    .gender{
-      background: {
-        image:url("../../assets/gender.png");
-        repeat: no-repeat;
-        size:contain;
-      };
-      padding-left:40px;
+    .body_font_customization{
+      color: white;
+      font: {
+        size: calc(0.2em + 4vmin);
+      }
     }
   }
-}
-
-#font_attributes{
-  font: {
-    size: 15px;
-    weight: bold;
-    family: Arial;
-  }
-
 }

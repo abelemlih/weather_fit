@@ -3,6 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 
 import { SettingsService } from '../../providers/settings-service';
 
+
 /*
  Generated class for the Settings page.
  See http://ionicframework.com/docs/v2/components/#navigation for more info on
