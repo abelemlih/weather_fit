@@ -20,7 +20,7 @@ export class ClothingService {
     this._weatherService = value;
   }
 
-  constructor(public clothingData: ClothingDataService) {}
+  constructor(public clothingData: ClothingDataService, public settingsService: SettingsService) {}
 
   /**
  * Recommend tops, bottoms, and accessories to the user based on weather conditions.
@@ -63,7 +63,7 @@ export class ClothingService {
         let clothing_items = values[0];
         let weather_data = values[1];
         //TODO: replace "neutral" with user_gender that we get from settings
-        return this.generate(clothing_items, extract_weather_data(weather_data), "neutral");
+        return this.generate(clothing_items, extract_weather_data(weather_data), this.settingsService.gender);
       })
   }
 
