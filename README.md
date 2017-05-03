@@ -17,7 +17,7 @@ To run weatherFit, run this command on your terminal:
 ```
 $ ionic serve
 ```
-and then access the app on your browser through http://localhost:8100/
+and then access the app on your browser through http://localhost:8100/ (preferably Google Chrome or Mozilla Firefox)
 
 ### User Manual
 
