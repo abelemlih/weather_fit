@@ -33,8 +33,13 @@ export class WeatherService {
 
     return new Promise( (resolve) => {
       let url = "http://api.openweathermap.org/data/2.5/forecast?"
+<<<<<<< HEAD
+      let coords = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
+      // let coords = "lat=45&lon=-93";
+=======
       // let coords = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
       let coords = "lat=45&lon=-93";
+>>>>>>> 56cea7c242acd9df1b49dcc9bdffd11026eaa758
       const key = "8d8c3c27de32631513a46a6cbc70ea96";
       let appID = "&APPID=" + key;
 
@@ -61,8 +66,13 @@ export class WeatherService {
     return new Promise( (resolve) => {
 
       let url = "http://api.openweathermap.org/data/2.5/weather?";
+<<<<<<< HEAD
+      let coords = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
+      // let coords = "lat=45&lon=-93";
+=======
       // let coords = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
       let coords = "lat=45&lon=-93";
+>>>>>>> 56cea7c242acd9df1b49dcc9bdffd11026eaa758
       const key = "8d8c3c27de32631513a46a6cbc70ea96";
       let appID = "&APPID=" + key;
       // console.log(url + coords + appID);
