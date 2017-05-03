@@ -72,16 +72,6 @@
       "gender": "neutral"
     },
     {
-      "name": "holiday_sweater",
-      "url": "assets/clothing/holiday_sweater.png",
-      "max_temp": 25,
-      "min_temp": 5,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "neutral"
-    },
-    {
       "name": "letterman_jacket",
       "url": "assets/clothing/letterman_jacket.png",
       "max_temp": 25,
@@ -324,26 +314,6 @@
       "gender": "male"
     },
     {
-      "name": "overalls",
-      "url": "assets/clothing/overalls.png",
-      "max_temp": 35,
-      "min_temp": -15,
-      "rain": true,
-      "snow": true,
-      "grade": 0.5,
-      "gender": "neutral"
-    },
-    {
-      "name": "flared_jeans",
-      "url": "assets/clothing/flared_pants.png",
-      "max_temp": 35,
-      "min_temp": -15,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "female"
-    },
-    {
       "name": "jeans",
       "url": "assets/clothing/jeans.png",
       "max_temp": 35,
@@ -438,16 +408,6 @@
     {
       "name": "slingback_heels",
       "url": "assets/clothing/double_slingback_heels.png",
-      "max_temp": 35,
-      "min_temp": 5,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "female"
-    },
-    {
-      "name": "peeptoe_heels",
-      "url": "assets/clothing/double_peeptoe_heels.png",
       "max_temp": 35,
       "min_temp": 5,
       "rain": false,
