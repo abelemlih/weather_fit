@@ -4,7 +4,6 @@ import {ClothingItem} from "./clothing-item";
 import {ClothingDataService} from "./clothing-data-service";
 import {WeatherService} from "./weather-service";
 import {SettingsService} from "./settings-service";
-import * as unitConversion from "../assets/tools/unit_conversions"
 
 /*
   Generated class for the ClothingService provider.
@@ -42,9 +41,19 @@ export class ClothingService {
     * Extract temperature and precipitation parameters from weather data
     * @return {min_temp: number, max_temp: number, rain: boolean, snow: boolean} 
     */
+    
     function extract_weather_data(api_weather: any) {
-      let min_temp = unitConversion.kelvin_to_celsius(api_weather.main.temp_max)
-      let max_temp = unitConversion.kelvin_to_celsius(api_weather.main.temp_min)
+      /**
+      * Convert kelvin temperature to celsius
+      * @return number
+      */
+      function kelvin_to_celsius (kelvin: number) {
+        let celsius = kelvin - 273.15;
+        return celsius
+      }
+      
+      let min_temp = kelvin_to_celsius(api_weather.main.temp_max)
+      let max_temp = kelvin_to_celsius(api_weather.main.temp_min)
       let rain = extract_condition(api_weather,500,531), snow = extract_condition(api_weather,600,622)
       return {min_temp: min_temp, max_temp: max_temp, rain: rain, snow: snow}
     }
@@ -67,7 +76,7 @@ export class ClothingService {
     /**
     * @param clothing_array: array of clothing items of a specific type
     * @param cap: maximum number of items to be displayed for a specific type of clothing
-    * @return  array of clothing items of a specific type (e.g. tops)
+    * @return  [] array of clothing items of a specific type (e.g. tops)
     */
     function capFilter(clothing_array: ClothingItem[], cap: number) {
       let random_clothing_array = [], not_picked = 0
