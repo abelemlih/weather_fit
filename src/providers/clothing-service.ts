@@ -24,7 +24,7 @@ export class ClothingService {
 
   /**
  * Recommend tops, bottoms, and accessories to the user based on weather conditions.
- * @return {top: ClothingItem[], bottom: ClothingItem[], accessories: ClothingItem[]} 
+ * @return {top: ClothingItem[], bottom: ClothingItem[], accessories: ClothingItem[]}
  */
   recommend() {
     /**
@@ -37,11 +37,11 @@ export class ClothingService {
       return false
     }
 
-    /** 
+    /**
     * Extract temperature and precipitation parameters from weather data
-    * @return {min_temp: number, max_temp: number, rain: boolean, snow: boolean} 
+    * @return {min_temp: number, max_temp: number, rain: boolean, snow: boolean}
     */
-    
+
     function extract_weather_data(api_weather: any) {
       /**
       * Convert kelvin temperature to celsius
@@ -51,7 +51,7 @@ export class ClothingService {
         let celsius = kelvin - 273.15;
         return celsius
       }
-      
+
       let min_temp = kelvin_to_celsius(api_weather.main.temp_max)
       let max_temp = kelvin_to_celsius(api_weather.main.temp_min)
       let rain = extract_condition(api_weather,500,531), snow = extract_condition(api_weather,600,622)
@@ -69,7 +69,7 @@ export class ClothingService {
 
   /**
   * Generate a hash with top, bottom, and shoes arrays.
-  * @return {top: ClothingItem[], bottom: ClothingItem[], accessories: ClothingItem[]} 
+  * @return {top: ClothingItem[], bottom: ClothingItem[], accessories: ClothingItem[]}
   */
   private generate(clothing_dict: any, weather_data: any , user_gender: string) {
 
@@ -90,7 +90,7 @@ export class ClothingService {
       if (clothing_array.length <= cap) { return clothing_array }
       else { return random_clothing_array }
   }
-    
+
     /**
     * Check if clothing items matches weather conditions and the user's gender
     * @return boolean
@@ -109,8 +109,4 @@ export class ClothingService {
     return result;
   }
 
-
-  initializeDB() {
-    this.clothingData.initialize();
-  }
 }

@@ -13,8 +13,15 @@ import { Geolocation } from 'ionic-native';
 export class GeolocationService {
 
   data: any;
+  options: any;
 
-  constructor() {}
+  constructor() {
+    this.options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0
+    };
+  }
 
   load()
   /**
@@ -24,7 +31,7 @@ export class GeolocationService {
   {
     if (this.data != undefined) return this.data;
 
-    return Geolocation.getCurrentPosition()
+    return Geolocation.getCurrentPosition(this.options)
       .catch(error => console.log("Failed to get current position"));
   }
 }

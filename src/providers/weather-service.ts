@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import {GeolocationService} from "./geolocation-service";
 
 
 /*
@@ -19,7 +20,7 @@ export class WeatherService {
 
   future_data: any;
 
-  constructor(public http: Http) {}
+  constructor(public http: Http, public geolocationService: GeolocationService) {}
 
   loadFutureData()
   /**
@@ -32,9 +33,14 @@ export class WeatherService {
     }
 
     return new Promise( (resolve) => {
-      let url = "http://api.openweathermap.org/data/2.5/forecast?"
-      let coordinates = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
-      // let coordinates = "lat=45&lon=-93";
+      let url = "http://api.openweathermap.org/data/2.5/forecast?";
+
+      let coordinates;
+      if (this._pos) {
+        coordinates = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
+      }
+      else {coordinates = "lat=45&lon=-93";}
+
       const key = "8d8c3c27de32631513a46a6cbc70ea96";
       let appID = "&APPID=" + key;
 
@@ -61,8 +67,13 @@ export class WeatherService {
     return new Promise( (resolve) => {
 
       let url = "http://api.openweathermap.org/data/2.5/weather?";
-      let coordinates = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
-      // let coordinates = "lat=45&lon=-93";
+
+      let coordinates;
+      if (this._pos) {
+        coordinates = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
+      }
+      else {coordinates = "lat=45&lon=-93";}
+
       const key = "8d8c3c27de32631513a46a6cbc70ea96";
       let appID = "&APPID=" + key;
       // console.log(url + coordinates + appID);

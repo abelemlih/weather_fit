@@ -17,17 +17,21 @@ export class ClothingDataService {
 
   constructor(public storage: Storage, public http: Http) {}
 
+  data: any;
   /**
    * Get data of the clothing items from the storage
    */
   getData() {
+    if (this.data) return this.data;
+
     return this.storage.get("ClothingData")
       .then(data => {
         let res = {};
         // Turn the raw json strings into clothing item objects
         for (let attr of ["top", "bottom", "accessories"]) {
           res[attr] = data[attr].map(item => {
-            return new ClothingItem(item.name, item.url, item.max_temp, item.min_temp, item.rain, item.snow, item.grade, item.gender);
+            return new ClothingItem(item.name, item.url, item.max_temp,
+              item.min_temp, item.rain, item.snow, item.grade, item.gender);
           })
         }
         return res;
@@ -35,15 +39,19 @@ export class ClothingDataService {
   }
 
   save(data: Object) {
-    this.storage.set("ClothingData", data)
+    this.data = data;
+    return this.storage.set("ClothingData", data)
       .catch((error) => "Failed to store data");
   }
 
   initialize() {
-    this.http.get("assets/clothing/seed.json")
-      .map(res => res.json())
-      .subscribe(data => {
-        this.save(data);
-      });
-  }
+    return new Promise((resolve) => {
+      this.http.get("assets/clothing/seed.json")
+        .map(res => res.json())
+        .subscribe(data => {
+          this.save(data);
+          resolve(data)
+        });
+    });
+    }
 }

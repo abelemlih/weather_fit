@@ -72,14 +72,7 @@ export class HomePage {
   _clothing_data: any;
 
   /**
-   *
-   * @param navCtrl
-   * @param weatherService
-   * @param geolocationService
-   * @param settingsService
-   * @param clothingService
-   * @param clothingDataService
-   * @param storage
+   * Construct the home page and load everything.
    */
   constructor(public navCtrl: NavController,
               private weatherService: WeatherService,
@@ -93,21 +86,7 @@ export class HomePage {
       loop: true
     };
 
-    // This will populate the database on first login
-    this.storage.get('first-login')
-    .then(done => {
-      // console.log("First login promise");
-      if (!done) {
-        this.storage.set('first-login', true)
-          .catch((error) => console.log("Can not set first login\n" + error.toString()));
-        console.log("Initializing database");
-        this.clothingService.initializeDB();
-      }
-    })
-    .then(() => {
-      // console.log("Load clothing promise");
-      return this.loadClothing();
-    })
+    this.loadClothing()
     .then(() => {
       // console.log("Load current location promise");
       return this.loadCurrentLocation();
@@ -120,9 +99,9 @@ export class HomePage {
     })
     .then(() => {
       // console.log("Load recommendation promise");
-      this.loadRecommendation()
-    });
-
+      return this.loadRecommendation();
+    })
+    .catch((error) => console.log("Failed chain promise in Homepage\n" + error.toString()));
   }
 
   /**
@@ -273,7 +252,8 @@ export class HomePage {
     if (this.temp_num != undefined) {
       this.updateUnits();
       this.updateAvatar();
-      this.loadRecommendation();
+      this.loadRecommendation()
+        .catch((error) => console.log("Failed to reload recommendation\n" + error.toString()));
     }
   }
 
