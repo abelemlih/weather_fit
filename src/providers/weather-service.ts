@@ -33,13 +33,13 @@ export class WeatherService {
 
     return new Promise( (resolve) => {
       let url = "http://api.openweathermap.org/data/2.5/forecast?"
-      // let coords = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
-      let coords = "lat=45&lon=-93";
+      let coordinates = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
+      // let coordinates = "lat=45&lon=-93";
       const key = "8d8c3c27de32631513a46a6cbc70ea96";
       let appID = "&APPID=" + key;
 
       this.http
-        .get(url + coords + appID)
+        .get(url + coordinates + appID)
         .map(res => res.json())
         .subscribe(data => {
           this.future_data = data;
@@ -61,14 +61,15 @@ export class WeatherService {
     return new Promise( (resolve) => {
 
       let url = "http://api.openweathermap.org/data/2.5/weather?";
-      let coords = "lat=45&lon=-93";
+      let coordinates = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
+      // let coordinates = "lat=45&lon=-93";
       const key = "8d8c3c27de32631513a46a6cbc70ea96";
       let appID = "&APPID=" + key;
-      // console.log(url + coords + appID);
+      // console.log(url + coordinates + appID);
 
       this.http
         // Send the HTTP request
-        .get(url + coords + appID)
+        .get(url + coordinates + appID)
         // Turn the response into json format
         .map(response => response.json())
         // Resolve when the data arrives
