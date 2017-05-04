@@ -35,6 +35,7 @@ export class WeatherService {
     return new Promise( (resolve) => {
       let url = "http://api.openweathermap.org/data/2.5/forecast?";
 
+      // Default to North Saint Paul
       let coordinates;
       if (this._pos) {
         coordinates = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
@@ -68,6 +69,7 @@ export class WeatherService {
 
       let url = "http://api.openweathermap.org/data/2.5/weather?";
 
+      // Default to North Saint Paul
       let coordinates;
       if (this._pos) {
         coordinates = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);

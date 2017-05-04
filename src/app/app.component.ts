@@ -42,15 +42,20 @@ export class MyApp {
       StatusBar.styleDefault();
       Splashscreen.hide();
 
-      this.storage.get('first-login')
-        .then(res => {
-          if (!res) {
-            console.log("First login");
-            this.storage.set('first-login', true);
-            this.clothingDataService.initialize();
-          }
-        })
-    });
+      // Clear the storage for testing on a new phone
+      // this.storage.clear()
+      // this.storage.remove('first-login')
+      //   .then(() => {
+          this.storage.get('first-login')
+            .then(res => {
+              if (!res) {
+                console.log("First login");
+                this.storage.set('first-login', true);
+                this.clothingDataService.initialize();
+              }
+            });
+        // });
+    })
   }
 
   openPage(page) {

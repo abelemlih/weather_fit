@@ -15,7 +15,7 @@ export class SettingsService
     storage.get("settings")
       .then((res) => {
       if (!res) {
-        this.data = {"units": "celsius", "gender": "female", "avatar": true };
+        this.data = {"units": "celsius", "gender": "female", "avatar": false };
         storage.set("settings", this.data);
       }
       else {

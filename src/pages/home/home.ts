@@ -49,9 +49,6 @@ export class HomePage {
   temp_num: number;
   temp_str: string;
 
-  mintemp_str: string;
-  maxtemp_str: string;
-
   // The range of temperature for the day
   temperature_range: string;
 
@@ -90,6 +87,10 @@ export class HomePage {
     .then(() => {
       // console.log("Load current location promise");
       return this.loadCurrentLocation();
+    })
+    .catch(() => {
+      // console.log("Inside catch block");
+      return Promise.resolve(true);
     })
     .then(() => {
       // console.log("Load weather promise");
@@ -159,6 +160,7 @@ export class HomePage {
   loadClothing() {
     return this.clothingDataService.getData()
     .then( (data) => {
+      console.log(data);
       this._clothing_data = data;
       }
     )
@@ -166,7 +168,7 @@ export class HomePage {
   }
 
   loadRecommendation() {
-    this.clothingService.weatherService = this.weatherService;
+    // this.clothingService.weatherService = this.weatherService;
     return this.clothingService.recommend()
       .then( (recom) => {
           this.recommendation = recom;
@@ -344,6 +346,7 @@ export class HomePage {
         })
         .catch((error) => console.log("Failed to update clothing data\n" + error.toString()))
       }
+      console.log(updated_clothing_data);
       this.storage.set("ClothingData", updated_clothing_data)
         .catch((error) => "Failed to store data");
     }

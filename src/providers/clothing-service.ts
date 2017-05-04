@@ -14,13 +14,9 @@ import {SettingsService} from "./settings-service";
 @Injectable()
 export class ClothingService {
 
-  private _weatherService: WeatherService;
-
-  set weatherService(value: WeatherService) {
-    this._weatherService = value;
+  constructor(public clothingDataService: ClothingDataService, public settingsService: SettingsService,
+              public weatherService: WeatherService) {
   }
-
-  constructor(public clothingData: ClothingDataService, public settingsService: SettingsService) {}
 
   /**
  * Recommend tops, bottoms, and accessories to the user based on weather conditions.
@@ -58,11 +54,10 @@ export class ClothingService {
       return {min_temp: min_temp, max_temp: max_temp, rain: rain, snow: snow}
     }
 
-    return Promise.all([this.clothingData.getData(), this._weatherService.load()])
+    return Promise.all([this.clothingDataService.getData(), this.weatherService.load()])
       .then( (values) => {
         let clothing_items = values[0];
         let weather_data = values[1];
-        //TODO: replace "neutral" with user_gender that we get from settings
         return this.generate(clothing_items, extract_weather_data(weather_data), this.settingsService.gender);
       })
   }
@@ -96,7 +91,8 @@ export class ClothingService {
     * @return boolean
     */
     function isSuitable(clothing: ClothingItem) {
-      return (clothing.suits_weather(weather_data) && clothing.suits_precipitation(weather_data) && clothing.suits_gender(user_gender))
+      return (clothing.suits_weather(weather_data) && clothing.suits_precipitation(weather_data)
+      && clothing.suits_gender(user_gender))
     }
 
     let result = {};
