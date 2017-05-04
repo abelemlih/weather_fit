@@ -6,7 +6,6 @@ import { HomePage } from '../pages/home/home';
 import { SettingsPage } from "../pages/settings/settings";
 
 import { SettingsService } from '../providers/settings-service';
-import {SaveItemPage} from "../pages/save-item/save-item";
 import {WeatherService} from "../providers/weather-service";
 
 import {Storage} from '@ionic/storage';
@@ -28,8 +27,7 @@ export class MyApp {
 
     this.pages = [
       { title: 'Home', component: HomePage, icon : "home" },
-      { title: 'Settings', component: SettingsPage, icon : "settings" },
-      { title: 'Save Clothing Item', component: SaveItemPage, icon : "folder-open" }
+      { title: 'Settings', component: SettingsPage, icon : "settings" }
     ];
   }
 

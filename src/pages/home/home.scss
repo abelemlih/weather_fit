@@ -4,20 +4,17 @@ page-home {
     overflow: hidden;
   }
 
-  .weatherInformation {
-
-    .weather_icon {
+  .weather_page_settings {
+    .animated_weather_icon {
       min: {
         width: 30%;
         height: 20vh;
       }
       margin: auto;
     }
-
     .current_temperature {
-      position: absolute;
-      top: 50%;
-      transform: translate(50%, -50%);
+      padding-top: 30%;
+      text-align: center;
       letter-spacing: 3px;
       color: white;
       font: {
@@ -25,7 +22,6 @@ page-home {
         weight: bold;
       }
     }
-
     .location {
       letter-spacing: 2px;
       text-align: center;
@@ -57,20 +53,12 @@ page-home {
        }
     }}
 
-   .top {
-     max-width: 35%;
-   }
-
-   .bottom {
+   .top,.bottom {
      max-width: 35%;
    }
 
    .accessories {
     max-width: 30%;
-   }
-
-   .main-display {
-    background-color: #2A93D5;
    }
 
    .slide {
@@ -80,7 +68,7 @@ page-home {
 
   #font_features {
     color: white;
-    font-size: calc(0.1em + 3.3vmin);
+    font-size: calc(0.08em + 3.3vmin);
     font-weight: bold;
   }
 

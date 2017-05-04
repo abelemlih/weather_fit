@@ -32,10 +32,10 @@ export class WeatherService {
     }
 
     return new Promise( (resolve) => {
-      let url = "http://api.openweathermap.org/data/2.5/forecast?";
-      let coords = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
-      // let coords = "lat=45&lon=-93";
-      const key = "6a24316a673761513e82c0ee0315bdea";
+      let url = "http://api.openweathermap.org/data/2.5/forecast?"
+      // let coords = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
+      let coords = "lat=45&lon=-93";
+      const key = "8d8c3c27de32631513a46a6cbc70ea96";
       let appID = "&APPID=" + key;
 
       this.http
@@ -61,8 +61,7 @@ export class WeatherService {
     return new Promise( (resolve) => {
 
       let url = "http://api.openweathermap.org/data/2.5/weather?";
-      let coords = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
-      // let coords = "lat=45&lon=-93";
+      let coords = "lat=45&lon=-93";
       const key = "8d8c3c27de32631513a46a6cbc70ea96";
       let appID = "&APPID=" + key;
       // console.log(url + coords + appID);

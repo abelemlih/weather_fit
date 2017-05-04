@@ -88,20 +88,32 @@ export class HomePage {
               public clothingService: ClothingService,
               public clothingDataService: ClothingDataService,
               public storage: Storage) {
+
     this.option = {
       loop: true
     };
 
-    // Load the current location before loading everything else
-    this.loadCurrentLocation()
+    // This will populate the database on first login
+    this.storage.get('first-login')
+      .then(done => {
+        if (!done) {
+          this.storage.set('first-login', true)
+            .catch((error) => console.log("Can not set first login\n" + error.toString()));
+          this.clothingService.initializeDB();
+        }
+      })
       .then(() => {
-        this.loadWeather();
-        this.loadTime();
         this.loadClothing();
       })
       .then(() => {
-        this.loadRecommendation();
-      });
+        this.loadCurrentLocation()
+          .then(() => {
+          this.loadWeather();
+          this.loadTime();
+          this.loadFutureWeather();
+          });
+      } );
+
     // clothingData.getData()
     //   .then((data) => console.log(data));
   }
@@ -143,9 +155,9 @@ export class HomePage {
    */
   updateAvatar() {
     if (this.settingsService.avatar)
-      this.clothingDiv.nativeElement.style.backgroundImage = "url(../../assets/avatar/true.png)";
+      this.clothingDiv.nativeElement.style.backgroundImage = "url(assets/avatar/true.png)";
     else {
-      this.clothingDiv.nativeElement.style.backgroundImage = "url(../../assets/avatar/false.png)";
+      this.clothingDiv.nativeElement.style.backgroundImage = "url(assets/avatar/false.png)";
     }
   }
 
@@ -269,15 +281,6 @@ export class HomePage {
     // This will make it repopulate the database every login, which is good for testing purposes.
     // this.clothingService.initializeDB();
 
-    // This will make it populates the database on first login
-    this.storage.get('first-login')
-      .then(done => {
-        if (!done) {
-          this.storage.set('first-login', true)
-            .catch((error) => console.log("Can not set first login\n" + error.toString()));
-          this.clothingService.initializeDB();
-        }
-      })
   }
 
   /**
@@ -306,9 +309,14 @@ export class HomePage {
   }
 
   /**
-   *
+   * Update the grade of the items chosen by the user when the three sliders are clicked
    */
   allTapped() {
+
+    /**
+    * Find index of a clothing item within an array of clothing items
+    * @return number which represents the index of the item searched
+    */
     function findIndex (element: ClothingItem, array: Array<ClothingItem>): any {
       for (let i in array) {
         if (array[i].name === element.name) {
@@ -318,13 +326,16 @@ export class HomePage {
       return `Error: Cannot find element ${element} within ${array}`
     }
 
+    /**
+    * Generate new grade for a clothing item
+    * @return number that represents the new grade of the clothing item
+    */
     function newItemGrade(item: ClothingItem) {
       return ((1-item.grade)*(0.05)) + item.grade
     }
 
 
     if (this.picked.every(Boolean)) {
-      //Updating top
       let updated_clothing_data = this.clothing_data
       let clothing_types = ["top","bottom","accessories"]
       for (let i in clothing_types) {
@@ -334,12 +345,6 @@ export class HomePage {
         Promise.resolve('Success')
         .then((res) => {
           let item = chosen_clothing_array[this.convertIndexToSlide(i).getActiveIndex()]
-          let repeat = 0
-          while(typeof item === "undefined" && repeat <= 10) {
-            item = chosen_clothing_array[this.convertIndexToSlide(i).getActiveIndex()]
-            repeat = repeat + 1
-            console.log(repeat)
-          }
           return item
         })
         .catch((error) => console.log("Failed to load current chosen item\n" + error.toString()))

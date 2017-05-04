@@ -1,4 +1,4 @@
-# weatherFit: for the weather confused!
+# Weather Fit: for the weather confused!
 
 weatherFit is an [Ionic](https://ionicframework.com/) application that help users choose their attire for the day. The app generates choices for tops, bottoms, and accessories that match the weather of the day.
 
@@ -17,7 +17,7 @@ To run weatherFit, run this command on your terminal:
 ```
 $ ionic serve
 ```
-and then access the app on your browser through http://localhost:8100/
+and then access the app on your browser through http://localhost:8100/ (preferably Google Chrome or Mozilla Firefox)
 
 ### Developer Documentation
 
@@ -45,7 +45,7 @@ Location: /src/providers
 |---|---|
 |__clothing-data-service.ts__|Contains methods to initialize, save, and retrieve clothing data|
 |__clothing-item.ts__|Class that represents a clothing item within the application. Contains getters, setters, and methods to check whether a clothing item matches weather, precipitation, and gender|
-|__clothing-service.ts__|Contains methods to filter clothing recommendations with respect to weather, and user preferences|
+|__clothing-service.ts__|Contains methods to filter clothing recommendations with respect to weather and user preferences|
 |__geolocation-service.ts__|Contains a method to retrieve the current location of the user|
 |__settings-service.ts__|Class that represents the settings of the app. Contains getters and setters for the settings parameters|
 |__weather-service.ts__|Contains methods to retrieve weather data using the OpenWeatherMap API|
@@ -56,12 +56,9 @@ Location: /src/assets
 
 |  File |  Content |
 |---|---|
-|__avatar__||
-|__clothing__||
-|__icon__||
-|__tools__||
-|__weather__||
-|__weather_animated__||
+|__avatar__| Folder that contains the avatar related pictures|
+|__clothing__| Folder that contains pictures of clothing displayed on the app|
+|__weather animated__| Folder that contains weather animations|
 
 
 __Resources__
@@ -73,5 +70,7 @@ __Resources__
 * Ionic Geolocation: https://ionicframework.com/docs/native/geolocation/
 
 * Ionic Storage: https://ionicframework.com/docs/storage/
+
+* Admin Folder: Contains the schedule we used to organize our development process, suggestions from user testing, and a page we used to facilitate the data input process.
 
 

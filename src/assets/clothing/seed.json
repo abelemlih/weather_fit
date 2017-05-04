@@ -3,7 +3,7 @@
   "top": [
     {
       "name": "puffy_jacket",
-      "url": "../../assets/clothing/puffy_jacket.png",
+      "url": "assets/clothing/puffy_jacket.png",
       "max_temp": 10,
       "min_temp": -15,
       "rain": true,
@@ -12,8 +12,38 @@
       "gender": "neutral"
     },
     {
+      "name": "snow_jacket",
+      "url": "assets/clothing/winter_jacket.png",
+      "max_temp": 10,
+      "min_temp": -15,
+      "rain": true,
+      "snow": true,
+      "grade": 0.5,
+      "gender": "neutral"
+    },
+    {
+      "name": "long_coat",
+      "url": "assets/clothing/long_coat.png",
+      "max_temp": 10,
+      "min_temp": -15,
+      "rain": true,
+      "snow": true,
+      "grade": 0.5,
+      "gender": "neutral"
+    },
+    {
+      "name": "trench_coat",
+      "url": "assets/clothing/trench_coat.png",
+      "max_temp": 10,
+      "min_temp": -15,
+      "rain": true,
+      "snow": true,
+      "grade": 0.5,
+      "gender": "male"
+    },
+    {
       "name": "hoodie",
-      "url": "../../assets/clothing/hoodie.png",
+      "url": "assets/clothing/hoodie.png",
       "max_temp": 25,
       "min_temp": 5,
       "rain": true,
@@ -23,7 +53,17 @@
     },
     {
       "name": "pullover",
-      "url": "../../assets/clothing/pullover.png",
+      "url": "assets/clothing/pullover.png",
+      "max_temp": 25,
+      "min_temp": 5,
+      "rain": false,
+      "snow": false,
+      "grade": 0.5,
+      "gender": "neutral"
+    },
+    {
+      "name": "patterned_sweater",
+      "url": "assets/clothing/patterned_sweater.png",
       "max_temp": 25,
       "min_temp": 5,
       "rain": false,
@@ -33,7 +73,7 @@
     },
     {
       "name": "letterman_jacket",
-      "url": "../../assets/clothing/letterman_jacket.png",
+      "url": "assets/clothing/letterman_jacket.png",
       "max_temp": 25,
       "min_temp": 5,
       "rain": false,
@@ -43,7 +83,7 @@
     },
     {
       "name": "blazer",
-      "url": "../../assets/clothing/blazer.png",
+      "url": "assets/clothing/blazer.png",
       "max_temp": 25,
       "min_temp": 5,
       "rain": false,
@@ -53,7 +93,7 @@
     },
     {
       "name": "suit_jacket",
-      "url": "../../assets/clothing/suit_jacket.png",
+      "url": "assets/clothing/suit_jacket.png",
       "max_temp": 25,
       "min_temp": 5,
       "rain": false,
@@ -63,7 +103,7 @@
     },
     {
       "name": "sporty_jacket",
-      "url": "../../assets/clothing/sporty_jacket.png",
+      "url": "assets/clothing/sporty_jacket.png",
       "max_temp": 25,
       "min_temp": 5,
       "rain": true,
@@ -73,7 +113,7 @@
     },
     {
       "name": "jean_jacket",
-      "url": "../../assets/clothing/jean_jacket.png",
+      "url": "assets/clothing/jean_jacket.png",
       "max_temp": 35,
       "min_temp": 10,
       "rain": false,
@@ -83,7 +123,7 @@
     },
     {
       "name": "button_down",
-      "url": "../../assets/clothing/button_down.png",
+      "url": "assets/clothing/button_down.png",
       "max_temp": 35,
       "min_temp": 10,
       "rain": false,
@@ -93,7 +133,7 @@
     },
     {
       "name": "shirt",
-      "url": "../../assets/clothing/shirt.png",
+      "url": "assets/clothing/shirt.png",
       "max_temp": 35,
       "min_temp": 5,
       "rain": false,
@@ -103,7 +143,7 @@
     },
     {
       "name": "tshirt",
-      "url": "../../assets/clothing/tshirt.png",
+      "url": "assets/clothing/tshirt.png",
       "max_temp": 35,
       "min_temp": 10,
       "rain": false,
@@ -113,7 +153,7 @@
     },
     {
       "name": "graphic_tee",
-      "url": "../../assets/clothing/graphic_tee.png",
+      "url": "assets/clothing/graphic_tee.png",
       "max_temp": 35,
       "min_temp": 10,
       "rain": false,
@@ -123,7 +163,17 @@
     },
     {
       "name": "jersey",
-      "url": "../../assets/clothing/jersey.png",
+      "url": "assets/clothing/jersey.png",
+      "max_temp": 35,
+      "min_temp": 15,
+      "rain": false,
+      "snow": false,
+      "grade": 0.5,
+      "gender": "neutral"
+    },
+    {
+      "name": "other_jersey",
+      "url": "assets/clothing/other_basketball.png",
       "max_temp": 35,
       "min_temp": 15,
       "rain": false,
@@ -133,7 +183,7 @@
     },
     {
       "name": "polo",
-      "url": "../../assets/clothing/polo.png",
+      "url": "assets/clothing/polo.png",
       "max_temp": 35,
       "min_temp": 10,
       "rain": false,
@@ -143,7 +193,17 @@
     },
     {
       "name": "tank_top",
-      "url": "../../assets/clothing/tank_top.png",
+      "url": "assets/clothing/tank_top.png",
+      "max_temp": 35,
+      "min_temp": 10,
+      "rain": false,
+      "snow": false,
+      "grade": 0.5,
+      "gender": "female"
+    },
+    {
+      "name": "off_the_shoulder",
+      "url": "assets/clothing/off_the_shoulder.png",
       "max_temp": 35,
       "min_temp": 10,
       "rain": false,
@@ -153,7 +213,7 @@
     },
     {
       "name": "graphic_tank",
-      "url": "../../assets/clothing/graphic_tank.png",
+      "url": "assets/clothing/graphic_tank.png",
       "max_temp": 35,
       "min_temp": 10,
       "rain": false,
@@ -165,7 +225,7 @@
   "bottom": [
     {
       "name": "sport_shorts",
-      "url": "../../assets/clothing/sport_shorts.png",
+      "url": "assets/clothing/sport_shorts.png",
       "max_temp": 35,
       "min_temp": 15,
       "rain": false,
@@ -175,7 +235,7 @@
     },
     {
       "name": "cargo_pants",
-      "url": "../../assets/clothing/cargo_pants.png",
+      "url": "assets/clothing/cargo_pants.png",
       "max_temp": 35,
       "min_temp": -15,
       "rain": true,
@@ -185,7 +245,7 @@
     },
     {
       "name": "long_skirt",
-      "url": "../../assets/clothing/long_skirt.png",
+      "url": "assets/clothing/long_skirt.png",
       "max_temp": 35,
       "min_temp": 10,
       "rain": false,
@@ -195,7 +255,7 @@
     },
     {
       "name": "skirt",
-      "url": "../../assets/clothing/skirt.png",
+      "url": "assets/clothing/skirt.png",
       "max_temp": 35,
       "min_temp": 10,
       "rain": false,
@@ -205,7 +265,7 @@
     },
     {
       "name": "purple_skirt",
-      "url": "../../assets/clothing/purple_skirt.png",
+      "url": "assets/clothing/purple_skirt.png",
       "max_temp": 35,
       "min_temp": 10,
       "rain": false,
@@ -215,7 +275,7 @@
     },
     {
       "name": "spandex",
-      "url": "../../assets/clothing/spandex.png",
+      "url": "assets/clothing/spandex.png",
       "max_temp": 35,
       "min_temp": 10,
       "rain": false,
@@ -225,7 +285,7 @@
     },
     {
       "name": "shorts",
-      "url": "../../assets/clothing/shorts.png",
+      "url": "assets/clothing/shorts.png",
       "max_temp": 35,
       "min_temp": 10,
       "rain": false,
@@ -235,7 +295,7 @@
     },
     {
       "name": "jean_shorts",
-      "url": "../../assets/clothing/jean_shorts.png",
+      "url": "assets/clothing/jean_shorts.png",
       "max_temp": 35,
       "min_temp": 10,
       "rain": false,
@@ -245,7 +305,7 @@
     },
     {
       "name": "male_jean_shorts",
-      "url": "../../assets/clothing/male_jean_shorts.png",
+      "url": "assets/clothing/male_jean_shorts.png",
       "max_temp": 35,
       "min_temp": 10,
       "rain": false,
@@ -255,7 +315,7 @@
     },
     {
       "name": "jeans",
-      "url": "../../assets/clothing/jeans.png",
+      "url": "assets/clothing/jeans.png",
       "max_temp": 35,
       "min_temp": -15,
       "rain": true,
@@ -267,7 +327,7 @@
   "accessories": [
     {
       "name": "sneakers",
-      "url": "../../assets/clothing/double_sneakers.png",
+      "url": "assets/clothing/double_sneakers.png",
       "max_temp": 35,
       "min_temp": 0,
       "rain": false,
@@ -277,7 +337,7 @@
     },
     {
       "name": "nikes",
-      "url": "../../assets/clothing/double_nikes.png",
+      "url": "assets/clothing/double_nikes.png",
       "max_temp": 35,
       "min_temp": 0,
       "rain": false,
@@ -287,7 +347,7 @@
     },
     {
       "name": "adidas",
-      "url": "../../assets/clothing/double_adidas.png",
+      "url": "assets/clothing/double_adidas.png",
       "max_temp": 35,
       "min_temp": 0,
       "rain": false,
@@ -297,7 +357,7 @@
     },
     {
       "name": "converse",
-      "url": "../../assets/clothing/double_converse.png",
+      "url": "assets/clothing/double_converse.png",
       "max_temp": 35,
       "min_temp": 0,
       "rain": false,
@@ -307,7 +367,7 @@
     },
     {
       "name": "vans",
-      "url": "../../assets/clothing/double_vans.png",
+      "url": "assets/clothing/double_vans.png",
       "max_temp": 35,
       "min_temp": 0,
       "rain": false,
@@ -317,7 +377,7 @@
     },
     {
       "name": "uggs",
-      "url": "../../assets/clothing/double_brown_uggs.png",
+      "url": "assets/clothing/double_brown_uggs.png",
       "max_temp": 25,
       "min_temp": -15,
       "rain": false,
@@ -327,7 +387,7 @@
     },
     {
       "name": "flats",
-      "url": "../../assets/clothing/double_flats.png",
+      "url": "assets/clothing/double_flats.png",
       "max_temp": 35,
       "min_temp": 5,
       "rain": false,
@@ -337,7 +397,7 @@
     },
     {
       "name": "heels",
-      "url": "../../assets/clothing/double_heels.png",
+      "url": "assets/clothing/double_heels.png",
       "max_temp": 35,
       "min_temp": 5,
       "rain": false,
@@ -347,17 +407,7 @@
     },
     {
       "name": "slingback_heels",
-      "url": "../../assets/clothing/double_slingback_heels.png",
-      "max_temp": 35,
-      "min_temp": 5,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "female"
-    },
-    {
-      "name": "peeptoe_heels",
-      "url": "../../assets/clothing/double_peeptoe_heels.png",
+      "url": "assets/clothing/double_slingback_heels.png",
       "max_temp": 35,
       "min_temp": 5,
       "rain": false,
@@ -367,7 +417,7 @@
     },
     {
       "name": "strappy_heels",
-      "url": "../../assets/clothing/double_strappy_heels.png",
+      "url": "assets/clothing/double_strappy_heels.png",
       "max_temp": 35,
       "min_temp": 5,
       "rain": false,
@@ -377,7 +427,7 @@
     },
     {
       "name": "wedges",
-      "url": "../../assets/clothing/double_wedges.png",
+      "url": "assets/clothing/double_wedges.png",
       "max_temp": 35,
       "min_temp": 10,
       "rain": false,
@@ -387,7 +437,7 @@
     },
     {
       "name": "slippers",
-      "url": "../../assets/clothing/double_slippers.png",
+      "url": "assets/clothing/double_slippers.png",
       "max_temp": 35,
       "min_temp": 5,
       "rain": false,
@@ -397,7 +447,7 @@
     },
     {
       "name": "loafers",
-      "url": "../../assets/clothing/double_loafers.png",
+      "url": "assets/clothing/double_loafers.png",
       "max_temp": 35,
       "min_temp": 0,
       "rain": false,
@@ -407,7 +457,7 @@
     },
     {
       "name": "birkenstocks",
-      "url": "../../assets/clothing/double_birkenstocks.png",
+      "url": "assets/clothing/double_birkenstocks.png",
       "max_temp": 35,
       "min_temp": 5,
       "rain": false,
@@ -417,7 +467,7 @@
     },
     {
       "name": "flip_flops",
-      "url": "../../assets/clothing/double_flip_flops.png",
+      "url": "assets/clothing/double_flip_flops.png",
       "max_temp": 35,
       "min_temp": 5,
       "rain": false,
@@ -427,7 +477,7 @@
     },
     {
       "name": "girly_sandals",
-      "url": "../../assets/clothing/double_fun_sandals.png",
+      "url": "assets/clothing/double_fun_sandals.png",
       "max_temp": 35,
       "min_temp": 5,
       "rain": false,
@@ -437,7 +487,7 @@
     },
     {
       "name": "slides",
-      "url": "../../assets/clothing/double_slides.png",
+      "url": "assets/clothing/double_slides.png",
       "max_temp": 35,
       "min_temp": 5,
       "rain": false,
@@ -447,7 +497,7 @@
     },
     {
       "name": "rain_boots",
-      "url": "../../assets/clothing/double_rainboots.png",
+      "url": "assets/clothing/double_rainboots.png",
       "max_temp": 25,
       "min_temp": 0,
       "rain": true,
@@ -457,7 +507,7 @@
     },
     {
       "name": "short_boots",
-      "url": "../../assets/clothing/double_short_boots.png",
+      "url": "assets/clothing/double_short_boots.png",
       "max_temp": 25,
       "min_temp": -25,
       "rain": true,
@@ -467,7 +517,7 @@
     },
     {
       "name": "booties",
-      "url": "../../assets/clothing/double_booties.png",
+      "url": "assets/clothing/double_booties.png",
       "max_temp": 25,
       "min_temp": -25,
       "rain": true,
@@ -477,7 +527,7 @@
     },
     {
       "name": "tall_boots",
-      "url": "../../assets/clothing/double_tall_boots.png",
+      "url": "assets/clothing/double_tall_boots.png",
       "max_temp": 25,
       "min_temp": -25,
       "rain": true,
@@ -487,7 +537,7 @@
     },
     {
       "name": "timberlands",
-      "url": "../../assets/clothing/double_timberlands.png",
+      "url": "assets/clothing/double_timberlands.png",
       "max_temp": 25,
       "min_temp": -25,
       "rain": true,
