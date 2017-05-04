@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {GeolocationService} from "./geolocation-service";
+import { Storage } from '@ionic/storage';
 
 /*
   Load the settings
@@ -14,7 +15,10 @@ export class SettingsService
   private _location: Position;
   private _avatar: boolean;
 
-  constructor() {
+  constructor(public storage: Storage) {
+
+    storage.get()
+
     this._units = "celsius";
     this._gender = "female";
     this._avatar = true;

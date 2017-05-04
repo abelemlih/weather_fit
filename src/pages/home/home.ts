@@ -98,6 +98,8 @@ export class HomePage {
         this.loadWeather();
         this.loadTime();
         this.loadClothing();
+      })
+      .then(() => {
         this.loadRecommendation();
       });
     // clothingData.getData()
@@ -265,17 +267,17 @@ export class HomePage {
   ionViewDidLoad() {
 
     // This will make it repopulate the database every login, which is good for testing purposes.
-    this.clothingService.initializeDB();
+    // this.clothingService.initializeDB();
 
-    // This will make it popilates the database on first login
-    // this.storage.get('first-login')
-    //   .then(done => {
-    //     if (!done) {
-    //       this.storage.set('first-login', true)
-    //         .catch((error) => console.log("Can not set first login\n" + error.toString()));
-    //       this.clothingService.initializeDB();
-    //     }
-    //   })
+    // This will make it populates the database on first login
+    this.storage.get('first-login')
+      .then(done => {
+        if (!done) {
+          this.storage.set('first-login', true)
+            .catch((error) => console.log("Can not set first login\n" + error.toString()));
+          this.clothingService.initializeDB();
+        }
+      })
   }
 
   /**
