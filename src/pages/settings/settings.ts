@@ -28,24 +28,14 @@ export class SettingsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams, public settingsService: SettingsService) {
     this.units = settingsService.units;
     this.gender = settingsService.gender;
-    this.location = "current-location";
     this.avatar = settingsService.avatar;
 
-  }
-
-  /**
-   *
-   */
-  save() {
-    this.settingsService.setUnits(this.units);
-    this.settingsService.setGender(this.gender);
-    this.settingsService.setAvatar(this.avatar);
   }
 
   /**
    * Save the settings on leaving the settings page
    */
   ionViewWillLeave() {
-    this.save();
+    this.settingsService.save(this.gender, this.units, this.avatar);
   }
 }

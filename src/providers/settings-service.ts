@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {GeolocationService} from "./geolocation-service";
 import { Storage } from '@ionic/storage';
 
 /*
@@ -9,57 +8,40 @@ import { Storage } from '@ionic/storage';
 export class SettingsService
 {
 
-  // Not units = fahrenheit
-  private _units: string;
-  private _gender: string;
-  private _location: Position;
-  private _avatar: boolean;
+  private data: any;
 
   constructor(public storage: Storage) {
 
-    storage.get()
-
-    this._units = "celsius";
-    this._gender = "female";
-    this._avatar = true;
-    this.setCurrentLocation();
-  }
-
-  setAvatar(avatar: boolean){
-    this._avatar = avatar;
-  }
-
-  setUnits(units: string) {
-    this._units = units;
-  }
-
-  setGender(gender: string) {
-    this._gender = gender;
-  }
-
-  setLocation(pos: Position) {
-    this._location = pos;
-  }
-
-  setCurrentLocation() {
-    let geolocation = new GeolocationService();
-    geolocation.load()
-      .then(data => this._location = data)
+    storage.get("settings")
+      .then((res) => {
+      if (!res) {
+        this.data = {"units": "celsius", "gender": "female", "avatar": true };
+        storage.set("settings", this.data);
+      }
+      else {
+        this.data = res;
+      }
+      })
+      .catch((error) => console.log("Failed to get settings data from storage\n" + error.toString()));
   }
 
   get avatar(): boolean{
-    return this._avatar;
+    return this.data["avatar"];
   }
 
   get units(): string {
-    return this._units;
+    return this.data["units"];
   }
 
   get gender(): string {
-    return this._gender;
+    return this.data["gender"];
   }
 
-  get location(): Position {
-    return this._location;
+  save(gender: String, units: String, avatar: boolean) {
+    this.data["avatar"] = avatar;
+    this.data["units"] = units;
+    this.data["gender"] = gender;
+    this.storage.set("settings", this.data);
   }
+
 }
