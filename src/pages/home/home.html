@@ -53,7 +53,7 @@
         </ion-col>
       </ion-row>
 
-      <!-- Avatar and clothing recommandation-->
+      <!-- Avatar and clothing recommendation-->
       <div class ="avatar" #clothing *ngIf="recommendation">
         <ion-row>
           <ion-slides class="slide" #slideOne (ionSlideTap) = "slideTapped(0); allTapped();" [ngClass]=" picked[0] ? 'picked' : ''">

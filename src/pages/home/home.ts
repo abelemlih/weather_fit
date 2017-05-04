@@ -140,8 +140,9 @@ export class HomePage {
    * Update the avatar on/off based on the settings
    */
   updateAvatar() {
-    if (this.settingsService.avatar)
+    if (this.settingsService.avatar) {
       this.clothingDiv.nativeElement.style.backgroundImage = "url(assets/avatar/true.png)";
+    }
     else {
       this.clothingDiv.nativeElement.style.backgroundImage = "url(assets/avatar/false.png)";
     }
@@ -249,9 +250,9 @@ export class HomePage {
    * Re-update the units and the avatar each time the home page is loaded
    */
   ionViewWillEnter() {
-    if (this.temp_num != undefined) {
-      this.updateUnits();
+    if (this.recommendation != undefined) {
       this.updateAvatar();
+      this.updateUnits();
       this.loadRecommendation()
         .catch((error) => console.log("Failed to reload recommendation\n" + error.toString()));
     }
