@@ -95,27 +95,34 @@ export class HomePage {
 
     // This will populate the database on first login
     this.storage.get('first-login')
-      .then(done => {
-        if (!done) {
-          this.storage.set('first-login', true)
-            .catch((error) => console.log("Can not set first login\n" + error.toString()));
-          this.clothingService.initializeDB();
-        }
-      })
-      .then(() => {
-        this.loadClothing();
-      })
-      .then(() => {
-        this.loadCurrentLocation()
-          .then(() => {
-          this.loadWeather();
-          this.loadTime();
-          this.loadFutureWeather();
-          });
-      } );
+    .then(done => {
+      // console.log("First login promise");
+      if (!done) {
+        this.storage.set('first-login', true)
+          .catch((error) => console.log("Can not set first login\n" + error.toString()));
+        console.log("Initializing database");
+        this.clothingService.initializeDB();
+      }
+    })
+    .then(() => {
+      // console.log("Load clothing promise");
+      return this.loadClothing();
+    })
+    .then(() => {
+      // console.log("Load current location promise");
+      return this.loadCurrentLocation();
+    })
+    .then(() => {
+      // console.log("Load weather promise");
+      this.loadTime();
+      this.loadFutureWeather();
+      return this.loadWeather();
+    })
+    .then(() => {
+      // console.log("Load recommendation promise");
+      this.loadRecommendation()
+    });
 
-    // clothingData.getData()
-    //   .then((data) => console.log(data));
   }
 
   /**
@@ -161,10 +168,6 @@ export class HomePage {
     }
   }
 
-  /**
-   *
-   * @returns {PromiseLike<TResult>|Promise<R>|Promise<TResult>|Promise<T>|Promise<TResult2|TResult1>}
-   */
   loadCurrentLocation() {
     return this.geolocationService.load()
       .then((pos) => this.weatherService.pos = pos);
@@ -270,17 +273,8 @@ export class HomePage {
     if (this.temp_num != undefined) {
       this.updateUnits();
       this.updateAvatar();
+      this.loadRecommendation();
     }
-  }
-
-  /**
-   *
-   */
-  ionViewDidLoad() {
-
-    // This will make it repopulate the database every login, which is good for testing purposes.
-    // this.clothingService.initializeDB();
-
   }
 
   /**
