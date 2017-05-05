@@ -99,11 +99,10 @@ export class ClothingService {
     console.log(clothing_dict)
     for (let attr of ["top", "bottom", "accessories"]) {
       //Phase 1: Suitable for weather, precipitation, and gender
-      //result[attr] = clothing_dict[attr].filter(isSuitable)
+      result[attr] = clothing_dict[attr].filter(isSuitable)
       // TODO: somehow this is returning an empty array
       //Phase 2: Filtering by cap
-      //result[attr] = capFilter(result[attr], 15)
-      result[attr] = clothing_dict[attr]
+      result[attr] = capFilter(result[attr], 15)
     }
     console.log(result);
     return result;

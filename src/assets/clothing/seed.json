@@ -42,16 +42,6 @@
       "gender": "neutral"
     },
     {
-      "name": "blazer",
-      "url": "assets/clothing/blazer.png",
-      "max_temp": 25,
-      "min_temp": 5,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "neutral"
-    },
-    {
       "name": "suit_jacket",
       "url": "assets/clothing/suit_jacket.png",
       "max_temp": 25,
@@ -316,16 +306,6 @@
       "gender": "neutral"
     },
     {
-      "name": "uggs",
-      "url": "assets/clothing/double_brown_uggs.png",
-      "max_temp": 25,
-      "min_temp": -15,
-      "rain": false,
-      "snow": true,
-      "grade": 0.5,
-      "gender": "female"
-    },
-    {
       "name": "flats",
       "url": "assets/clothing/double_flats.png",
       "max_temp": 35,
@@ -464,16 +444,6 @@
       "snow": true,
       "grade": 0.5,
       "gender": "female"
-    },
-    {
-      "name": "tall_boots",
-      "url": "assets/clothing/double_tall_boots.png",
-      "max_temp": 25,
-      "min_temp": -25,
-      "rain": true,
-      "snow": true,
-      "grade": 0.5,
-      "gender": "neutral"
     },
     {
       "name": "timberlands",
