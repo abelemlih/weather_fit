@@ -21,22 +21,23 @@ import {ClothingDataService} from "../providers/clothing-data-service";
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage = HomePage;
+  rootPage: any;
 
   pages: Array<{title: string, component: any, icon : string}>;
 
   constructor(public platform: Platform, public storage: Storage,
-              public clothingDataService: ClothingDataService) {
-    this.initializeApp();
-
+              public clothingDataService: ClothingDataService, public settingService: SettingsService) {
     this.pages = [
       { title: 'Home', component: HomePage, icon : "home" },
       { title: 'Settings', component: SettingsPage, icon : "settings" }
     ];
+
+    this.initializeApp()
+      .then(() => this.rootPage = HomePage);
   }
 
   initializeApp() {
-    this.platform.ready().then(() => {
+    return this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
@@ -45,15 +46,24 @@ export class MyApp {
       // this.clothingDataService.initialize();
       // console.log("Initializing");
 
-      this.storage.get('first-login')
+      return this.storage.get('first-login')
+      // return this.clearStorage()
+      //   .then(() => {
+      //   return this.storage.get('first-login')
+      //   })
         .then(res => {
           if (!res) {
             console.log("First login");
             this.storage.set('first-login', true);
-            this.clothingDataService.initialize();
+            return Promise.all([this.clothingDataService.initialize(), this.settingService.initialize()]);
           }
+          else return this.settingService.update();
         });
     })
+  }
+
+  clearStorage() {
+    return this.storage.clear();
   }
 
   openPage(page) {

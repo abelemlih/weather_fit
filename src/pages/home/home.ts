@@ -83,7 +83,7 @@ export class HomePage {
 
       // This catch block ensures that the next then() in the chain is executed regardless of
       // whether getting current location was successful.
-      return Promise.resolve(true);
+      return Promise.resolve();
     })
     .then(() => {
       // console.log("Load weather promise");
@@ -252,7 +252,7 @@ export class HomePage {
         item.increase_grade();
       }
 
-      this.clothingDataService.saveData();
+      return this.clothingDataService.saveData();
     }
   }
 

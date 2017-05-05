@@ -10,19 +10,23 @@ export class SettingsService
 
   private data: any;
 
-  constructor(public storage: Storage) {
+  constructor(public storage: Storage) {}
 
-    storage.get("settings")
+  update() {
+    return this.storage.get("settings")
       .then((res) => {
-      if (!res) {
-        this.data = {"units": "celsius", "gender": "female", "avatar": false };
-        storage.set("settings", this.data);
-      }
-      else {
-        this.data = res;
-      }
+        if (res) {
+          this.data = res;
+          return Promise.resolve();
+        }
+        else return this.initialize();
       })
       .catch((error) => console.log("Failed to get settings data from storage\n" + error.toString()));
+  }
+
+  initialize() {
+    this.data = {"units": "celsius", "gender": "female", "avatar": false };
+    return this.storage.set("settings", this.data);
   }
 
   get avatar(): boolean{

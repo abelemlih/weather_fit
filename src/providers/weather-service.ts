@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import {GeolocationService} from "./geolocation-service";
 
 
 /*
@@ -20,7 +19,7 @@ export class WeatherService {
 
   future_data: any;
 
-  constructor(public http: Http, public geolocationService: GeolocationService) {}
+  constructor(public http: Http) {}
 
   loadFutureData()
   /**
