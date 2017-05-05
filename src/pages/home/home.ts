@@ -1,4 +1,3 @@
-import {Component} from '@angular/core';
 
 import {ElementRef} from '@angular/core';
 
@@ -76,22 +75,25 @@ export class HomePage {
     this.option = {
       loop: true
     };
-
-    this.loadCurrentLocation()
+    
+    console.log("HomePage constructor");
+    // this.loadCurrentLocation()
+    Promise.resolve()
     .catch(() => {
-      // console.log("Inside catch block");
+      console.log("Inside catch block");
 
       // This catch block ensures that the next then() in the chain is executed regardless of
       // whether getting current location was successful.
       return Promise.resolve();
     })
     .then(() => {
-      // console.log("Load weather promise");
+      console.log("Load weather promise");
       this.loadTime();
       this.loadFutureWeather();
       return this.loadWeather();
     })
     .then(() => {
+      console.log("Load recommendation promise");
       return this.loadRecommendation();
     })
     .catch((error) => console.log("Failed chain promise in Homepage\n" + error.toString()));

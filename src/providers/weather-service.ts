@@ -14,7 +14,7 @@ import 'rxjs/add/operator/map';
 export class WeatherService {
 
   private data: any;
-  private _pos: Position;
+  public pos: Position;
 
 
   future_data: any;
@@ -36,8 +36,8 @@ export class WeatherService {
 
       // Default to North Saint Paul
       let coordinates;
-      if (this._pos) {
-        coordinates = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
+      if (this.pos) {
+        coordinates = "lat=" + Math.round(this.pos.coords.latitude) + "&lon=" + Math.round(this.pos.coords.longitude);
       }
       else {coordinates = "lat=45&lon=-93";}
 
@@ -70,8 +70,8 @@ export class WeatherService {
 
       // Default to North Saint Paul
       let coordinates;
-      if (this._pos) {
-        coordinates = "lat=" + Math.round(this._pos.coords.latitude) + "&lon=" + Math.round(this._pos.coords.longitude);
+      if (this.pos) {
+        coordinates = "lat=" + Math.round(this.pos.coords.latitude) + "&lon=" + Math.round(this.pos.coords.longitude);
       }
       else {coordinates = "lat=45&lon=-93";}
 
@@ -90,14 +90,5 @@ export class WeatherService {
           resolve(data);
         })
     })
-  }
-
-
-  get pos(): Position {
-    return this._pos;
-  }
-
-  set pos(value: Position) {
-    this._pos = value;
   }
 }

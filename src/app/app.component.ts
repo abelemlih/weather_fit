@@ -46,12 +46,17 @@ export class MyApp {
       // this.clothingDataService.initialize();
       // console.log("Initializing");
 
-      return this.storage.get('first-login')
+      return this.storage.ready()
+        .then(() => {
+	return this.storage.get('first-login');
+	})
       // return this.clearStorage()
       //   .then(() => {
       //   return this.storage.get('first-login')
       //   })
         .then(res => {
+	  console.log("Value of first-login:");
+	  console.log(res.toString());
           if (!res) {
             console.log("First login");
             this.storage.set('first-login', true);

@@ -29,9 +29,15 @@ export class GeolocationService {
    * @returns A promise that resolves with the current location.
    */
   {
+    console.log("Inside load() in geolocation service");
+    console.log(this.data.toString());
     if (this.data != undefined) return this.data;
 
     return Geolocation.getCurrentPosition(this.options)
+      .then(data => {
+	      console.log("Got data from geolocation");
+	      console.log(data.toString());
+      })	      
       .catch(error => console.log("Failed to get current position"));
   }
 }
