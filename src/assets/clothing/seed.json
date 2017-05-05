@@ -32,28 +32,8 @@
       "gender": "neutral"
     },
     {
-      "name": "patterned_sweater",
-      "url": "assets/clothing/patterned_sweater.png",
-      "max_temp": 25,
-      "min_temp": 5,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "neutral"
-    },
-    {
       "name": "letterman_jacket",
       "url": "assets/clothing/letterman_jacket.png",
-      "max_temp": 25,
-      "min_temp": 5,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "neutral"
-    },
-    {
-      "name": "blazer",
-      "url": "assets/clothing/blazer.png",
       "max_temp": 25,
       "min_temp": 5,
       "rain": false,
@@ -142,16 +122,6 @@
       "gender": "neutral"
     },
     {
-      "name": "other_jersey",
-      "url": "assets/clothing/other_basketball.png",
-      "max_temp": 35,
-      "min_temp": 15,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "neutral"
-    },
-    {
       "name": "polo",
       "url": "assets/clothing/polo.png",
       "max_temp": 35,
@@ -164,16 +134,6 @@
     {
       "name": "tank_top",
       "url": "assets/clothing/tank_top.png",
-      "max_temp": 35,
-      "min_temp": 10,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "female"
-    },
-    {
-      "name": "off_the_shoulder",
-      "url": "assets/clothing/off_the_shoulder.png",
       "max_temp": 35,
       "min_temp": 10,
       "rain": false,
@@ -346,16 +306,6 @@
       "gender": "neutral"
     },
     {
-      "name": "uggs",
-      "url": "assets/clothing/double_brown_uggs.png",
-      "max_temp": 25,
-      "min_temp": -15,
-      "rain": false,
-      "snow": true,
-      "grade": 0.5,
-      "gender": "female"
-    },
-    {
       "name": "flats",
       "url": "assets/clothing/double_flats.png",
       "max_temp": 35,
@@ -494,16 +444,6 @@
       "snow": true,
       "grade": 0.5,
       "gender": "female"
-    },
-    {
-      "name": "tall_boots",
-      "url": "assets/clothing/double_tall_boots.png",
-      "max_temp": 25,
-      "min_temp": -25,
-      "rain": true,
-      "snow": true,
-      "grade": 0.5,
-      "gender": "neutral"
     },
     {
       "name": "timberlands",
