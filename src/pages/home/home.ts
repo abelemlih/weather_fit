@@ -92,7 +92,6 @@ export class HomePage {
       return this.loadWeather();
     })
     .then(() => {
-      // console.log("Load recommendation promise");
       return this.loadRecommendation();
     })
     .catch((error) => console.log("Failed chain promise in Homepage\n" + error.toString()));
@@ -132,7 +131,6 @@ export class HomePage {
   }
 
   loadRecommendation() {
-    // this.clothingService.weatherService = this.weatherService;
     return this.clothingService.recommend()
       .then( (recom) => {
           this.recommendation = recom;
@@ -254,8 +252,7 @@ export class HomePage {
         item.increase_grade();
       }
 
-      this.clothingDataService.saveData()
-        .catch((error) => console.log("Failed to save updated data\n" + error.toString()));
+      this.clothingDataService.saveData();
     }
   }
 

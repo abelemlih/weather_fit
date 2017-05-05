@@ -58,7 +58,7 @@
         <ion-row>
           <ion-slides class="slide" #slideOne (ionSlideTap) = "slideTapped(0); allTapped();" [ngClass]=" picked[0] ? 'picked' : ''">
             <ion-slide *ngFor="let slide of recommendation.top" >
-              <img class="top" [src]="slide._url">
+              <img class="top" [src]="slide.url">
             </ion-slide>
           </ion-slides>
         </ion-row>
@@ -66,7 +66,7 @@
         <ion-row>
           <ion-slides class="slide" #slideTwo (ionSlideTap) = "slideTapped(1); allTapped();" [ngClass]= "picked[1] ? 'picked' : '' ">
             <ion-slide *ngFor="let slide of recommendation.bottom" [ngStyle]="{'background-color':color[1]}">
-              <img class="bottom" [src]="slide._url">
+              <img class="bottom" [src]="slide.url">
             </ion-slide>
           </ion-slides>
         </ion-row>
@@ -74,7 +74,7 @@
         <ion-row>
           <ion-slides class="slide" #slideThree (ionSlideTap) = "slideTapped(2); allTapped();" [ngClass]=" picked[2] ? 'picked' : ''">
             <ion-slide *ngFor="let slide of recommendation.accessories" [ngStyle]="{'background-color':color[2]}">
-              <img class="accessories" [src]="slide._url">
+              <img class="accessories" [src]="slide.url">
             </ion-slide>
           </ion-slides>
         </ion-row>

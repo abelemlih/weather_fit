@@ -36,16 +36,19 @@ export class ClothingDataService {
     // Turn the raw json strings into clothing item objects
     for (let attr of ["top", "bottom", "accessories"]) {
       res[attr] = data[attr].map(item => {
-        // return Object.create(ClothingItem, item);
-        return new ClothingItem(item.name, item.url, item.max_temp,
-          item.min_temp, item.rain, item.snow, item.grade, item.gender);
+        let newItem = new ClothingItem();
+        for (let i in item) newItem[i] = item[i];
+        return newItem;
       })
     }
     return res;
   }
 
   saveData() {
-    return this.storage.set("ClothingData", this.data);
+    let data = {};
+
+    this.storage.set("ClothingData", this.data)
+      .catch((error) => console.log("Failed to save data to storage\n" + error.toString()));
   }
 
   initialize() {
