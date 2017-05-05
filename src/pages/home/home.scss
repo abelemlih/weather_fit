@@ -35,7 +35,9 @@ page-home {
     }
 
     .min_max_temperature {
-      letter-spacing: 0.05px;
+      letter-spacing: 0.01px;
+
+
     }
 
     .wind_speed {
@@ -68,7 +70,7 @@ page-home {
 
   #font_features {
     color: white;
-    font-size: calc(0.08em + 3.3vmin);
+    font-size: calc(0.05em + 3.0vmin);
     font-weight: bold;
   }
 
