@@ -9,43 +9,66 @@ import { SettingsService } from '../providers/settings-service';
 import {WeatherService} from "../providers/weather-service";
 
 import {Storage} from '@ionic/storage';
+import {ClothingService} from "../providers/clothing-service";
+import {GeolocationService} from "../providers/geolocation-service";
+import {ClothingDataService} from "../providers/clothing-data-service";
 
 
 @Component({
   templateUrl: 'app.html',
-  providers: [SettingsService, WeatherService]
+  providers: [SettingsService, WeatherService, ClothingService, GeolocationService, ClothingDataService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage = HomePage;
+  rootPage: any;
 
   pages: Array<{title: string, component: any, icon : string}>;
 
-  constructor(public platform: Platform, public storage: Storage) {
-    this.initializeApp();
-
+  constructor(public platform: Platform, public storage: Storage,
+              public clothingDataService: ClothingDataService, public settingService: SettingsService) {
     this.pages = [
       { title: 'Home', component: HomePage, icon : "home" },
       { title: 'Settings', component: SettingsPage, icon : "settings" }
     ];
+
+    this.initializeApp()
+      .then(() => this.rootPage = HomePage);
   }
 
   initializeApp() {
-    this.platform.ready().then(() => {
+    return this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
-      this.storage.get('first-login')
-        .then(done => {
-          if (!done) {
+
+      // this.clothingDataService.initialize();
+      // console.log("Initializing");
+
+      return this.storage.ready()
+        .then(() => {
+	return this.storage.get('first-login');
+	})
+      // return this.clearStorage()
+      //   .then(() => {
+      //   return this.storage.get('first-login')
+      //   })
+        .then(res => {
+	  console.log("Value of first-login:");
+	  console.log(res.toString());
+          if (!res) {
             console.log("First login");
             this.storage.set('first-login', true);
-            // this.clothingService.initializeDB();
+            return Promise.all([this.clothingDataService.initialize(), this.settingService.initialize()]);
           }
-        })
-    });
+          else return this.settingService.update();
+        });
+    })
+  }
+
+  clearStorage() {
+    return this.storage.clear();
   }
 
   openPage(page) {

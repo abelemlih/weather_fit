@@ -14,17 +14,12 @@ import {SettingsService} from "./settings-service";
 @Injectable()
 export class ClothingService {
 
-  private _weatherService: WeatherService;
-
-  set weatherService(value: WeatherService) {
-    this._weatherService = value;
-  }
-
-  constructor(public clothingData: ClothingDataService, public settingsService: SettingsService) {}
+  constructor(public clothingDataService: ClothingDataService, public settingsService: SettingsService,
+              public weatherService: WeatherService) {}
 
   /**
  * Recommend tops, bottoms, and accessories to the user based on weather conditions.
- * @return {top: ClothingItem[], bottom: ClothingItem[], accessories: ClothingItem[]} 
+ * @return {top: ClothingItem[], bottom: ClothingItem[], accessories: ClothingItem[]}
  */
   recommend() {
     /**
@@ -37,11 +32,11 @@ export class ClothingService {
       return false
     }
 
-    /** 
+    /**
     * Extract temperature and precipitation parameters from weather data
-    * @return {min_temp: number, max_temp: number, rain: boolean, snow: boolean} 
+    * @return {min_temp: number, max_temp: number, rain: boolean, snow: boolean}
     */
-    
+
     function extract_weather_data(api_weather: any) {
       /**
       * Convert kelvin temperature to celsius
@@ -51,25 +46,24 @@ export class ClothingService {
         let celsius = kelvin - 273.15;
         return celsius
       }
-      
+
       let min_temp = kelvin_to_celsius(api_weather.main.temp_max)
       let max_temp = kelvin_to_celsius(api_weather.main.temp_min)
       let rain = extract_condition(api_weather,500,531), snow = extract_condition(api_weather,600,622)
       return {min_temp: min_temp, max_temp: max_temp, rain: rain, snow: snow}
     }
 
-    return Promise.all([this.clothingData.getData(), this._weatherService.load()])
+    return Promise.all([this.clothingDataService.getData(), this.weatherService.load()])
       .then( (values) => {
         let clothing_items = values[0];
         let weather_data = values[1];
-        //TODO: replace "neutral" with user_gender that we get from settings
         return this.generate(clothing_items, extract_weather_data(weather_data), this.settingsService.gender);
       })
   }
 
   /**
   * Generate a hash with top, bottom, and shoes arrays.
-  * @return {top: ClothingItem[], bottom: ClothingItem[], accessories: ClothingItem[]} 
+  * @return {top: ClothingItem[], bottom: ClothingItem[], accessories: ClothingItem[]}
   */
   private generate(clothing_dict: any, weather_data: any , user_gender: string) {
 
@@ -90,13 +84,14 @@ export class ClothingService {
       if (clothing_array.length <= cap) { return clothing_array }
       else { return random_clothing_array }
   }
-    
+
     /**
     * Check if clothing items matches weather conditions and the user's gender
     * @return boolean
     */
     function isSuitable(clothing: ClothingItem) {
-      return (clothing.suits_weather(weather_data) && clothing.suits_precipitation(weather_data) && clothing.suits_gender(user_gender))
+      return (clothing.suits_weather(weather_data) && clothing.suits_precipitation(weather_data)
+      && clothing.suits_gender(user_gender))
     }
 
     let result = {};
@@ -109,8 +104,4 @@ export class ClothingService {
     return result;
   }
 
-
-  initializeDB() {
-    this.clothingData.initialize();
-  }
 }

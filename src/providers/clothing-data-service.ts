@@ -17,33 +17,46 @@ export class ClothingDataService {
 
   constructor(public storage: Storage, public http: Http) {}
 
+  data: any;
   /**
    * Get data of the clothing items from the storage
    */
   getData() {
+    if (this.data) return Promise.resolve(this.data);
+
     return this.storage.get("ClothingData")
-      .then(data => {
-        let res = {};
-        // Turn the raw json strings into clothing item objects
-        for (let attr of ["top", "bottom", "accessories"]) {
-          res[attr] = data[attr].map(item => {
-            return new ClothingItem(item.name, item.url, item.max_temp, item.min_temp, item.rain, item.snow, item.grade, item.gender);
-          })
-        }
-        return res;
-      });
+        .then((data) => {
+        this.data = this.transform(data);
+        return this.data;
+      })
   }
 
-  save(data: Object) {
-    this.storage.set("ClothingData", data)
-      .catch((error) => "Failed to store data");
+  transform(data: Object) {
+    let res = {};
+    // Turn the raw json strings into clothing item objects
+    for (let attr of ["top", "bottom", "accessories"]) {
+      res[attr] = data[attr].map(item => {
+        let newItem = new ClothingItem();
+        for (let i in item) newItem[i] = item[i];
+        return newItem;
+      })
+    }
+    return res;
+  }
+
+  saveData() {
+    return this.storage.set("ClothingData", this.data)
+      .catch((error) => console.log("Failed to save data to storage\n" + error.toString()));
   }
 
   initialize() {
-    this.http.get("assets/clothing/seed.json")
-      .map(res => res.json())
-      .subscribe(data => {
-        this.save(data);
-      });
-  }
+    return new Promise((resolve) => {
+      this.http.get("assets/clothing/seed.json")
+        .map(res => res.json())
+        .subscribe(res => {
+          this.storage.set("ClothingData", res)
+            .then(() => resolve(true))
+        });
+    });
+    }
 }

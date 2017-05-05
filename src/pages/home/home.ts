@@ -1,4 +1,3 @@
-import {Component} from '@angular/core';
 
 import {ElementRef} from '@angular/core';
 
@@ -16,11 +15,7 @@ import {SettingsService} from "../../providers/settings-service";
 
 import {ClothingService} from "../../providers/clothing-service";
 
-import {ClothingItem} from "../../providers/clothing-item";
-
 import {ClothingDataService} from "../../providers/clothing-data-service";
-
-import {Storage} from "@ionic/storage";
 
 import {ViewChild} from '@angular/core';
 
@@ -49,9 +44,6 @@ export class HomePage {
   temp_num: number;
   temp_str: string;
 
-  mintemp_str: string;
-  maxtemp_str: string;
-
   // The range of temperature for the day
   temperature_range: string;
 
@@ -69,43 +61,42 @@ export class HomePage {
 
   // Recommendation array of clothing items from the clothing services
   _recommendation: any;
-  _clothing_data: any;
 
   /**
-   *
-   * @param navCtrl
-   * @param weatherService
-   * @param geolocationService
-   * @param settingsService
-   * @param clothingService
-   * @param clothingDataService
-   * @param storage
+   * Construct the home page and load everything.
    */
   constructor(public navCtrl: NavController,
               private weatherService: WeatherService,
               public geolocationService: GeolocationService,
               public settingsService: SettingsService,
               public clothingService: ClothingService,
-              public clothingDataService: ClothingDataService,
-              public storage: Storage) {
+              public clothingDataService: ClothingDataService) {
+
     this.option = {
       loop: true
     };
-
-    clothingDataService.initialize();
     
+    console.log("HomePage constructor");
     // this.loadCurrentLocation()
-      // .then(() => {
-    	   this.loadWeather();
-    	   this.loadFutureWeather();
-    	   this.loadTime();
-    	   this.loadClothing();
-    	   this.loadRecommendation();
-    // })
-       // .catch((error) => console.log("Failed to load current position in HomePage constructor\n" + error.toString())
-	     // );
-    // clothingData.getData()
-    //   .then((data) => console.log(data));
+    Promise.resolve()
+    .catch(() => {
+      console.log("Inside catch block");
+
+      // This catch block ensures that the next then() in the chain is executed regardless of
+      // whether getting current location was successful.
+      return Promise.resolve();
+    })
+    .then(() => {
+      console.log("Load weather promise");
+      this.loadTime();
+      this.loadFutureWeather();
+      return this.loadWeather();
+    })
+    .then(() => {
+      console.log("Load recommendation promise");
+      return this.loadRecommendation();
+    })
+    .catch((error) => console.log("Failed chain promise in Homepage\n" + error.toString()));
   }
 
   /**
@@ -125,55 +116,23 @@ export class HomePage {
   }
 
   /**
-   *
-   * @returns {any}
-   */
-  get clothing_data() {
-    return this._clothing_data
-  }
-
-  /**
-   *
-   * @param data
-   */
-  set clothing_data(data: any) {
-    this._clothing_data = data
-  }
-
-  /**
    * Update the avatar on/off based on the settings
    */
   updateAvatar() {
-    if (this.settingsService.avatar)
+    if (this.settingsService.avatar) {
       this.clothingDiv.nativeElement.style.backgroundImage = "url(assets/avatar/true.png)";
+    }
     else {
       this.clothingDiv.nativeElement.style.backgroundImage = "url(assets/avatar/false.png)";
     }
   }
 
-  /**
-   *
-   * @returns {PromiseLike<TResult>|Promise<R>|Promise<TResult>|Promise<T>|Promise<TResult2|TResult1>}
-   */
   loadCurrentLocation() {
     return this.geolocationService.load()
       .then((pos) => this.weatherService.pos = pos);
   }
 
-  /**
-   * Load all the clothing data from the storage. Returns a promise that resolves with the data.
-   */
-  loadClothing() {
-    return this.clothingDataService.getData()
-    .then( (data) => {
-      this._clothing_data = data;
-      }
-    )
-    .catch((error) => console.log("Failed to load clothingDataService\n" + error.toString()))
-  }
-
   loadRecommendation() {
-    this.clothingService.weatherService = this.weatherService;
     return this.clothingService.recommend()
       .then( (recom) => {
           this.recommendation = recom;
@@ -223,18 +182,6 @@ export class HomePage {
       )
   }
 
-  // For testing purposes
-  loadWeatherTest() {
-    this.weatherService.load()
-      .catch(error => console.log("weatherService fails"))
-      .then(data =>{
-        this.weather = data;
-        this.temp_num = this.weather.main.temp - 273.15;
-        this.updateUnits();
-      })
-      .catch(error => console.log("loadWeatherTest fails"))
-  }
-
   /**
    * Update units of the temperature according to the settings
    */
@@ -257,28 +204,12 @@ export class HomePage {
    * Re-update the units and the avatar each time the home page is loaded
    */
   ionViewWillEnter() {
-    if (this.temp_num != undefined) {
-      this.updateUnits();
+    if (this.recommendation != undefined) {
       this.updateAvatar();
+      this.updateUnits();
+      this.loadRecommendation()
+        .catch((error) => console.log("Failed to reload recommendation\n" + error.toString()));
     }
-  }
-
-  /**
-   *
-   */
-  ionViewDidLoad() {
-
-    // this.clothingService.initializeDB();
-    // console.log("Initialize database");
-    
-    // this.storage.get('first-login')
-    //   .then(done => {
-    //     if (!done) {
-    //       this.storage.set('first-login', true)
-    //         .catch((error) => console.log("Can not set first login\n" + error.toString()));
-    //       this.clothingService.initializeDB();
-    //     }
-    //   })
   }
 
   /**
@@ -310,65 +241,20 @@ export class HomePage {
    * Update the grade of the items chosen by the user when the three sliders are clicked
    */
   allTapped() {
-    
-    /**
-    * Find index of a clothing item within an array of clothing items
-    * @return number which represents the index of the item searched
-    */
-    function findIndex (element: ClothingItem, array: Array<ClothingItem>): any {
-      for (let i in array) {
-        if (array[i].name === element.name) {
-          return i
-        }
-      }
-      return `Error: Cannot find element ${element} within ${array}`
-    }
-
-    /**
-    * Generate new grade for a clothing item
-    * @return number that represents the new grade of the clothing item
-    */
-    function newItemGrade(item: ClothingItem) {
-      return ((1-item.grade)*(0.05)) + item.grade
-    }
-
-
     if (this.picked.every(Boolean)) {
-      let updated_clothing_data = this.clothing_data
-      let clothing_types = ["top","bottom","accessories"]
-      for (let i in clothing_types) {
-        let chosen_clothing_array = this.recommendation[clothing_types[i]]
-        let chosen_item
+      let clothing_types = ["top","bottom","accessories"];
 
-        Promise.resolve('Success')
-        .then((res) => {
-          let item = chosen_clothing_array[this.convertIndexToSlide(i).getActiveIndex()]
-          return item
-        })
-        .catch((error) => console.log("Failed to load current chosen item\n" + error.toString()))
+      for (let i in [0, 1, 2]) {
+        // the index of the slide that is being selected/shown on screen
+        let activeIndex = this.convertIndexToSlide(i).getActiveIndex();
 
-        .then((_chosen_item) => {
-          chosen_item = _chosen_item
-          chosen_item.grade = newItemGrade(chosen_item)
-          return 1
-        })
-        .catch((error) => console.log("Failed to update chosen item grade\n" + error.toString()))
-
-        .then((res) => {
-          return findIndex(chosen_item, updated_clothing_data["top"])
-        })
-        .catch((error) => console.log("Failed to find index of chosen item\n" + error.toString()))
-
-        .then((_chosen_item_index) => {
-          console.log(`Type: ${clothing_types[i]} ; Item: ${chosen_item.name} ; new grade: ${chosen_item.grade}`)
-          updated_clothing_data[clothing_types[i]] = updated_clothing_data[clothing_types[i]].splice(_chosen_item_index,1).concat([chosen_item])
-          this.clothing_data = updated_clothing_data
-          return 'Success';
-        })
-        .catch((error) => console.log("Failed to update clothing data\n" + error.toString()))
+        // the corresponding item
+        let item = this.recommendation[clothing_types[i]][activeIndex];
+        console.log(item);
+        item.increase_grade();
       }
-      this.storage.set("ClothingData", updated_clothing_data)
-        .catch((error) => "Failed to store data");
+
+      return this.clothingDataService.saveData();
     }
   }
 
