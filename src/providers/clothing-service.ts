@@ -15,8 +15,7 @@ import {SettingsService} from "./settings-service";
 export class ClothingService {
 
   constructor(public clothingDataService: ClothingDataService, public settingsService: SettingsService,
-              public weatherService: WeatherService) {
-  }
+              public weatherService: WeatherService) {}
 
   /**
  * Recommend tops, bottoms, and accessories to the user based on weather conditions.

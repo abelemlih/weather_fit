@@ -45,9 +45,7 @@ export class ClothingDataService {
   }
 
   saveData() {
-    let data = {};
-
-    this.storage.set("ClothingData", this.data)
+    return this.storage.set("ClothingData", this.data)
       .catch((error) => console.log("Failed to save data to storage\n" + error.toString()));
   }
 
