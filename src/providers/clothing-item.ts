@@ -77,4 +77,8 @@ export class ClothingItem {
     return true
   }
 
+  increase_grade() {
+    this.grade = ((1-this.grade)*(0.05)) + this.grade;
+  }
+
 }

@@ -22,7 +22,6 @@ export class ClothingDataService {
    * Get data of the clothing items from the storage
    */
   getData() {
-
     if (this.data) return Promise.resolve(this.data);
 
     return this.storage.get("ClothingData")
@@ -37,11 +36,16 @@ export class ClothingDataService {
     // Turn the raw json strings into clothing item objects
     for (let attr of ["top", "bottom", "accessories"]) {
       res[attr] = data[attr].map(item => {
+        // return Object.create(ClothingItem, item);
         return new ClothingItem(item.name, item.url, item.max_temp,
           item.min_temp, item.rain, item.snow, item.grade, item.gender);
       })
     }
     return res;
+  }
+
+  saveData() {
+    return this.storage.set("ClothingData", this.data);
   }
 
   initialize() {
@@ -50,7 +54,7 @@ export class ClothingDataService {
         .map(res => res.json())
         .subscribe(res => {
           this.storage.set("ClothingData", res)
-            .then(() => resolve(true));
+            .then(() => resolve(true))
         });
     });
     }
