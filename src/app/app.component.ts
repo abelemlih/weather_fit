@@ -42,8 +42,8 @@ export class MyApp {
       StatusBar.styleDefault();
       Splashscreen.hide();
 
-      // this.clothingDataService.initialize();
-      // console.log("Initializing");
+      this.clothingDataService.initialize();
+      console.log("Initializing");
 
       this.storage.get('first-login')
         .then(res => {

@@ -12,16 +12,6 @@
       "gender": "neutral"
     },
     {
-      "name": "snow_jacket",
-      "url": "assets/clothing/winter_jacket.png",
-      "max_temp": 10,
-      "min_temp": -15,
-      "rain": true,
-      "snow": true,
-      "grade": 0.5,
-      "gender": "neutral"
-    },
-    {
       "name": "hoodie",
       "url": "assets/clothing/hoodie.png",
       "max_temp": 25,
@@ -34,16 +24,6 @@
     {
       "name": "pullover",
       "url": "assets/clothing/pullover.png",
-      "max_temp": 25,
-      "min_temp": 5,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "neutral"
-    },
-    {
-      "name": "patterned_sweater",
-      "url": "assets/clothing/patterned_sweater.png",
       "max_temp": 25,
       "min_temp": 5,
       "rain": false,
@@ -152,16 +132,6 @@
       "gender": "neutral"
     },
     {
-      "name": "other_jersey",
-      "url": "assets/clothing/other_basketball.png",
-      "max_temp": 35,
-      "min_temp": 15,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "neutral"
-    },
-    {
       "name": "polo",
       "url": "assets/clothing/polo.png",
       "max_temp": 35,
@@ -174,16 +144,6 @@
     {
       "name": "tank_top",
       "url": "assets/clothing/tank_top.png",
-      "max_temp": 35,
-      "min_temp": 10,
-      "rain": false,
-      "snow": false,
-      "grade": 0.5,
-      "gender": "female"
-    },
-    {
-      "name": "off_the_shoulder",
-      "url": "assets/clothing/off_the_shoulder.png",
       "max_temp": 35,
       "min_temp": 10,
       "rain": false,
