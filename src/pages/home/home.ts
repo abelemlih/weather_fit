@@ -1,5 +1,5 @@
 
-import {ElementRef} from '@angular/core';
+import {ElementRef, Component} from '@angular/core';
 
 import {NavController} from 'ionic-angular';
 
@@ -75,7 +75,7 @@ export class HomePage {
     this.option = {
       loop: true
     };
-    
+
     console.log("HomePage constructor");
     // this.loadCurrentLocation()
     Promise.resolve()
