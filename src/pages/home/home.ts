@@ -67,7 +67,6 @@ export class HomePage {
    */
   constructor(public navCtrl: NavController,
               private weatherService: WeatherService,
-              public geolocationService: GeolocationService,
               public settingsService: SettingsService,
               public clothingService: ClothingService,
               public clothingDataService: ClothingDataService) {
