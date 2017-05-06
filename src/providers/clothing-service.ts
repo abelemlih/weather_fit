@@ -72,7 +72,7 @@ export class ClothingService {
     * @param cap: maximum number of items to be displayed for a specific type of clothing
     * @return  [] array of clothing items of a specific type (e.g. tops)
     */
-    function capFilter(clothing_array: ClothingItem[], cap: number) {
+    function capFilter(clothing_array: ClothingItem[], cap: number, lowerCap: number) {
       let random_clothing_array = [], not_picked = 0
       for (let item of clothing_array) {
         if (Math.random() < item.grade || not_picked >= clothing_array.length - cap) {
@@ -81,7 +81,7 @@ export class ClothingService {
         }
         else { not_picked = not_picked + 1 }
       }
-      if (clothing_array.length <= cap) { return clothing_array }
+      if (clothing_array.length <= cap || random_clothing_array.length <= lowerCap) { return clothing_array }
       else { return random_clothing_array }
   }
 
@@ -99,7 +99,7 @@ export class ClothingService {
       //Phase 1: Suitable for weather, precipitation, and gender
       result[attr] = clothing_dict[attr].filter(isSuitable)
       //Phase 2: Filtering by cap
-      result[attr] = capFilter(result[attr], 15)
+      result[attr] = capFilter(result[attr], 15, 5)
     }
     return result;
   }
