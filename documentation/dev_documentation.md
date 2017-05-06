@@ -19,6 +19,14 @@ $ ionic serve
 ```
 and then access the app on your browser through http://localhost:8100/ (preferably Google Chrome or Mozilla Firefox)
 
+To build for iOS, run:
+```
+$ ionic platform add ios
+$ ionic build ios
+$ ionic resources
+```
+This will create an Xcode project in the folder platforms/ios, which can then be opened in Xcode for testing and deployment.
+
 ### Developer Documentation
 
 __Pages__
