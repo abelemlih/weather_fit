@@ -17,7 +17,7 @@ export class GeolocationService {
 
   constructor() {
     this.options = {
-      enableHighAccuracy: true,
+      enableHighAccuracy: false,
       timeout: 5000,
       maximumAge: 0
     };
@@ -36,6 +36,6 @@ export class GeolocationService {
       this.data = {"longitude": data.coords.longitude, "latitude": data.coords.latitude};
       return this.data;
       })
-      .catch(error => console.log("Failed to get current position"));
+      .catch((error) => console.log("Failed to get current position\n" + error.toString()));
   }
 }
