@@ -60,7 +60,7 @@ export class HomePage {
   option: any;
 
   // Recommendation array of clothing items from the clothing services
-  _recommendation: any;
+  recommendation: any;
 
   /**
    * Construct the home page and load everything.
@@ -77,21 +77,10 @@ export class HomePage {
     };
 
     console.log("HomePage constructor");
-    // this.loadCurrentLocation()
-    Promise.resolve()
-    .catch(() => {
-      console.log("Inside catch block");
-
-      // This catch block ensures that the next then() in the chain is executed regardless of
-      // whether getting current location was successful.
-      return Promise.resolve();
-    })
-    .then(() => {
-      console.log("Load weather promise");
-      this.loadTime();
-      this.loadFutureWeather();
-      return this.loadWeather();
-    })
+    console.log("Load weather promise");
+    this.loadTime();
+    this.loadFutureWeather();
+    this.loadWeather()
     .then(() => {
       console.log("Load recommendation promise");
       return this.loadRecommendation();
@@ -99,21 +88,6 @@ export class HomePage {
     .catch((error) => console.log("Failed chain promise in Homepage\n" + error.toString()));
   }
 
-  /**
-   *
-   * @returns {any}
-   */
-  get recommendation() {
-    return this._recommendation
-  }
-
-  /**
-   *
-   * @param recom
-   */
-  set recommendation(recom: any) {
-    this._recommendation = recom
-  }
 
   /**
    * Update the avatar on/off based on the settings
@@ -125,11 +99,6 @@ export class HomePage {
     else {
       this.clothingDiv.nativeElement.style.backgroundImage = "url(assets/avatar/false.png)";
     }
-  }
-
-  loadCurrentLocation() {
-    return this.geolocationService.load()
-      .then((pos) => this.weatherService.pos = pos);
   }
 
   loadRecommendation() {

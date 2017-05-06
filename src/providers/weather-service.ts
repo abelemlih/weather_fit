@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import {GeolocationService} from "./geolocation-service";
 
 
 /*
@@ -14,12 +15,12 @@ import 'rxjs/add/operator/map';
 export class WeatherService {
 
   private data: any;
-  public pos: Position;
+  public pos: any;
 
 
   future_data: any;
 
-  constructor(public http: Http) {}
+  constructor(public http: Http, public geolocationService: GeolocationService) {}
 
   loadFutureData()
   /**
@@ -31,26 +32,24 @@ export class WeatherService {
       return Promise.resolve(this.future_data);
     }
 
-    return new Promise( (resolve) => {
+    return this.geolocationService.load()
+      .then((pos) => {
       let url = "http://api.openweathermap.org/data/2.5/forecast?";
 
       // Default to North Saint Paul
-      let coordinates;
-      if (this.pos) {
-        coordinates = "lat=" + Math.round(this.pos.coords.latitude) + "&lon=" + Math.round(this.pos.coords.longitude);
-      }
-      else {coordinates = "lat=45&lon=-93";}
+      if (!this.pos) this.pos = {"longitude": -93, "latitude": 45};
 
+      let coordinates = "lat=" + Math.round(this.pos.latitude) + "&lon=" + Math.round(this.pos.longitude);
       const key = "8d8c3c27de32631513a46a6cbc70ea96";
       let appID = "&APPID=" + key;
-
-      this.http
+      return new Promise((resolve) => {
+        this.http
         .get(url + coordinates + appID)
         .map(res => res.json())
         .subscribe(data => {
           this.future_data = data;
-          resolve(data);
         })
+      })
     })
   }
 
@@ -64,22 +63,19 @@ export class WeatherService {
       return Promise.resolve(this.data)
     }
 
-    return new Promise( (resolve) => {
-
+    return this.geolocationService.load()
+      .then((pos) => {
       let url = "http://api.openweathermap.org/data/2.5/weather?";
 
       // Default to North Saint Paul
-      let coordinates;
-      if (this.pos) {
-        coordinates = "lat=" + Math.round(this.pos.coords.latitude) + "&lon=" + Math.round(this.pos.coords.longitude);
-      }
-      else {coordinates = "lat=45&lon=-93";}
+      if (!this.pos) this.pos = {"longitude": -93, "latitude": 45};
 
+      let coordinates = "lat=" + Math.round(this.pos.latitude) + "&lon=" + Math.round(this.pos.longitude);
       const key = "8d8c3c27de32631513a46a6cbc70ea96";
       let appID = "&APPID=" + key;
       // console.log(url + coordinates + appID);
-
-      this.http
+      return new Promise((resolve) => {
+        this.http
         // Send the HTTP request
         .get(url + coordinates + appID)
         // Turn the response into json format
@@ -87,8 +83,9 @@ export class WeatherService {
         // Resolve when the data arrives
         .subscribe(data => {
           this.data = data;
-          resolve(data);
+          resolve(this.data);
         })
+      })
     })
   }
 }

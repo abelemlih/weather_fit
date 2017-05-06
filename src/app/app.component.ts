@@ -55,8 +55,7 @@ export class MyApp {
         //   return this.storage.get('first-login')
         //   })
         .then(res => {
-          console.log("Value of first-login:");
-          console.log(res.toString());
+          console.log("Inside then");
           if (!res) {
             console.log("First login");
             this.storage.set('first-login', true);
